@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<UIProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Version>1.0.2.0</Version>
+  <Name>gui</Name>
+  <ProjectDir>.\</ProjectDir>
+  <JsonFileName>gui.json</JsonFileName>
+  <Resources>.\Resources</Resources>
+  <JsonFolder>.\Json</JsonFolder>
+  <JsonList>
+    {FILE_LIST}
+  </JsonList>
+  <imageFileList />
+  <JsonSuffix>.json</JsonSuffix>
+  <CurrentUIJson></CurrentUIJson>
+  <CanvasSize>
+    <Width>1080</Width>
+    <Height>720</Height>
+  </CanvasSize>
+</UIProject>
