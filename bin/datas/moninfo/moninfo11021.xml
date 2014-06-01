@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<moninfo>
+
+	<mon BaseId="1035" Num="15" AI="0" Speed="100" View="3" BirthX="14" BirthY="48" BirthWidth="12" BirthHeight="30" DropId="205" DropProb="8000" DropType="1" ReviveTime="1" />
+	<mon BaseId="3030" Num="10" AI="0" Speed="100" View="3" BirthX="45" BirthY="53" BirthWidth="26" BirthHeight="16" DropId="201" DropProb="8000" DropType="1" ReviveTime="1" />
+	<mon BaseId="3031" Num="12" AI="0" Speed="100" View="3" BirthX="60" BirthY="31" BirthWidth="30" BirthHeight="20" DropId="206" DropProb="8000" DropType="1" ReviveTime="1" />
+	<mon BaseId="3032" Num="12" AI="0" Speed="100" View="3" BirthX="58" BirthY="59" BirthWidth="18" BirthHeight="21" DropId="204" DropProb="10000" DropType="1" ReviveTime="1" />
+
+</moninfo>
+

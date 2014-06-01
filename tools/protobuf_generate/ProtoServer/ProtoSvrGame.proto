@@ -1,0 +1,68 @@
+option optimize_for = LITE_RUNTIME;
+
+package GameCmd;
+
+
+//////////////////////////////////////////////////////////////////////////
+//             所有和Game服务器通讯的消息		开始
+//////////////////////////////////////////////////////////////////////////
+
+//----------------------------------------------------------------------------
+// 操作号
+enum SvrGateway2GameOpCode {
+	SVR_OP_FORWARD_CMD = 1;				// 网关转发消息给游戏服务器
+	SVR_OP_ENTER_GAME = 2;				// 选中角色，并进入游戏
+	SVR_OP_UNREG_GAME_USER = 3;			// 网关通知游戏服务器删除玩家
+	SVR_OP_KICK_GAME_USER = 4;			// 踢人下线
+	SVR_OP_SHUTDOWN_GAME = 5;			// 关服维护
+	SVR_OP_GATEWAY_PING_GAME = 100;	// 网关服务器ping游戏服务器
+}
+//----------------------------------------------------------------------------
+
+// 网关转发消息给游戏服务器		gate -> game
+message GatewayForwardCmd {
+	optional int32 client_taskid = 1;
+	optional int32 charid = 2;
+	optional bytes forward_cmd = 3;		// 被转发的消息
+}
+
+// 选中角色，并进入游戏			gate -> game
+message GatewayEnterGame {
+	optional int32 client_taskid = 1;
+	optional int32 charid = 2;
+	optional string account = 3;		// 游戏账号
+}
+
+// 网关通知游戏服务器删除玩家		gate -> game
+message GatewayUnregGameUser {
+	optional int32 client_taskid = 1;
+	optional int32 charid = 2;
+}
+
+// 踢人下线		game -> gateway
+message GatewayKickGameUser {
+	optional int32 client_taskid = 1;
+	optional int32 charid = 2;
+}
+
+// 关服维护		game -> gateway
+message GatewayShutdownGame {
+	optional int32 client_taskid = 1;
+	optional int32 charid = 2;
+}
+
+// 网关ping游戏服务器	gateway -> game 
+message GatewayServerPing {
+	optional int32 timestamp = 1;
+}
+
+
+
+
+	//////////////////////////////////////////////////////////////////////////
+	//			所有和Game服务器通讯的消息		结束
+	//////////////////////////////////////////////////////////////////////////
+
+
+//------------------------------------------------------ 华丽丽的分割线 ---------------------------------------------------------------------
+

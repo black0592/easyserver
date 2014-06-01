@@ -1,0 +1,12 @@
+-- 加载各个功能模块的参数配置
+require 'config_vip'
+require 'config_pk'
+require 'config_package'
+require 'config_guiname'
+require 'config_guild'
+require 'config_activity'
+require 'config_mail'
+require 'config_relations'
+require 'config_auction'
+require 'config_item'
+require 'config_general'

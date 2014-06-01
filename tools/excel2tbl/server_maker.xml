@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="GBK"?>
+<root>
+
+<database xls="物品表.xls">
+	<table sheet="物品" out="item.tbl">
+		<field name="编号" type="INT" len=4/>
+		<field name="名称" type="STR" len=50/>
+		<field name="说明" type="STR" len=255/>
+	</table>
+</database>
+
+<database xls="怪物属性表.xls">
+	<table sheet="怪物" out="monster.tbl">
+		<field name="编号" type="INT" len=4/>
+		<field name="名称" type="STR" len=50/>
+		<field name="等级" type="INT" len=255/>
+	</table>
+</database>
+
+<database xls="技能表.xls">
+	<table sheet="技能" out="skill.tbl">
+		<field name="编号" type="INT" len=4/>
+		<field name="名称" type="STR" len=50/>
+		<field name="攻击力" type="INT" len=4/>
+	</table>
+</database>
+
+<database xls="角色经验表.xls">
+	<table sheet="角色经验" out="charexp.tbl">
+		<field name="等级" type="INT" len=4/>
+		<field name="经验值" type="BIGINT" len=8/>
+	</table>
+</database>
+
+</root>

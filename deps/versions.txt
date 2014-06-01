@@ -1,0 +1,8 @@
+zlib		1.2.5
+mysql-connector-c-6.1.1
+libpugixml	1.2
+pthread		2.7.0.0
+
+tinyxml 将用 pugixml 代替
+zip 可能会被 7z 代替
+	

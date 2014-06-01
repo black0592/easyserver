@@ -1,0 +1,28 @@
+option optimize_for = LITE_RUNTIME;
+
+
+// 服务器信息
+message ServerInfo{
+	optional uint64 uniqueid = 1;	// 唯一ID(IP和端口组成的数字ID)
+	optional int32 serverid = 2;	// 标识ID（主要用在地图的分布式处理）
+	optional string name = 3;		// 服务器名字
+	optional int32 type = 4;		// ServerType
+	optional int32 ip = 5;			// 所在的IP地址(局域网IP或外网IP)
+	optional int32 port = 6;		// 对外服务的端口号
+	optional int32 onlinenum = 7;	// 当前在线人数
+	optional int32 maxnum = 8;		// 这个服支持的最大人数限制
+	optional int32 group = 9;		// 大区分组（ZoneServer有效）
+	optional int32 state = 10;		// 状态	0-畅通,1-拥挤,2-爆满,3-维护
+	optional int32 flag = 11;		// 标识符 0-正常,1-新服,2-推荐服 
+	optional int32 ip_str = 20;		// 字符串IP(主要用于数据库填表)
+}
+
+
+// 大区选择时的角色信息
+message SvrZoneCharInfo {
+	optional int32 zoneid = 1;		// 大区编号
+	optional string account = 2;	// 账号
+	optional string charname = 3;	// 角色名字
+	optional int32 charlevel = 4;	// 角色等级
+	optional int32 charrace = 5;	// 角色种族
+}

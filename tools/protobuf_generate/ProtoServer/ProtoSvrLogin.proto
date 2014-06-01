@@ -1,0 +1,183 @@
+option optimize_for = LITE_RUNTIME;
+
+import "ProtoSvrServerData.proto";
+
+package LoginCmd;
+
+
+//////////////////////////////////////////////////////////////////////////
+//			游戏服务器和登录服务器之间的消息		开始
+//////////////////////////////////////////////////////////////////////////
+
+//----------------------------------------------------------------------------
+// 操作号
+enum SvrGame2LoginOpCode {
+	SVR_OP_GAME_TO_LOGIN_START = 50;		// 消息开始
+	SVR_OP_REGISTER_GAMESERVER = 51;		// 游戏服务器请求注册到登陆服务器
+	SVR_OP_UPDATE_GAMESERVER_INFO = 52;	// 服务器发送当前状态给登陆服务器
+	SVR_OP_USER_END_TIME = 53;			// 游戏服务器请求用户游戏结束时间(暂时不用了，时间收费模式才用)
+	SVR_OP_GET_USER_CASH_INFO = 54;		// 向登陆服务器请求账号的游戏点数
+	SVR_OP_UPDATE_USER_CASH_INFO = 55;	// 向登陆服务器请求更新账号的游戏点数
+	SVR_OP_STOP_ACCOUNT = 56;				// 请求封号
+	SVR_OP_GAMESERVER_PING = 57;			// 游戏服务器ping登录服务器
+	SVR_OP_GAME_TO_LOGIN_END = 99;		// 消息结束
+}
+//----------------------------------------------------------------------------
+
+// 游戏服务器请求注册到登陆服务器	(gameserver -> loginserver)
+message RequestRegisterGameServer {
+	optional int32 id = 1;	// zoneid
+	optional string name = 2;
+	optional int32 port = 3;
+}
+
+message ResponseRegisterGameServer {
+	optional int32 result = 1;	// 0 成功, 1 失败
+}
+
+
+// 服务器发送当前状态给登陆服务器	(gameserver -> loginserver)
+message UpdateGameServerInfo {
+	optional int32 server_id = 1;	// zoneid
+	optional string online_num = 2;	// 在线人数
+	optional int32 max_num = 3;		// 最大人数
+	optional int32 state = 4;	// ServerState
+}
+
+
+// 游戏服务器请求用户游戏结束时间	(gameserver -> loginserver)
+message RequestUserEndTime {
+	optional int32 charid = 1;
+	optional string account = 2;
+}
+
+message ResponseUserEndTime {
+	optional int32 charid = 1;
+	optional string account = 2;
+	optional int32 end_time = 3;
+}
+
+
+// 向登陆服务器请求账号的游戏点数	(gameserver -> loginserver)
+message RequestGetUserCashInfo {
+	optional int32 charid = 1;
+	optional string account = 2;
+}
+
+message ResponseGetUserCashInfo {
+	optional int32 charid = 1;
+	optional string account = 2;
+	optional int32 cashpoint = 3;	// 游戏点数
+	optional int32 credits = 4;		// 积分点
+}
+
+
+// 向登陆服务器请求更新账号的游戏点数
+// gameserver -> loginserver   填入的是需要扣除的点数和积分
+// loginserver -> gameserver   返回的剩余的点数和积分
+message RequestUpdateUserCashInfo {
+	optional int32 charid = 1;
+	optional string account = 2;
+	optional int32 cashpoint = 3;	// 游戏点数(需要扣除的数值)
+	optional int32 credits = 4;		// 积分点(需要扣除的数值)
+	optional int32 type = 5;		// 区分功能类型(0 - 商城购买, 1 - 点数兑换金币)
+}
+
+message ResponseUpdateUserCashInfo {
+	optional int32 charid = 1;
+	optional string account = 2;
+	optional int32 cashpoint = 3;	// 游戏点数(需要扣除的数值)
+	optional int32 credits = 4;		// 积分点(需要扣除的数值)
+	optional int32 type = 5;		// 区分功能类型(0 - 商城购买, 1 - 点数兑换金币)
+}
+
+
+// 请求封号	(gameserver -> loginserver)
+message RequestStopAccount {
+	optional string account = 1;
+	optional string charname = 2;
+}
+
+// 游戏服务器ping登录服务器	(gameserver -> loginserver)
+message GameServerPing {
+	optional int32 timestamp = 1;
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////
+//			游戏服务器和登录服务器之间的消息		结束
+//////////////////////////////////////////////////////////////////////////
+
+
+//------------------------------------------------------ 华丽丽的分割线 ---------------------------------------------------------------------
+
+
+//////////////////////////////////////////////////////////////////////////
+//			网关服务器和登录服务器之间的消息		开始
+//////////////////////////////////////////////////////////////////////////
+
+//----------------------------------------------------------------------------
+// 操作号
+enum SvrGateway2LoginOpCode {
+	SVR_OP_GATEWAY_TO_LOGIN_START = 100;		// 消息开始
+	SVR_OP_REGISTER_GATEWAYSERVER = 101;	// 网关服务器请求注册到登陆服务器
+	SVR_OP_REG_USER_TO_GATEWAY = 102;	// 登陆服务器同步玩家的登陆密钥到网关服务器
+	SVR_OP_UNREG_LOGINUSER = 103;		// 网关通知登陆服务器注销用户
+	SVR_OP_UNREG_GATEWAYUSER = 104;	// 登陆服务器通知网关注销用户
+	SVR_OP_GATEWAY_PING_LOGIN = 105;	// 游戏服务器ping登录服务器
+	SVR_OP_GATEWAY_TO_LOGIN_END = 199;		// 消息结束
+}
+//----------------------------------------------------------------------------
+
+// 游戏服务器请求注册到登陆服务器	(gatewayserver -> loginserver)
+message RequestRegisterGatewayServer {
+	optional int32 zoneid = 1;
+	optional int32 id = 2;
+	optional string name = 3;
+	optional string ip = 4;
+	optional int32 port = 5;
+}
+
+message ResponseRegisterGatewayServer {
+	optional int32 result = 1;	// 0 成功, 1 失败
+}
+
+
+//-------------------------
+// 网关服务器请求注册到登陆服务器 (loginserver -> gatewayserver, gatewayserver -> loginserver)
+message RequestRegUserToGateway {
+	optional int32 zoneid = 1;
+	optional int32 gatewayid = 2;
+	optional string account = 3;
+	optional string key = 4;
+}
+
+message ResponseRegUserToGateway {
+	optional int32 zoneid = 1;
+	optional int32 gatewayid = 2;
+	optional string account = 3;
+	optional string key = 4;
+	optional int32 result = 5;
+}
+
+
+// 网关通知登陆服务器注销用户	gateway -> login
+message NotifyUnregLoginUser {
+	optional string account = 1;
+	optional string key = 2;
+}
+
+
+// 登陆服务器通知网关注销用户	login -> gateway
+message NotifyUnregGatewayUser {
+	optional string account = 1;
+	optional string key = 2;
+}
+
+
+// 网关服务器ping登录服务器		gatewayserver -> loginserver
+message MsgGatewayServerPing {
+	optional int32 timestamp = 1;
+}
+

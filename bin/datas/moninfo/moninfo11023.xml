@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<moninfo>
+
+	<mon BaseId="1010" Num="12" AI="0" Speed="100" View="3" BirthX="39" BirthY="91" BirthWidth="26" BirthHeight="16" DropId="2300" DropProb="10000" DropType="1" ReviveTime="1" />
+	<mon BaseId="1011" Num="8" AI="0" Speed="100" View="3" BirthX="39" BirthY="99" BirthWidth="26" BirthHeight="18" DropId="2301" DropProb="10000" DropType="1" ReviveTime="1" />
+	<mon BaseId="1012" Num="8" AI="0" Speed="100" View="3" BirthX="9" BirthY="105" BirthWidth="10" BirthHeight="14" DropId="2302" DropProb="10000" DropType="1" ReviveTime="1" />
+	<mon BaseId="1013" Num="1" AI="0" Speed="100" View="3" BirthX="71" BirthY="30" BirthWidth="8" BirthHeight="11" DropId="2304" DropProb="10000" DropType="1" ReviveTime="1" />
+	<mon BaseId="1019" Num="5" AI="0" Speed="100" View="3" BirthX="9" BirthY="33" BirthWidth="10" BirthHeight="25" DropId="2305" DropProb="10000" DropType="1" ReviveTime="1" />
+	<mon BaseId="1018" Num="3" AI="0" Speed="100" View="3" BirthX="14" BirthY="25" BirthWidth="14" BirthHeight="24" DropId="2306" DropProb="10000" DropType="1" ReviveTime="1" />
+	<mon BaseId="3005" Num="12" AI="0" Speed="100" View="3" BirthX="50" BirthY="24" BirthWidth="28" BirthHeight="16" DropId="2307" DropProb="10000" DropType="1" ReviveTime="1" />
+
+</moninfo>
+

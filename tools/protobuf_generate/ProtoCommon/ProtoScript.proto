@@ -1,0 +1,44 @@
+option optimize_for = LITE_RUNTIME;
+
+import "ProtoGameData.proto";
+
+package Protocol;
+
+//-------------------------
+// npc脚本逻辑操作号
+enum ScriptOpCode {
+	OP_SCIRPT_OPEN_NPC_DIALOG = 1;		// 打开指定npc的对话框
+	OP_SCRIPT_CHOOSE_ANSWER = 2;		// 选择答案
+	OP_SCRIPT_UPDATE_NPC_DIALOG = 3;	// 更新npc对话的内容
+	OP_SCRIPT_CLOSE_NPC_DIALOG = 4;		// 关闭npc对话框
+}
+
+
+/////////////////////////////////////////////
+
+// npc对话框选项
+message NpcDlgOption {
+	optional string text = 1;
+	optional string icon = 2;
+}
+
+// 和npc对话
+message RequestOpenNpcDialog {
+	optional int32 npc_uid = 1;		// npc的唯一id
+}
+
+// 选择答案
+message RequestChooseAnswer {
+	optional int32 answer_index = 1;	// 答案索引(字符串在服务器上临时保存，节省流量)
+}
+
+// 刷新客户端界面的对话内容
+message NotifyUpdateNpcDialog {
+	optional string content = 1;	// 对话内容(没法节省了)
+	repeated NpcDlgOption options = 2;	// 选项
+}
+
+// 关闭npc对话框
+message NotifyCloseNpcDialog {
+	optional int32 npc_uid = 1;		// npc的唯一id
+}

@@ -1,0 +1,356 @@
+option optimize_for = LITE_RUNTIME;
+
+
+///////////////////////////////////////////////////////////////
+// 角色相关数据结构
+
+// 角色基础数据(存储在数据库字段中)
+message CharBase {
+	optional string charname = 1;
+	optional int32 country = 2;
+	optional int32 race = 3;
+	optional int32 level = 4;
+	optional uint64 exp = 5;		// 当前经验值
+	optional uint64 gold = 6;		// 人民币货币
+	optional uint64 bindgold = 7;	// 绑定的人民币货币
+	optional uint64 money = 8;		// 身上金币
+	optional uint64 safemoney = 9;	// 仓库金币
+	optional int32 mapid = 10;
+	optional int32 x = 11;
+	optional int32 y = 12;
+	optional int32 total_score = 13;	// 个人实力值（总评分）
+	optional int64 offline_time = 50;	// 最后下线时间
+}
+
+// 角色基础数据结构(存储在数据库二进制中)
+message CharData {
+	optional bool inited = 1;			// 是否初始化过数据(进入过游戏)
+	optional string nickname = 2;
+	optional int32 nickcolor = 3;
+	optional int32 job = 4;
+	optional int32 levelup_point = 5;
+	optional int32 health = 13;
+	optional int32 hp = 14;
+	optional int32 mp = 15;
+	optional int32 sp = 16;
+	optional int32 jp = 17;
+	optional int32 hungry = 18  [default = 100];	// 饥饿值
+	optional int32 str = 19;				// 力量
+	optional int32 dex = 20;				// 敏捷
+	optional int32 intgent = 21;			// 智力
+	optional int32 con = 22;				// 体力
+	optional int32 wiz = 23;				// 精神
+	optional int32 pkcount = 26;			// 善恶值
+	optional int32 battle_prop = 30;		// 战斗属性(水火风)
+	optional int32 reincarnate = 32;		// 转生次数
+	optional int32 renpin = 33;				// 人品
+	optional int32 bagsize = 34;			// 当前背包大小
+	optional int32 safesize = 35;			// 当前仓库大小
+	optional int32 chat_channel = 36;		// 聊天接收频道
+	optional uint64 total_gold = 37;		// 总的充值累计
+	optional int32 vip_award_id = 38;		// 已经领取的vip奖励索引号
+	optional int32 kill_enemy = 39;			// 杀死敌对玩家数量
+	optional int32 serial_login_day = 40 [default = 1];	// 连续登录天数
+	optional int32 copies_map = 41;			// 下线时的副本唯一id
+	optional int32 total_guild_credits = 42;// 累计的公会贡献
+	optional int32 field_mapid = 43;	// 野外地图id
+	optional int32 field_mapx = 44;		// 野外地图x
+	optional int32 field_mapy = 45;		// 野外地图y
+	
+//	optional int32 guild_contribute = 38;	// 公会的个人贡献
+}
+
+
+// 装备属性
+message EquipInfo {
+	optional int32 duration = 1;	// 耐久
+	optional int32 frozen = 2;		// 鉴定标记(暂未开放)
+	optional int32 prop = 3;		// 属性(水火风)(暂未开放)
+	optional int32 star = 4;		// 强化等级
+	repeated int32 grooves = 5;		// 装备镶嵌的孔
+	optional int32 upgrade = 6;		// 合成等级(暂未开放)
+}
+
+// 宠物属性(暂未开放)
+message PetInfo {
+	optional int32 property = 1;
+	optional int32 level = 2;
+	optional int32 exp = 3;
+	optional int32 hp = 4;
+}
+
+// 翅膀属性(暂未开放)
+message WingInfo {
+	optional int32 level = 1;
+	optional int32 exp = 2;
+}
+
+// 装备鉴定属性(暂未开放)
+message EquipAddInfo {
+	optional int32 str = 1;		// 力量
+	optional int32 con = 2;		// 体力
+	optional int32 dex = 3;		// 敏捷
+	optional int32 wiz = 4;		// 精神力
+	optional int32 intgent = 5;	// 智力
+	optional int32 attack = 6;	// 攻击力
+	optional int32 attack_per = 7;
+	optional int32 critical = 8;	// 暴击率
+	optional int32 none2 = 9;
+	optional int32 phydef = 10;	// 物理防御力
+	optional int32 phydef_per = 11;
+	optional int32 magdef = 12;	// 魔法防御力
+	optional int32 magdef_per = 13;
+	optional int32 hp = 14;		// 生命值
+	optional int32 hp_per = 15;
+	optional int32 mp = 16;		// 魔法值
+	optional int32 mp_per = 17;
+	optional int32 sp = 18;		// 技能值
+	optional int32 sp_per = 19;
+	optional int32 atk_acc = 20;	// 命中率
+	optional int32 def_acc = 21;	// 躲避率
+}
+
+// 物品结构表
+message ItemData {
+	// 通用属性
+	optional uint32 id = 1;						// 唯一ID
+	optional int32 item_id = 2;					// 基础表中的id
+	optional int32 slot = 3;					// 在包裹中的位置
+	optional int32 bind = 4;					// 0 - 未绑定，1 - 绑定
+	optional int32 overlay = 5 [default = 1];	// 叠加数量
+	optional int32 quality = 6;					// 鉴定品质{0 - 普通(白色), 1 - 1品(蓝色), 2 - 2品(黄色), 3 - 3品(绿色), 4 - 4品(橙色), 5 - 5品(紫色)}
+	optional int64 expired_time = 7;			// 过期的时间戳(0-表示没有时间限制)
+	
+	optional EquipInfo equip_info = 100;
+	optional PetInfo pet_info = 200;
+	optional WingInfo wing_info = 300;
+	optional EquipAddInfo equip_add_info = 400;
+}
+
+
+// 快捷栏信息
+message ShortcutKeyData {
+	enum KeyType {
+		KEY_TYPE_NULL = 0;		// 空
+		KEY_TYPE_ITEM = 1;		// 物品(只能是背包中的物品)
+		KEY_TYPE_SKILL = 2;		// 技能(技能栏)
+	}
+
+	optional KeyType type = 1;		// 快捷键类型
+	optional int32 key_slot = 2;	// 快捷键中的下标
+	optional int32 item_id = 3;		// 道具或技能id（物品时表示物品id，技能时表示技能id）
+	optional int32 item_slot = 4;	// 在包裹中的下标(槽位)，只有物品时才可用
+}
+
+// 工匠技能
+message JobSkillData {
+	optional int32 skill_id = 1;
+	optional int32 level = 2;
+	optional int32 exp = 3;
+	optional int64 cd_time = 4;
+}
+
+// 战斗技能
+message SkillData {
+	optional int32 skill_id = 1;
+	optional int32 level = 2;
+	optional int32 exp = 3;
+	optional int64 cd_time = 4;
+}
+
+// 技能BUFF信息
+message SkillBuffData {
+	optional int32 attacker_id = 1;		// 制造BUFF的玩家id(服务器使用)
+	optional int32 buff_id = 2;			// BUFF编号
+	optional int32 skill_id = 3;		// 产生BUFF的技能编号
+	optional int32 skill_level = 4;		// 产生BUFF的技能等级
+	optional int32 remain_time = 5;		// BUFF剩余时间(秒)
+	optional int32 param1 = 6;			// BUFF参数1(动态参数)
+	optional int32 param2 = 7;			// BUFF参数2(动态参数)
+	optional int32 param3 = 8;			// BUFF参数3(动态参数)
+	optional int32 param4 = 9;			// BUFF参数4(动态参数)
+}
+
+
+// 任务存储数据
+message MissionData {
+	enum State {
+		UNCOMPLETE = 0;		// 已接未完成
+		COMPLETED = 1;		// 完成可提交
+		CLOSED = 2;			// 完成已结束
+		UNACCEPT = 3;		// 未接收(纯展示)
+	}
+
+	optional int32 id = 1;			// 任务ID
+	optional State state = 2;		// 任务状态
+	optional int32 mon_num = 3;		// 杀怪数量
+	optional int32 item_num = 4;	// 物品数量
+}
+
+// 成就数据
+message AchievementData
+{
+	enum State {
+		UNCOMPLETE = 0;		// 未完成
+		COMPLETED = 1;		// 已完成,未领取奖品
+		CLOSED = 2;			// 已完成,已领取奖品
+	}
+
+	optional int32 id = 1;		// 成就ID
+	optional State state = 2;	// 成就状态
+	optional int32 num = 3;		// 当前数量
+}
+
+// 活动数据
+message ActivityData
+{
+	optional int32 id = 1;		// 成就ID
+	optional int32 num = 3;		// 当前次数
+}
+
+// 游戏设置参数
+message SettingData {
+	optional bool hide_head = 1 [default = true];	// 关闭玩家头顶信息
+	optional bool refuse_teamup = 2;		// 拒绝队伍邀请
+	optional bool refuse_guildteamup = 3;	// 拒绝公会好友邀请
+	optional bool close_effectsound = 4;	// 关闭音效
+	optional bool close_bgmusic = 5;		// 关闭背景音乐
+	optional bool dropitem_to_bag = 6;		// 是否自动掉落到背包里(金币和物品都掉到背包,背包满了，物品掉地上)
+}
+
+
+// 在线奖励
+message OnlineRewardsData {
+	optional int32 id = 1;
+	optional int32 time = 2;	// 倒计时(秒)
+	optional bool flag = 3;		// 0 - 未领取，1 - 已领取
+}
+
+// 计数器
+message CounterData {
+	optional int32 main_type = 1;	// 主类
+	optional int32 sub_type = 2;	// 子类
+	optional int64 timestamp = 3;	// 时间戳
+	optional int32 value = 4;		// 记录的值
+}
+
+// -----------------------------------------------
+// 角色二进制数据(存储在数据库二进制中)
+message CharBinaryData {
+	optional CharData			chardata = 1;		// 角色属性
+	repeated ItemData			equip_items = 2;	// 职业装备
+	repeated ItemData			avatar_items = 3;	// 时装装备
+	repeated ItemData			bag_items = 4;		// 背包
+	repeated ItemData			safe_items = 5;		// 仓库（需要优化）
+	repeated JobSkillData		job_skills = 6;		// 工匠技能(暂时未用)
+	repeated SkillData			skills = 7;			// 职业技能
+	repeated ShortcutKeyData	shortcut_keys = 8;	// 快捷栏
+	repeated SkillBuffData		skill_buffs = 9;	// 技能BUFF
+	repeated MissionData		missions = 10;		// 任务数据
+	repeated AchievementData	achievements = 11;	// 成就数据
+	repeated ActivityData		activitys = 12;		// 活动数据
+	optional SettingData		setting_data = 13;	// 游戏设置参数
+	optional OnlineRewardsData	onlinerewards_data = 14;	// 在线奖励数据
+	repeated CounterData		counter_data = 15;	// 计数器
+}
+
+
+///////////////////////////////////////////////////////////////
+// 地图文件数据结构
+
+enum MapCellFlag {
+	CELL_FLAG_PASS = 0;			// 可移动格子
+	CELL_FLAG_BLOCK = 1;		// 阻挡格子
+}
+
+// 地图单元格信息
+message MapCell {
+	optional MapCellFlag flag = 1;
+}
+
+// 地图服务器数据
+message TileMapData {
+	optional int32 width = 1;
+	optional int32 height = 2;
+	optional int32 tilewidth = 3;
+	optional int32 tileheight = 4;
+	repeated MapCell cell_list = 5;
+}
+
+
+
+///////////////////////////////////////////////////////////////
+// 其他数据结构
+
+// 游戏对象状态
+enum ObjectState {
+	OBJ_STATE_NORMAL = 1;	// 正常
+	OBJ_STATE_DEATH = 2;	// 死亡
+}
+
+//-------------------------
+// 九屏内玩家的数据结构
+message MapCharInfo {
+	optional int32 id = 1;
+	optional string name = 2;
+	optional int32 level = 3;
+	optional int32 country = 4;			// 国家(阵营)
+	optional int32 curhp = 5;
+	optional int32 maxhp = 6;
+	optional int32 curmp = 7;
+	optional int32 maxmp = 8;
+	optional int32 x = 9;				// 当前坐标
+	optional int32 y = 10;
+	optional int32 tx = 11;				// 目标坐标(检测has)
+	optional int32 ty = 12;
+	optional int32 direction = 13;		// 当前移动方向(检测has)
+	optional int32 race = 14;			// 种族: 战士、法师、游侠
+	optional int32 move_speed = 15;		// 移动速度
+	optional ObjectState state = 16;	// 状态
+	repeated int32 looks = 17;			// 外观数组
+	repeated SkillBuffData skill_buffs = 18;	// 技能BUFF
+}
+
+//-------------------------
+// 九屏内怪物的数据结构
+message MapMonsterInfo {
+	optional int32 id = 1;
+	optional int32 curhp = 2;
+	optional int32 maxhp = 3;
+	optional int32 x = 4;
+	optional int32 y = 5;
+	optional int32 monid = 6;				// 表格中的id
+	optional int32 move_speed = 7;			// 移动速度
+	optional ObjectState state = 8;			// 状态
+	repeated SkillBuffData skill_buffs = 9;	// 技能BUFF
+}
+
+//-------------------------
+// 九屏内NPC的数据结构
+message MapNpcInfo {
+	optional int32 id = 1;
+	optional int32 x = 2;
+	optional int32 y = 3;
+	optional int32 npcid = 4;	// 表格中的id
+	optional int32 func = 5;	// 功能编号
+}
+
+
+// 包裹位置结构
+message ItemLoc {
+	optional int32 pkg = 1;		// 包裹编号(package id)
+	optional int32 slot = 2;	// 在包裹中的下标(槽位)
+}
+
+// 包含物品信息和包裹位置结构
+message ItemLocData {
+	optional ItemLoc loc = 1;	// 位置
+	optional ItemData item = 2;	// 物品数据
+}
+
+// 包含物品数量和包裹位置结构
+message ItemLocNum {
+	optional ItemLoc loc = 1;	// 位置
+	optional uint32 num = 2;	// 数量
+}
+

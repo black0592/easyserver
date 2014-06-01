@@ -1,0 +1,108 @@
+option optimize_for = LITE_RUNTIME;
+
+import "ProtoGameData.proto";
+
+package Protocol;
+
+
+//-------------------------
+// 角色选择逻辑操作号
+enum SelectCharOpCode {
+	OP_GET_CHARLIST = 1;	// 获取角色列表
+	OP_CREATE_CHAR = 2;		// 创建角色
+	OP_DELETE_CHAR = 3;		// 删除角色
+	OP_ENTER_GAME = 4;		// 选择角色，进入游戏
+	OP_LOGOUT = 5;			// 客户端请求退出游戏(切换角色或切换账号)
+}
+
+
+// 角色选择界面结构体
+message SelectCharInfo {
+	optional int32 charid = 1;
+	optional int32 race = 2;
+	optional string charname = 3;
+	optional int32 level = 4;
+	optional int32 country = 5;
+}
+
+//-------------------------
+// 角色列表
+message RequestGetCharList {
+	optional int32 version = 1;
+	optional string account = 2;
+	optional uint32 login_key = 3;
+}
+
+message ResponseGetCharList {
+	optional int32 result = 1;
+	repeated SelectCharInfo char_list = 2;	// 角色列表
+}
+
+
+//-------------------------
+// 创建角色
+message RequestCreateChar {
+	optional string charname = 1;
+	optional int32 race = 2;
+	optional int32 country = 3;
+}
+
+enum CreateCharError {
+	CREATE_CHAR_ERROR_SUCCESS = 0;			// 创建成功
+	CREATE_CHAR_ERROR_ALREADY_EXIST = 1;	// 名字已存在
+	CREATE_CHAR_ERROR_FORBIDNAME = 2;		// 禁止的名字
+}
+
+message ResponseCreateChar {
+	optional CreateCharError result = 1;
+	optional int32 charid = 2;	// 新建角色的id
+}
+
+
+
+//-------------------------
+// 删除角色
+message RequestDeleteChar {
+	optional int32 charid = 1;
+}
+
+message ResponseDeleteChar {
+	optional int32 result = 1;
+}
+
+
+
+//-------------------------
+// 进入游戏
+message RequestEnterGame {
+	optional int32 charid = 1;
+}
+
+// 进入游戏的错误码
+enum EnterGameError {
+	ENTER_GAME_ERROR_SUCCESS = 0;		// 进入游戏成功
+	ENTER_GAME_ERROR_GAME_CLOSED = 1;	// 游戏服务器未开启（正在维护）
+}
+
+message ResponseEnterGame {
+	optional EnterGameError result = 1;		// 返回值
+	optional CharBase charbase = 2;			// 角色基础数据(数据库数据)
+	optional CharBinaryData bindata = 3;	// 角色二进制数据(数据库数据)
+}
+
+
+//-------------------------
+// 客户端请求离开游戏
+enum LogoutType {
+	LOGOUT_SELECT_CHAR = 0;		// 切换角色
+	LOGOUT_LOGIN = 1;			// 切换账号
+}
+
+message RequestLogout {
+	optional LogoutType type = 1;
+}
+
+message ResponseLogout {
+	optional int32 result = 1;
+	optional LogoutType type = 2;
+}

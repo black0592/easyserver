@@ -1,0 +1,114 @@
+option optimize_for = LITE_RUNTIME;
+
+import "ProtoGameData.proto";
+
+package Protocol;
+
+
+//-------------------------
+// 登陆操作号
+enum LoginOpCode {
+	OP_LOGIN_REGISTER = 1;		// 注册账号
+	OP_LOGIN_LOGIN = 2;			// 登陆
+	OP_LOGIN_ENTER_SERVER = 3;	// 选择游戏服务器
+}
+
+
+
+
+//-------------------------
+// 大区服务器信息
+message ZoneInfo {
+	optional int32 id = 1;
+	optional string name = 2;
+	optional int32 group = 3;
+
+	// 搜索最优服务器时，可以采用服务器状态做为优先队列的键
+	enum ZoneState {
+		ZS_NORMAL = 0;		// 畅通
+		ZS_BUSY = 1;		// 拥挤
+		ZS_FULL = 2;		// 爆满
+		ZS_STOPED = 3;		// 维护
+	}
+	optional ZoneState state = 4 [default = ZS_NORMAL];	// 状态
+
+	enum ZoneFlag {
+		ZF_NORMAL = 0;		// 正常
+		ZF_NEWER = 1;		// 新服
+		ZF_RECOMMEND = 2;	// 推荐服
+	}
+	optional ZoneFlag flag = 5;	// 标识符
+}
+
+
+// 大区角色预览信息
+message ZoneCharInfo {
+	optional int32 zoneid = 1;		// 大区ID号
+	optional string charname = 2;	// 角色名字
+	optional int32 charlevel = 3;	// 角色等级
+	optional int32 charrace = 4;	// 角色种族(战士，法师，游侠)
+}
+
+//-------------------------
+
+
+enum RegisterError {
+	REGISTER_ERROR_SUCCESS = 0;					// 注册成功
+	REGISTER_ERROR_ALREADY_EXIST_ACCOUNT = 1;	// 账号已存在
+}
+
+// 账号注册
+message RequestRegister {
+	optional string account = 1;
+	optional string password = 2;
+	optional string email = 3;
+}
+
+message ResponseRegister {
+	optional RegisterError result = 1;
+}
+
+// 账号登陆
+message RequestLogin {
+	optional int32 version = 1;
+	optional string account = 2;
+	optional string password = 3;
+}
+
+enum LoginError {
+	LOGIN_ERROR_SUCCESS = 0;	// 登陆成功
+	LOGIN_ERROR_VERSION_ERROR = 1;	// 版本错误
+	LOGIN_ERROR_INVALID_PASSWORD = 2;	// 账号或密码错误
+	LOGIN_ERROR_ALREADY_EXIST_ACCOUNT = 3;	// 账号已存在(自动注册功能使用)
+	LOGIN_ERROR_ALREADY_LOGIN = 4;	// 账号已登陆
+}
+
+message ResponseLogin {
+	optional LoginError result = 1;
+	optional uint32 login_key = 2;
+	repeated ZoneInfo zone_list = 3;		// 服务器列表
+	repeated ZoneCharInfo char_list = 4;	// 角色预览列表
+	optional int32 last_zoneid = 5;			// 最后登录的区ID
+}
+
+
+//-------------------------
+// 服务器选择(会返回选中服务器的IP和端口)
+message RequestEnterServer {
+	optional string account = 1;
+	optional uint32 login_key = 2;
+	optional int32 zoneid = 3;
+}
+
+// 进入大区的错误码
+enum EnterZoneError {
+	ENTER_ZONE_ERROR_SUCCESS = 0;			// 同步秘钥成功
+	ENTER_ZONE_ERROR_GATEWAY_CLOSED = 1;	// 网关服务器未开启（正在维护）
+	ENTER_ZONE_ERROR_ALREADY_ONLINE = 2;	// 你的账号在其他地方登录了
+}
+
+message ResponseEnterServer {
+	optional EnterZoneError result = 1;
+	optional string ip = 2;
+	optional int32 port = 3;
+}

@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- item节点是被使用的物品, newitem节点是随机产生的物品 -->
+<!-- type:0 - 多选一, 1 - 多选多 -->
+<itemconvert>
+
+	<!-- 低级幸运袋配置, id表示物品ID, star表示星数, prob表示概率 -->
+	<item id="5354" type="0" needmoney="10000">
+		<newitem id="8000" money="500000" prob="1"/><!-- 50万金币 -->
+		<newitem id="3811" star="0" prob="100"/><!-- 飞行鞋(+2) -->
+		<newitem id="8810" star="0" prob="50"/><!-- 鉴定宝石 -->
+		<newitem id="8801" star="0" prob="50"/><!-- 高级卷轴 -->
+
+		<newitem id="9122" star="0" prob="10"/><!-- 1万经验 -->
+
+		<newitem id="4304" star="7" prob="10"/><!-- 狂暴之戒 -->
+		<newitem id="4307" star="7" prob="10"/><!-- 神圣之戒 -->
+		<newitem id="4310" star="7" prob="10"/><!-- 敬畏之戒 -->
+		<newitem id="4203" star="7" prob="10"/><!-- 闪灵手镯 -->
+		<newitem id="4205" star="7" prob="10"/><!-- 风神手镯 -->
+
+		<newitem id="4304" star="5" prob="100"/><!-- 狂暴之戒 -->
+		<newitem id="4307" star="5" prob="100"/><!-- 神圣之戒 -->
+		<newitem id="4310" star="5" prob="100"/><!-- 敬畏之戒 -->
+		<newitem id="4203" star="5" prob="100"/><!-- 闪灵手镯 -->
+		<newitem id="4205" star="5" prob="100"/><!-- 风神手镯 -->
+
+		<newitem id="4304" star="0" prob="500"/><!-- 狂暴之戒 -->
+		<newitem id="4307" star="0" prob="500"/><!-- 神圣之戒 -->
+		<newitem id="4310" star="0" prob="500"/><!-- 敬畏之戒 -->
+		<newitem id="4203" star="0" prob="500"/><!-- 闪灵手镯 -->
+		<newitem id="4205" star="0" prob="500"/><!-- 风神手镯 -->
+
+		<newitem id="1561" star="9" prob="1"/><!-- 冰之杖 -->
+		<newitem id="1361" star="9" prob="1"/><!-- 冰之弓 -->
+		<newitem id="1461" star="9" prob="1"/><!-- 冰之枪 -->
+		<newitem id="1261" star="9" prob="1"/><!-- 冰之斧 -->
+		<newitem id="1161" star="9" prob="1"/><!-- 冰之剑 -->
+
+		<newitem id="1561" star="8" prob="2"/><!-- 冰之杖 -->
+		<newitem id="1361" star="8" prob="2"/><!-- 冰之弓 -->
+		<newitem id="1461" star="8" prob="2"/><!-- 冰之枪 -->
+		<newitem id="1261" star="8" prob="2"/><!-- 冰之斧 -->
+		<newitem id="1161" star="8" prob="2"/><!-- 冰之剑 -->
+
+		<newitem id="1561" star="7" prob="10"/><!-- 冰之杖 -->
+		<newitem id="1361" star="7" prob="10"/><!-- 冰之弓 -->
+		<newitem id="1461" star="7" prob="10"/><!-- 冰之枪 -->
+		<newitem id="1261" star="7" prob="10"/><!-- 冰之斧 -->
+		<newitem id="1161" star="7" prob="10"/><!-- 冰之剑 -->
+
+		<newitem id="1561" star="5" prob="100"/><!-- 冰之杖 -->
+		<newitem id="1361" star="5" prob="100"/><!-- 冰之弓 -->
+		<newitem id="1461" star="5" prob="100"/><!-- 冰之枪 -->
+		<newitem id="1261" star="5" prob="100"/><!-- 冰之斧 -->
+		<newitem id="1161" star="5" prob="100"/><!-- 冰之剑 -->
+
+		<newitem id="1561" star="0" prob="500"/><!-- 冰之杖 -->
+		<newitem id="1361" star="0" prob="500"/><!-- 冰之弓 -->
+		<newitem id="1461" star="0" prob="500"/><!-- 冰之枪 -->
+		<newitem id="1261" star="0" prob="500"/><!-- 冰之斧 -->
+		<newitem id="1161" star="0" prob="500"/><!-- 冰之剑 -->
+
+		<newitem id="9121" star="0" prob="200"/><!-- 1000经验 -->
+		<newitem id="5355" star="0" prob="200"/><!-- 中级幸运袋 -->
+		<newitem id="8101" star="0" prob="200"/><!-- 水卷轴 -->
+		<newitem id="8102" star="0" prob="200"/><!-- 风卷轴 -->
+		<newitem id="8103" star="0" prob="200"/><!-- 火卷轴 -->
+		<newitem id="5354" star="0" prob="200"/><!-- 低级幸运袋 -->
+		<newitem id="7901" star="0" prob="500"/><!-- 五万纸币 -->
+		<newitem id="5111" star="0" prob="1000"/><!-- 烟花 -->
+		<newitem id="9120" star="0" prob="1000"/><!-- 100经验 -->
+		<newitem id="7901" star="0" prob="2000"/><!-- 一万纸币 -->
+		<newitem id="5008" star="0" prob="10000"/><!-- 小生命水 -->
+	</item>
+
+	<!-- 中级幸运袋配置, id表示物品ID, star表示星数, prob表示概率 -->
+	<item id="5355" type="0" needmoney="50000">
+		<newitem id="8000" money="1000000" prob="1"/><!-- 100万金币 -->
+		<newitem id="3812" star="0" prob="100"/><!-- 飞行鞋(+4) -->
+		<newitem id="8810" star="0" prob="100"/><!-- 鉴定宝石 -->
+		<newitem id="8801" star="0" prob="100"/><!-- 高级卷轴 -->
+		<newitem id="5183" star="0" prob="70"/><!-- 宠物经验药水(+5百) -->
+
+		<newitem id="9122" star="0" prob="10"/><!-- 1万经验 -->
+
+		<newitem id="4206" star="7" prob="5"/><!-- 永恒手镯 -->
+		<newitem id="4207" star="7" prob="5"/><!-- 坚实手镯 -->
+		<newitem id="4208" star="7" prob="5"/><!-- 疾风手镯 -->
+		<newitem id="4209" star="7" prob="5"/><!-- 风舞手镯 -->
+		<newitem id="4210" star="7" prob="5"/><!-- 水舞手镯 -->
+		<newitem id="4211" star="7" prob="5"/><!-- 火舞手镯 -->
+		<newitem id="4305" star="7" prob="5"/><!-- 流光之戒 -->
+		<newitem id="4308" star="7" prob="5"/><!-- 圣洁之戒 -->
+		<newitem id="4311" star="7" prob="5"/><!-- 光荣之戒 -->
+
+		<newitem id="4206" star="5" prob="10"/><!-- 永恒手镯 -->
+		<newitem id="4207" star="5" prob="10"/><!-- 坚实手镯 -->
+		<newitem id="4208" star="5" prob="10"/><!-- 疾风手镯 -->
+		<newitem id="4209" star="5" prob="10"/><!-- 风舞手镯 -->
+		<newitem id="4210" star="5" prob="10"/><!-- 水舞手镯 -->
+		<newitem id="4211" star="5" prob="10"/><!-- 火舞手镯 -->
+		<newitem id="4305" star="5" prob="10"/><!-- 流光之戒 -->
+		<newitem id="4308" star="5" prob="10"/><!-- 圣洁之戒 -->
+		<newitem id="4311" star="5" prob="10"/><!-- 光荣之戒 -->
+
+		<newitem id="4206" star="0" prob="100"/><!-- 永恒手镯 -->
+		<newitem id="4207" star="0" prob="100"/><!-- 坚实手镯 -->
+		<newitem id="4208" star="0" prob="100"/><!-- 疾风手镯 -->
+		<newitem id="4209" star="0" prob="100"/><!-- 风舞手镯 -->
+		<newitem id="4210" star="0" prob="100"/><!-- 水舞手镯 -->
+		<newitem id="4211" star="0" prob="100"/><!-- 火舞手镯 -->
+		<newitem id="4305" star="0" prob="100"/><!-- 流光之戒 -->
+		<newitem id="4308" star="0" prob="100"/><!-- 圣洁之戒 -->
+		<newitem id="4311" star="0" prob="100"/><!-- 光荣之戒 -->
+
+		<newitem id="1562" star="9" prob="1"/><!-- 火之杖 -->
+		<newitem id="1362" star="9" prob="1"/><!-- 火之弓 -->
+		<newitem id="1462" star="9" prob="1"/><!-- 火之枪 -->
+		<newitem id="1262" star="9" prob="1"/><!-- 火之斧 -->
+		<newitem id="1162" star="9" prob="1"/><!-- 火之剑 -->
+
+		<newitem id="1562" star="8" prob="2"/><!-- 火之杖 -->
+		<newitem id="1362" star="8" prob="2"/><!-- 火之弓 -->
+		<newitem id="1462" star="8" prob="2"/><!-- 火之枪 -->
+		<newitem id="1262" star="8" prob="2"/><!-- 火之斧 -->
+		<newitem id="1162" star="8" prob="2"/><!-- 火之剑 -->
+		
+		<newitem id="1562" star="7" prob="5"/><!-- 火之杖 -->
+		<newitem id="1362" star="7" prob="5"/><!-- 火之弓 -->
+		<newitem id="1462" star="7" prob="5"/><!-- 火之枪 -->
+		<newitem id="1262" star="7" prob="5"/><!-- 火之斧 -->
+		<newitem id="1162" star="7" prob="5"/><!-- 火之剑 -->
+
+		<newitem id="1562" star="5" prob="10"/><!-- 火之杖 -->
+		<newitem id="1362" star="5" prob="10"/><!-- 火之弓 -->
+		<newitem id="1462" star="5" prob="10"/><!-- 火之枪 -->
+		<newitem id="1262" star="5" prob="10"/><!-- 火之斧 -->
+		<newitem id="1162" star="5" prob="10"/><!-- 火之剑 -->
+
+		<newitem id="1562" star="0" prob="100"/><!-- 火之杖 -->
+		<newitem id="1362" star="0" prob="100"/><!-- 火之弓 -->
+		<newitem id="1462" star="0" prob="100"/><!-- 火之枪 -->
+		<newitem id="1262" star="0" prob="100"/><!-- 火之斧 -->
+		<newitem id="1162" star="0" prob="100"/><!-- 火之剑 -->
+
+		<newitem id="5356" star="0" prob="5"/><!-- 高级幸运袋 -->
+		<newitem id="8820" star="0" prob="5"/><!-- 强化宝石 -->
+		<newitem id="5355" star="0" prob="80"/><!-- 中级幸运袋 -->
+		<newitem id="8101" star="0" prob="200"/><!-- 水卷轴 -->
+		<newitem id="8102" star="0" prob="200"/><!-- 风卷轴 -->
+		<newitem id="8103" star="0" prob="200"/><!-- 火卷轴 -->
+		<newitem id="5354" star="0" prob="200"/><!-- 低级幸运袋 -->
+		<newitem id="7902" star="0" prob="300"/><!-- 五万纸币 -->
+		<newitem id="9121" star="0" prob="1000"/><!-- 1000经验 -->
+		<newitem id="5022" star="0" prob="10000"/><!-- 营养素大包 -->
+	</item>
+
+	<!-- 高级幸运袋配置, id表示物品ID, star表示星数, prob表示概率 -->
+	<item id="5356" type="0" needmoney="100000">
+		<newitem id="8000" money="5000000" prob="1"/><!-- 500万金币 -->
+		<newitem id="4106" star="0" prob="50"/><!-- 圣洁项链 -->
+		<newitem id="3813" star="0" prob="100"/><!-- 飞行鞋(+6) -->
+		<newitem id="8810" star="0" prob="100"/><!-- 鉴定宝石 -->
+		<newitem id="8801" star="0" prob="100"/><!-- 高级卷轴 -->
+		<newitem id="5183" star="0" prob="100"/><!-- 宠物经验药水(+5百) -->
+
+		<newitem id="9123" star="0" prob="20"/><!-- 5万经验 -->
+		<newitem id="9124" star="0" prob="10"/><!-- 10万经验 -->
+
+		<newitem id="4306" star="7" prob="5"/><!-- 克鲁努斯之戒 -->
+		<newitem id="4309" star="7" prob="5"/><!-- 暴君之戒 -->
+		<newitem id="4312" star="7" prob="5"/><!-- 阿卡利亚之戒 -->
+		<newitem id="4212" star="7" prob="5"/><!-- 浓情手镯 -->
+		<newitem id="4213" star="7" prob="5"/><!-- 朦情手镯 -->
+		<newitem id="4214" star="7" prob="5"/><!-- 欣情手镯 -->
+		<newitem id="4215" star="7" prob="5"/><!-- 空灵手镯 -->
+		<newitem id="4216" star="7" prob="5"/><!-- 冷霜手镯 -->
+		<newitem id="4217" star="7" prob="5"/><!-- 华丽手镯 -->
+
+		<newitem id="4306" star="5" prob="20"/><!-- 克鲁努斯之戒 -->
+		<newitem id="4309" star="5" prob="20"/><!-- 暴君之戒 -->
+		<newitem id="4312" star="5" prob="20"/><!-- 阿卡利亚之戒 -->
+		<newitem id="4212" star="5" prob="20"/><!-- 浓情手镯 -->
+		<newitem id="4213" star="5" prob="20"/><!-- 朦情手镯 -->
+		<newitem id="4214" star="5" prob="20"/><!-- 欣情手镯 -->
+		<newitem id="4215" star="5" prob="20"/><!-- 空灵手镯 -->
+		<newitem id="4216" star="5" prob="20"/><!-- 冷霜手镯 -->
+		<newitem id="4217" star="5" prob="20"/><!-- 华丽手镯 -->
+
+		<newitem id="4306" star="0" prob="100"/><!-- 克鲁努斯之戒 -->
+		<newitem id="4309" star="0" prob="100"/><!-- 暴君之戒 -->
+		<newitem id="4312" star="0" prob="100"/><!-- 阿卡利亚之戒 -->
+		<newitem id="4212" star="0" prob="100"/><!-- 浓情手镯 -->
+		<newitem id="4213" star="0" prob="100"/><!-- 朦情手镯 -->
+		<newitem id="4214" star="0" prob="100"/><!-- 欣情手镯 -->
+		<newitem id="4215" star="0" prob="100"/><!-- 空灵手镯 -->
+		<newitem id="4216" star="0" prob="100"/><!-- 冷霜手镯 -->
+		<newitem id="4217" star="0" prob="100"/><!-- 华丽手镯 -->
+
+		<newitem id="5156" star="0" prob="1"/><!-- 转生卡 -->
+
+		<newitem id="1567" star="9" prob="1"/><!-- 水之杖 -->
+		<newitem id="1366" star="9" prob="1"/><!-- 水之弓 -->
+		<newitem id="1467" star="9" prob="1"/><!-- 水之枪 -->
+		<newitem id="1267" star="9" prob="1"/><!-- 水之斧 -->
+		<newitem id="1166" star="9" prob="1"/><!-- 水之剑 -->
+
+		<newitem id="1567" star="8" prob="2"/><!-- 水之杖 -->
+		<newitem id="1366" star="8" prob="2"/><!-- 水之弓 -->
+		<newitem id="1467" star="8" prob="2"/><!-- 水之枪 -->
+		<newitem id="1267" star="8" prob="2"/><!-- 水之斧 -->
+		<newitem id="1166" star="8" prob="2"/><!-- 水之剑 -->
+
+		<newitem id="1567" star="7" prob="5"/><!-- 水之杖 -->
+		<newitem id="1366" star="7" prob="5"/><!-- 水之弓 -->
+		<newitem id="1467" star="7" prob="5"/><!-- 水之枪 -->
+		<newitem id="1267" star="7" prob="5"/><!-- 水之斧 -->
+		<newitem id="1166" star="7" prob="5"/><!-- 水之剑 -->
+
+		<newitem id="1567" star="5" prob="20"/><!-- 水之杖 -->
+		<newitem id="1366" star="5" prob="20"/><!-- 水之弓 -->
+		<newitem id="1467" star="5" prob="20"/><!-- 水之枪 -->
+		<newitem id="1267" star="5" prob="20"/><!-- 水之斧 -->
+		<newitem id="1166" star="5" prob="20"/><!-- 水之剑 -->
+
+		<newitem id="1567" star="0" prob="100"/><!-- 水之杖 -->
+		<newitem id="1366" star="0" prob="100"/><!-- 水之弓 -->
+		<newitem id="1467" star="0" prob="100"/><!-- 水之枪 -->
+		<newitem id="1267" star="0" prob="100"/><!-- 水之斧 -->
+		<newitem id="1166" star="0" prob="100"/><!-- 水之剑 -->
+
+		<newitem id="5357" star="0" prob="5"/><!-- 超级幸运袋 -->
+		<newitem id="8820" star="0" prob="10"/><!-- 强化宝石 -->
+		<newitem id="5355" star="0" prob="80"/><!-- 中级幸运袋 -->
+		<newitem id="8101" star="0" prob="200"/><!-- 水卷轴 -->
+		<newitem id="8102" star="0" prob="200"/><!-- 风卷轴 -->
+		<newitem id="8103" star="0" prob="200"/><!-- 火卷轴 -->
+		<newitem id="5354" star="0" prob="200"/><!-- 低级幸运袋 -->
+		<newitem id="7903" star="0" prob="200"/><!-- 十万纸币 -->
+		<newitem id="7902" star="0" prob="1000"/><!-- 五万纸币 -->
+		<newitem id="9122" star="0" prob="1000"/><!-- 1万经验 -->
+		<newitem id="5015" star="0" prob="10000"/><!-- 生命大药瓶包 -->
+	</item>
+
+	<!-- 超级幸运袋配置, id表示物品ID, star表示星数, prob表示概率 -->
+	<item id="5357" type="0" needmoney="1000000">
+		<newitem id="8000" money="10000000" prob="1"/><!-- 1000万金币 -->
+		<newitem id="3825" star="0" prob="100"/><!-- 飞行鞋(+16) -->
+		<newitem id="5184" star="0" prob="100"/><!-- 宠物经验药水(+1千) -->
+
+
+		<newitem id="4218" star="7" prob="10"/><!-- 暖春手镯 -->
+		<newitem id="4219" star="7" prob="10"/><!-- 酷夏手镯 -->
+		<newitem id="4220" star="7" prob="10"/><!-- 凉秋手镯 -->
+		<newitem id="4221" star="7" prob="10"/><!-- 安逸手镯 -->
+		<newitem id="4222" star="7" prob="10"/><!-- 幸福手镯 -->
+		<newitem id="4223" star="7" prob="10"/><!-- 心动手镯 -->
+		<newitem id="4313" star="7" prob="10"/><!-- 湖畔掠夺者之戒 -->
+		<newitem id="4314" star="7" prob="10"/><!-- 科尔明之戒 -->
+		<newitem id="4315" star="7" prob="10"/><!-- 魔界教授之戒 -->
+
+		<newitem id="4218" star="5" prob="30"/><!-- 暖春手镯 -->
+		<newitem id="4219" star="5" prob="30"/><!-- 酷夏手镯 -->
+		<newitem id="4220" star="5" prob="30"/><!-- 凉秋手镯 -->
+		<newitem id="4221" star="5" prob="30"/><!-- 安逸手镯 -->
+		<newitem id="4222" star="5" prob="30"/><!-- 幸福手镯 -->
+		<newitem id="4223" star="5" prob="30"/><!-- 心动手镯 -->
+		<newitem id="4313" star="5" prob="30"/><!-- 湖畔掠夺者之戒 -->
+		<newitem id="4314" star="5" prob="30"/><!-- 科尔明之戒 -->
+		<newitem id="4315" star="5" prob="30"/><!-- 魔界教授之戒 -->
+
+		<newitem id="4218" star="0" prob="100"/><!-- 暖春手镯 -->
+		<newitem id="4219" star="0" prob="100"/><!-- 酷夏手镯 -->
+		<newitem id="4220" star="0" prob="100"/><!-- 凉秋手镯 -->
+		<newitem id="4221" star="0" prob="100"/><!-- 安逸手镯 -->
+		<newitem id="4222" star="0" prob="100"/><!-- 幸福手镯 -->
+		<newitem id="4223" star="0" prob="100"/><!-- 心动手镯 -->
+		<newitem id="4313" star="0" prob="100"/><!-- 湖畔掠夺者之戒 -->
+		<newitem id="4314" star="0" prob="100"/><!-- 科尔明之戒 -->
+		<newitem id="4315" star="0" prob="100"/><!-- 魔界教授之戒 -->
+
+		<newitem id="5156" star="0" prob="2"/><!-- 转生卡 -->
+
+		<newitem id="1568" star="9" prob="1"/><!-- 风之神龙 -->
+		<newitem id="1167" star="9" prob="1"/><!-- 风之地狱 -->
+		<newitem id="1268" star="9" prob="1"/><!-- 风之炼狱 -->
+		<newitem id="1367" star="9" prob="1"/><!-- 风之梦境 -->
+		<newitem id="1468" star="9" prob="1"/><!-- 风之绝境 -->
+
+		<newitem id="1568" star="8" prob="2"/><!-- 风之神龙 -->
+		<newitem id="1167" star="8" prob="2"/><!-- 风之地狱 -->
+		<newitem id="1268" star="8" prob="2"/><!-- 风之炼狱 -->
+		<newitem id="1367" star="8" prob="2"/><!-- 风之梦境 -->
+		<newitem id="1468" star="8" prob="2"/><!-- 风之绝境 -->
+		
+		<newitem id="1568" star="7" prob="20"/><!-- 风之神龙 -->
+		<newitem id="1167" star="7" prob="20"/><!-- 风之地狱 -->
+		<newitem id="1268" star="7" prob="20"/><!-- 风之炼狱 -->
+		<newitem id="1367" star="7" prob="20"/><!-- 风之梦境 -->
+		<newitem id="1468" star="7" prob="20"/><!-- 风之绝境 -->
+
+		<newitem id="1568" star="5" prob="50"/><!-- 风之神龙 -->
+		<newitem id="1167" star="5" prob="50"/><!-- 风之地狱 -->
+		<newitem id="1268" star="5" prob="50"/><!-- 风之炼狱 -->
+		<newitem id="1367" star="5" prob="50"/><!-- 风之梦境 -->
+		<newitem id="1468" star="5" prob="50"/><!-- 风之绝境 -->
+		
+		<newitem id="8215" star="0" prob="100"/><!-- 燕尾服 -->
+		<newitem id="8216" star="0" prob="100"/><!-- 婚纱 -->
+		<newitem id="4106" star="0" prob="100"/><!-- 圣洁项链 -->
+		<newitem id="8101" star="0" prob="200"/><!-- 水卷轴 -->
+		<newitem id="8102" star="0" prob="200"/><!-- 风卷轴 -->
+		<newitem id="8103" star="0" prob="200"/><!-- 火卷轴 -->
+		<newitem id="7904" star="0" prob="200"/><!-- 百万纸币 -->
+
+		<newitem id="1568" star="0" prob="1000"/><!-- 风之神龙 -->
+		<newitem id="1167" star="0" prob="1000"/><!-- 风之地狱 -->
+		<newitem id="1268" star="0" prob="1000"/><!-- 风之炼狱 -->
+		<newitem id="1367" star="0" prob="1000"/><!-- 风之梦境 -->
+		<newitem id="1468" star="0" prob="1000"/><!-- 风之绝境 -->
+
+		<newitem id="9123" star="0" prob="100"/><!-- 5万经验 -->
+		<newitem id="9124" star="0" prob="20"/><!-- 10万经验 -->
+		<newitem id="9125" star="0" prob="10"/><!-- 50万经验 -->
+		<newitem id="9126" star="0" prob="5"/><!-- 1百万经验 -->
+		<newitem id="9127" star="0" prob="1"/><!-- 5百万经验 -->
+		
+		<newitem id="9122" star="0" prob="1000"/><!-- 1万经验 -->
+		<newitem id="8810" star="0" prob="1000"/><!-- 鉴定宝石 -->
+		<newitem id="8820" star="0" prob="1000"/><!-- 强化宝石 -->
+		<newitem id="8801" star="0" prob="10000"/><!-- 高级卷轴 -->
+	</item>
+
+
+	<!-- =============================== 华丽丽的分割线 ===================================== -->
+
+	<!-- 全服每日礼包 -->
+	<item id="5360" type="1" needmoney="0">
+		<newitem id="9100" star="0" prob="10000"/><!-- 1小时双倍经验卡 -->
+		<newitem id="9100" star="0" prob="10000"/><!-- 1小时双倍经验卡 -->
+		<newitem id="5015" star="0" prob="10000"/><!-- 生命大药包 -->
+		<newitem id="5015" star="0" prob="10000"/><!-- 生命大药包 -->
+		<newitem id="5015" star="0" prob="10000"/><!-- 生命大药包 -->
+		<newitem id="5015" star="0" prob="10000"/><!-- 生命大药包 -->
+		<newitem id="5015" star="0" prob="10000"/><!-- 生命大药包 -->
+		<newitem id="5016" star="0" prob="5000"/><!-- SP大药包 -->
+		<newitem id="5016" star="0" prob="5000"/><!-- SP大药包 -->
+		<newitem id="5017" star="0" prob="5000"/><!-- 魔法大药包 -->
+		<newitem id="5017" star="0" prob="5000"/><!-- 魔法大药包 -->
+		<newitem id="9124" star="0" prob="1"/><!-- 10万经验 -->
+	</item>
+	
+	<!-- VIP1每日礼包 -->
+	<item id="5370" type="1" needmoney="0">
+		<!--<newitem id="8000" money="30000000" prob="10000"/>--><!-- 3千万金币 -->
+
+		<newitem id="8802" star="0" prob="10000"/><!-- 高级卷轴(*10) -->
+
+		<newitem id="4102" star="0" prob="10000"/><!-- 热情之心(+10%经验) -->
+
+		<newitem id="8820" star="0" prob="10000"/><!-- 强化宝石 -->
+		<newitem id="8820" star="0" prob="10000"/><!-- 强化宝石 -->
+
+		<newitem id="8810" star="0" prob="10000"/><!-- 鉴定宝石 -->
+		<newitem id="8810" star="0" prob="10000"/><!-- 鉴定宝石 -->
+
+		<newitem id="5184" star="0" prob="10000"/><!-- 宠物经验药水(+1千) -->
+
+		<newitem id="9100" star="0" prob="10000"/><!-- 1小时双倍经验卡 -->
+		<newitem id="9100" star="0" prob="10000"/><!-- 1小时双倍经验卡 -->
+	</item>
+
+	<!-- VIP2每日礼包 -->
+	<item id="5371" type="1" needmoney="0">
+		<!--<newitem id="8000" money="100000000" prob="10000"/>--><!-- 1E金币 -->
+
+		<newitem id="8803" star="0" prob="10000"/><!-- 高级卷轴(*20) -->
+
+		<newitem id="4105" star="0" prob="10000"/><!-- 疯狂项链(+50%经验) -->
+
+		<newitem id="8820" star="0" prob="10000"/><!-- 强化宝石 -->
+		<newitem id="8820" star="0" prob="10000"/><!-- 强化宝石 -->
+		<newitem id="8820" star="0" prob="10000"/><!-- 强化宝石 -->
+		<newitem id="8820" star="0" prob="10000"/><!-- 强化宝石 -->
+
+		<newitem id="8810" star="0" prob="10000"/><!-- 鉴定宝石 -->
+		<newitem id="8810" star="0" prob="10000"/><!-- 鉴定宝石 -->
+		<newitem id="8810" star="0" prob="10000"/><!-- 鉴定宝石 -->
+		<newitem id="8810" star="0" prob="10000"/><!-- 鉴定宝石 -->
+
+		<newitem id="5184" star="0" prob="10000"/><!-- 宠物经验药水(+1千) -->
+		<newitem id="5184" star="0" prob="10000"/><!-- 宠物经验药水(+1千) -->
+
+		<newitem id="9100" star="0" prob="10000"/><!-- 1小时双倍经验卡 -->
+		<newitem id="9100" star="0" prob="10000"/><!-- 1小时双倍经验卡 -->
+		<newitem id="9100" star="0" prob="10000"/><!-- 1小时双倍经验卡 -->
+		<newitem id="9100" star="0" prob="10000"/><!-- 1小时双倍经验卡 -->
+	</item>
+
+	<!-- VIP3每日礼包 -->
+	<item id="5372" type="1" needmoney="0">
+		<!--<newitem id="8000" money="300000000" prob="10000"/>--><!-- 3E金币 -->
+
+		<newitem id="4106" star="0" prob="10000"/><!-- 圣洁项链(+100%经验) -->
+		<newitem id="8805" star="0" prob="10000"/><!-- 高级卷轴(*100) -->
+		<newitem id="8821" star="0" prob="10000"/><!-- 强化宝石(*10) -->
+		<newitem id="8811" star="0" prob="10000"/><!-- 鉴定宝石(*10) -->
+
+		<newitem id="5184" star="0" prob="10000"/><!-- 宠物经验药水(+1千) -->
+		<newitem id="5184" star="0" prob="10000"/><!-- 宠物经验药水(+1千) -->
+		<newitem id="5184" star="0" prob="10000"/><!-- 宠物经验药水(+1千) -->
+		<newitem id="5184" star="0" prob="10000"/><!-- 宠物经验药水(+1千) -->
+
+		<newitem id="9102" star="0" prob="10000"/><!-- 五倍经验卡(1小时) -->
+		<newitem id="9102" star="0" prob="10000"/><!-- 五倍经验卡(1小时) -->
+
+		<newitem id="5357" star="0" prob="10000"/><!-- 超级幸运袋 -->
+	</item>
+
+
+	<!-- =============================== 华丽丽的分割线 ===================================== -->
+
+
+	<!-- 1~20级福袋配置, id表示物品ID, star表示星数, prob表示概率 -->
+	<item id="5350" type="0" needmoney="0">
+		<newitem id="3811" star="0" prob="100"/><!-- 飞行鞋(+2) -->
+		<newitem id="1105" star="5" prob="200"/><!-- 砍刀 -->
+		<newitem id="1505" star="5" prob="200"/><!-- 龙头杖 -->
+		<newitem id="1305" star="5" prob="200"/><!-- 黄金弓 -->
+		<newitem id="1405" star="5" prob="200"/><!-- 龙头杖 -->
+		<newitem id="1505" star="5" prob="200"/><!-- 黄金枪 -->
+		<newitem id="1205" star="5" prob="200"/><!-- 大锤 -->
+		<newitem id="5008" star="0" prob="10000"/><!-- 小生命水 -->
+	</item>
+
+	<!-- 20~40级福袋配置 -->
+	<item id="5351" type="0" needmoney="0">
+		<newitem id="3812" star="0" prob="100"/><!-- 飞行鞋(+4) -->
+		<newitem id="3702" star="0" prob="100"/><!-- 虎之腰带 -->
+
+		<newitem id="1160" star="5" prob="300"/><!-- 光之剑 -->
+		<newitem id="1560" star="5" prob="300"/><!-- 光之杖 -->
+		<newitem id="1360" star="5" prob="300"/><!-- 光之弓 -->
+		<newitem id="1460" star="5" prob="300"/><!-- 光之枪 -->
+		<newitem id="1560" star="5" prob="300"/><!-- 光之杖 -->
+		<newitem id="1260" star="5" prob="300"/><!-- 光之斧 -->
+
+		<newitem id="1161" star="5" prob="300"/><!-- 冰之剑 -->
+		<newitem id="1561" star="5" prob="300"/><!-- 冰之杖 -->
+		<newitem id="1361" star="5" prob="300"/><!-- 冰之弓 -->
+		<newitem id="1461" star="5" prob="300"/><!-- 冰之枪 -->
+		<newitem id="1561" star="5" prob="300"/><!-- 冰之杖 -->
+		<newitem id="1261" star="5" prob="300"/><!-- 冰之斧 -->
+
+		<newitem id="4103" star="0" prob="500"/><!-- 危险之心 -->
+
+		<newitem id="8801" star="0" prob="2000"/><!-- 高级卷轴 -->
+		<newitem id="8810" star="0" prob="3000"/><!-- 鉴定宝石 -->
+
+		<newitem id="7901" star="0" prob="10000"/><!-- 一万纸币 -->
+	</item>
+
+	<!-- 40~60级福袋配置 -->
+	<item id="5352" type="0" needmoney="0">
+		<newitem id="6111" star="0" prob="100"/><!-- 武神降临 -->
+		<newitem id="6039" star="0" prob="100"/><!-- 地狱之刺 -->
+		<newitem id="6236" star="0" prob="100"/><!-- 自然之风 -->
+
+		<newitem id="5201" star="0" prob="200"/><!-- 背包 -->
+		<newitem id="4102" star="0" prob="200"/><!-- 热情之心 -->
+		<newitem id="4103" star="0" prob="200"/><!-- 危险之心 -->
+		<newitem id="4101" star="0" prob="300"/><!-- 甜蜜之心 -->
+
+		<newitem id="3813" star="0" prob="300"/><!-- 飞行鞋(+6) -->
+		<newitem id="3703" star="0" prob="300"/><!-- 熊之腰带 -->
+		<newitem id="8601" star="0" prob="100"/><!-- 比奇(化石) -->
+		<newitem id="8602" star="0" prob="100"/><!-- 库迪(化石) -->
+		<newitem id="8603" star="0" prob="100"/><!-- 付奇(化石) -->
+		<newitem id="8604" star="0" prob="100"/><!-- 艾迪(化石) -->
+
+		<newitem id="1127" star="5" prob="300"/><!-- 勇士之剑 -->
+		<newitem id="1528" star="5" prob="300"/><!-- 蓝笛之杖 -->
+		<newitem id="1327" star="5" prob="300"/><!-- 神游弓 -->
+		<newitem id="1425" star="5" prob="300"/><!-- 爆裂枪 -->
+		<newitem id="1528" star="5" prob="300"/><!-- 蓝笛之杖 -->
+		<newitem id="1231" star="5" prob="300"/><!-- 相思斧 -->
+
+		<newitem id="8810" star="0" prob="3000"/><!-- 鉴定宝石 -->
+
+		<newitem id="8801" star="0" prob="10000"/><!-- 高级卷轴 -->
+	</item>
+
+	<!-- 60~110级福袋配置 -->
+	<item id="5353" type="0" needmoney="0">
+		<newitem id="6111" star="0" prob="100"/><!-- 武神降临 -->
+		<newitem id="6039" star="0" prob="100"/><!-- 地狱之刺 -->
+		<newitem id="6236" star="0" prob="100"/><!-- 自然之风 -->
+
+		<newitem id="5202" star="0" prob="200"/><!-- 手提包 -->
+		<newitem id="4102" star="0" prob="200"/><!-- 热情之心 -->
+		<newitem id="3814" star="0" prob="200"/><!-- 飞行鞋(+8) -->
+		<newitem id="3704" star="0" prob="200"/><!-- 龙之腰带 -->
+		<newitem id="4103" star="0" prob="200"/><!-- 危险之心 -->
+
+		<newitem id="1162" star="5" prob="300"/><!-- 火之剑 -->
+		<newitem id="1562" star="5" prob="300"/><!-- 火之杖 -->
+		<newitem id="1362" star="5" prob="300"/><!-- 火之弓 -->
+		<newitem id="1462" star="5" prob="300"/><!-- 火之枪 -->
+		<newitem id="1562" star="5" prob="300"/><!-- 火之杖 -->
+		<newitem id="1262" star="5" prob="300"/><!-- 火之斧 -->
+
+		<newitem id="2509" star="5" prob="300"/><!-- 末日之袍 -->
+		<newitem id="2009" star="5" prob="300"/><!-- 野蛮之铠 -->
+		<newitem id="2309" star="5" prob="300"/><!-- 悲痛之甲 -->
+		<newitem id="2409" star="5" prob="300"/><!-- 末日之袍 -->
+		<newitem id="2209" star="5" prob="300"/><!-- 悲痛之甲 -->
+		<newitem id="2109" star="5" prob="300"/><!-- 回忆之铠 -->
+
+		<!-- 100级武器和防具 暂时不放
+		<newitem id="1164" star="5" prob="100"/>
+		<newitem id="1165" star="5" prob="100"/>
+		<newitem id="1265" star="5" prob="100"/>
+		<newitem id="1266" star="5" prob="100"/>
+		<newitem id="1364" star="5" prob="100"/>
+		<newitem id="1365" star="5" prob="100"/>
+		<newitem id="1465" star="5" prob="100"/>
+		<newitem id="1466" star="5" prob="100"/>
+		<newitem id="1565" star="5" prob="100"/>
+		<newitem id="1566" star="5" prob="100"/>
+		<newitem id="2026" star="5" prob="100"/>
+		<newitem id="2126" star="5" prob="100"/>
+		<newitem id="2231" star="5" prob="100"/>
+		<newitem id="2331" star="5" prob="100"/>
+		<newitem id="2430" star="5" prob="100"/>
+		<newitem id="2530" star="5" prob="100"/>
+		<newitem id="3019" star="5" prob="100"/>
+		<newitem id="3119" star="5" prob="100"/>
+		<newitem id="3221" star="5" prob="100"/>
+		<newitem id="3222" star="5" prob="100"/>
+		<newitem id="3324" star="5" prob="100"/>
+		<newitem id="3424" star="5" prob="100"/>
+		<newitem id="3523" star="5" prob="100"/>
+		<newitem id="3623" star="5" prob="100"/>-->
+
+		<newitem id="8810" star="0" prob="3000"/><!-- 鉴定宝石 -->
+
+		<newitem id="8801" star="0" prob="10000"/><!-- 高级卷轴 -->
+	</item>
+
+
+	<!-- =============================== 华丽丽的分割线 ===================================== -->
+
+
+	<!-- 比武大赛礼包配置 -->
+	<item id="5180" type="1" needmoney="0">
+		<!-- 1个强化石 -->
+		<newitem id="8820" star="0" prob="10000"/>
+		<!-- 50万经验 -->
+		<newitem id="9125" star="0" prob="10000"/>
+		<!-- 1个高级幸运袋 -->
+		<newitem id="5356" star="0" prob="10000"/>
+		<newitem id="5356" star="0" prob="10000"/>
+		<!-- 4个鉴定宝石 -->
+		<newitem id="8810" star="0" prob="10000"/>
+		<newitem id="8810" star="0" prob="10000"/>
+		<newitem id="8810" star="0" prob="10000"/>
+		<newitem id="8810" star="0" prob="10000"/>
+		<!-- 2个高级卷轴 -->
+		<newitem id="8801" star="0" prob="10000"/>
+		<newitem id="8801" star="0" prob="10000"/>
+		<!--1个双倍经验项链-->
+		<newitem id="5141" star="0" prob="10000"/>
+		<!--2个血包和2个魔包-->
+		<newitem id="5015" star="0" prob="10000"/>
+		<newitem id="5015" star="0" prob="10000"/>
+		<newitem id="5017" star="0" prob="10000"/>
+		<newitem id="5017" star="0" prob="10000"/>
+		<newitem id="8000" money="100000000" prob="10"/><!-- 1E金币 -->
+	</item>
+
+	<!-- =============================== 华丽丽的分割线 ===================================== -->
+
+
+	<!-- "林妹妹活动"礼包配置 -->
+	<item id="5382" type="1" needmoney="0">
+		<!-- 10倍经验卡 -->
+		<newitem id="9104" star="0" prob="10000"/>
+		<newitem id="9104" star="0" prob="10000"/>
+		<newitem id="9104" star="0" prob="10000"/>
+		<!-- 百万纸币 -->
+		<newitem id="7904" star="0" prob="10000"/>
+		<newitem id="7904" star="0" prob="10000"/>
+		<newitem id="7904" star="0" prob="10000"/>
+		<newitem id="7904" star="0" prob="10000"/>
+		<!-- 属性卷 -->
+		<newitem id="8101" star="0" prob="10000"/>
+		<newitem id="8102" star="0" prob="10000"/>
+		<newitem id="8103" star="0" prob="10000"/>
+		<!-- 高卷 -->
+		<newitem id="8805" star="0" prob="10000"/>
+		<!-- 耳环 -->
+		<newitem id="4001" star="0" prob="10000"/>
+		<newitem id="4002" star="0" prob="10000"/>
+		<newitem id="4003" star="0" prob="10000"/>
+		<!-- 经验项链 -->
+		<newitem id="4106" star="0" prob="10000"/>
+		<newitem id="4106" star="0" prob="10000"/>
+		<!-- 超级幸运袋 -->
+		<newitem id="5357" star="0" prob="10000"/>
+		<newitem id="5357" star="0" prob="10000"/>
+		<!-- 飞行鞋(+10) -->
+		<newitem id="3822" star="0" prob="10000"/>
+	</item>
+
+
+	<!-- =============================== 华丽丽的分割线 ===================================== -->
+
+
+	<!-- 1级新手礼包配置 -->
+	<item id="5185" type="1" needmoney="0">
+		<!--银行锁-->
+		<newitem id="5155" star="0" prob="10000"/>
+		<!--生命大药瓶包-->
+		<newitem id="5015" star="0" prob="10000"/>
+		<!--耐力大药瓶包-->
+		<newitem id="5016" star="0" prob="10000"/>
+		<!--魔法大药瓶包-->
+		<newitem id="5017" star="0" prob="10000"/>
+		<!--5个初级飞行鞋-->
+		<newitem id="3810" star="0" prob="10000"/>
+		<newitem id="3810" star="0" prob="10000"/>
+		<newitem id="3810" star="0" prob="10000"/>
+		<newitem id="3810" star="0" prob="10000"/>
+		<newitem id="3810" star="0" prob="10000"/>
+		<!--5个鉴定-->
+		<newitem id="8810" star="0" prob="10000"/>
+		<newitem id="8810" star="0" prob="10000"/>
+		<newitem id="8810" star="0" prob="10000"/>
+		<newitem id="8810" star="0" prob="10000"/>
+		<newitem id="8810" star="0" prob="10000"/>
+		<newitem id="9102" star="0" prob="10000"/><!-- 五倍经验卡(1小时) -->
+		<newitem id="9102" star="0" prob="10000"/><!-- 五倍经验卡(1小时) -->
+		<newitem id="9102" star="0" prob="10000"/><!-- 五倍经验卡(1小时) -->
+		<newitem id="9102" star="0" prob="10000"/><!-- 五倍经验卡(1小时) -->
+		<newitem id="9102" star="0" prob="10000"/><!-- 五倍经验卡(1小时) -->
+		<newitem id="5357" star="0" prob="10000"/><!-- 超级幸运袋 -->
+	</item>
+
+</itemconvert>

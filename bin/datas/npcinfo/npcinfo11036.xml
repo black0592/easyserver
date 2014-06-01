@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<npcinfo>
+
+	<npc BaseId="302" BirthX="12" BirthY="50" NpcFunc="0" StoreId="0" ScriptFile="test" />
+
+</npcinfo>
+

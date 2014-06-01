@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="gbk"?>
+<config>
+	<!--clientpath 客户端的Resources文件夹路径(默认.\Resources)-->
+	<!--serverpath 服务器的datas文件夹路径(默认.\datas)-->
+	<clientpath>E:\workspace\silicon\SiliconClient\Resources</clientpath>
+	<serverpath>E:\workspace\silicon\SiliconServer\bin\datas</serverpath>
+</config>

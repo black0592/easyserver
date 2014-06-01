@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<portal>
+	<npc mapid="36" npcid="5">
+		<line msg="玫瑰兑换燕尾服"		needitem="5137" neednum="20" giveitem="8215" givenum="1" />
+		<line msg="玫瑰兑换婚纱"		needitem="5137" neednum="20" giveitem="8216" givenum="1" />
+		<line msg="玫瑰兑换飞行鞋(+14)"	needitem="5137" neednum="40" giveitem="3824" givenum="1" />
+		<line msg="玫瑰兑换飞行鞋(+16)" needitem="5137" neednum="60" giveitem="3825" givenum="1" />
+		<line msg="玫瑰兑换甜蜜之心"	needitem="5137" neednum="20" giveitem="4101" givenum="1" />
+		<line msg="玫瑰兑换热情之心"	needitem="5137" neednum="30" giveitem="4102" givenum="1" />
+		<line msg="玫瑰兑换疯狂项链"	needitem="5137" neednum="40" giveitem="4105" givenum="1" />
+		<line msg="玫瑰兑换圣洁项链"	needitem="5137" neednum="50" giveitem="4106" givenum="1" />
+	</npc>
+
+	<npc mapid="36" npcid="6">
+		<line msg="高卷*1兑换高卷*10"	needitem="8801" neednum="10" giveitem="8802" givenum="1" />
+		<line msg="高卷*10兑换高卷*20"	needitem="8802" neednum="2" giveitem="8803" givenum="1" />
+		<line msg="高卷*20兑换高卷*50"	needitem="8803" neednum="3" giveitem="8804" givenum="1" />
+		<line msg="高卷*50兑换高卷*100"	needitem="8804" neednum="2" giveitem="8805" givenum="1" />
+		<line msg="玫瑰兑换高级卷轴"	needitem="5137" neednum="20" giveitem="8801" givenum="1" />
+		<line msg="玫瑰兑换红钻"		needitem="5137" neednum="10" giveitem="112" givenum="1" />
+		<line msg="玫瑰兑换紫水晶"		needitem="5137" neednum="10" giveitem="113" givenum="1" />
+		<line msg="玫瑰兑换金珠"		needitem="5137" neednum="10" giveitem="110" givenum="1" />
+		<line msg="玫瑰兑换黄钻"		needitem="5137" neednum="10" giveitem="111" givenum="1" />
+		<line msg="玫瑰兑换原金(+6)"	needitem="5137" neednum="20" giveitem="156" givenum="1" />
+	</npc>
+
+	<npc mapid="36" npcid="7">
+		<line msg="玫瑰兑换风卷轴"		needitem="5137" neednum="10" giveitem="8102" givenum="1" />
+		<line msg="玫瑰兑换水卷轴"		needitem="5137" neednum="10" giveitem="8101" givenum="1" />
+		<line msg="玫瑰兑换火卷轴"		needitem="5137" neednum="10" giveitem="8103" givenum="1" />
+		<line msg="玫瑰兑换高级幸运袋"	needitem="5137" neednum="20" giveitem="5356" givenum="1" />
+		<line msg="低级兑换中级幸运袋"	needitem="5354" neednum="30" giveitem="5355" givenum="1" />
+		<line msg="中级兑换高级幸运袋"	needitem="5355" neednum="20" giveitem="5356" givenum="1" />
+		<line msg="高级袋兑换超级袋"	needitem="5356" neednum="10" giveitem="5357" givenum="1" />
+	</npc>
+
+	<npc mapid="36" npcid="8">
+		<line msg="高卷兑换鉴定宝石"		needitem="8801" neednum="20" giveitem="8810" givenum="1" />
+		<line msg="高卷兑换强化宝石"		needitem="8801" neednum="60" giveitem="8820" givenum="1" />
+		<line msg="玫瑰兑换鉴定宝石"		needitem="5137" neednum="30" giveitem="8810" givenum="1" />
+		<line msg="玫瑰兑换强化宝石"		needitem="5137" neednum="60" giveitem="8820" givenum="1" />
+		<line msg="双倍经验卡兑换五倍经验卡"	needitem="9100" neednum="5" giveitem="9102" givenum="1" />
+		<line msg="玫瑰兑换宠物药水(5百) "	needitem="5137" neednum="60" giveitem="5183" givenum="1" />
+		<line msg="宠水(5百)兑换宠水(1千) "	needitem="5183" neednum="5" giveitem="5184" givenum="1" />
+		<line msg="玫瑰兑换宠物药水(1万)"	needitem="5184" neednum="3" giveitem="5182" givenum="1" />
+		<line msg="金卡兑换20倍经验卡"	needitem="5161" neednum="8" giveitem="9103" givenum="1" />
+		<line msg="银卡兑换10倍经验卡"	needitem="5162" neednum="7" giveitem="9104" givenum="1" />
+		<line msg="铜卡兑换10倍经验卡"	needitem="5163" neednum="5" giveitem="9104" givenum="1" />
+	</npc>
+
+</portal>

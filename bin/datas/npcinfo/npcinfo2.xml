@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<npcinfo>
+
+	<npc BaseId="7" BirthX="7" BirthY="11" NpcFunc="0" StoreId="0" ScriptFile="common7" />
+	<npc BaseId="3" BirthX="24" BirthY="15" NpcFunc="1" StoreId="3" ScriptFile="" />
+	<npc BaseId="11" BirthX="16" BirthY="15" NpcFunc="0" StoreId="0" ScriptFile="equip_repair" />
+	<npc BaseId="208" BirthX="28" BirthY="12" NpcFunc="0" StoreId="0" ScriptFile="marriage" />
+	<npc BaseId="206" BirthX="31" BirthY="35" NpcFunc="0" StoreId="0" ScriptFile="guild" />
+	<npc BaseId="207" BirthX="11" BirthY="34" NpcFunc="0" StoreId="0" ScriptFile="warehouse" />
+	<npc BaseId="210" BirthX="20" BirthY="19" NpcFunc="0" StoreId="0" ScriptFile="auction" />
+	<npc BaseId="9" BirthX="19" BirthY="41" NpcFunc="1" StoreId="1" ScriptFile="" />
+	<npc BaseId="212" BirthX="20" BirthY="26" NpcFunc="0" StoreId="0" ScriptFile="test" />
+	<npc BaseId="209" BirthX="33" BirthY="7" NpcFunc="0" StoreId="0" ScriptFile="battlefield" />
+	<npc BaseId="212" BirthX="23" BirthY="26" NpcFunc="1" StoreId="7" ScriptFile="" />
+	<npc BaseId="12" BirthX="18" BirthY="30" NpcFunc="0" StoreId="0" ScriptFile="teleporter" />
+
+</npcinfo>
+

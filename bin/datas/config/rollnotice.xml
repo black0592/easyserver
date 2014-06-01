@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 滚动公告 type:0顺序公告,1:随机公告 time:执行间隔(秒)-->
+<rollnotice type="1" time="60">
+	<notice>使用强化水晶可以让装备变得更强大。</notice>
+	<notice>如果您不喜欢杀戮的生活，你可以买几个免战牌试试。</notice>
+	<notice>听说装备可以打孔，并镶嵌宝石进去，威力惊人！</notice>
+	<notice>如果您遇到游戏问题，请加入游戏讨论群 189380343</notice>
+	<notice>怪物没找到吗？那去刷新点周围看看，它可能散步去了。</notice>
+</rollnotice>
+

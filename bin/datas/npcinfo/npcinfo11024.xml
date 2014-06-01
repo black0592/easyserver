@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<npcinfo>
+
+	<npc BaseId="6" BirthX="7" BirthY="22" NpcFunc="0" StoreId="3" ScriptFile="common4" />
+	<npc BaseId="8" BirthX="15" BirthY="14" NpcFunc="0" StoreId="0" ScriptFile="common5" />
+
+</npcinfo>
+

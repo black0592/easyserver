@@ -1,0 +1,142 @@
+option optimize_for = LITE_RUNTIME;
+
+import "ProtoGameData.proto";
+
+package Protocol;
+
+
+
+//-------------------------
+// 角色选择逻辑操作号
+enum CharDataOpCode {
+	OP_CHECK_PING = 1;		 // 检查ping值
+	OP_START_GAME = 2;		 // 客户端请求开始游戏
+	OP_UPDATE_PROPERTY = 3;	 // 更新属性数值
+	OP_USE_LVUP_POINT = 4;	 // 使用升级点数
+	OP_RECHARGE = 5;		 // 充值
+	OP_SET_SHORTCUT_KEY = 6; // 设置快捷栏(如果空数据，表示清空)
+	OP_LOOK_CHAR_EQUIP = 7;	 // 查看指定玩家的装备
+	OP_TAKE_VIP_AWARD = 8;	 // 领取VIP奖励
+	OP_SAVE_SETTING = 9;	 //	保存游戏设置参数
+}
+
+
+//-------------------------
+// 客户端ping检测
+message RequestCheckPing {
+	optional uint32 timestamp = 1;	// 时间戳
+}
+
+message ResponseCheckPing {
+	optional uint32 timestamp = 1;	// 时间戳
+}
+
+// 客户端请求开始游戏(客户端地图加载完成，需要开始游戏，并显示出来)
+message RequestStartGame {
+	optional int32 timestamp = 1;
+}
+
+message ResponseStartGame {
+	optional int32 result = 1;
+	optional int32 param1 = 2;
+	optional int32 param2 = 3;
+	optional int32 param3 = 4;
+}
+
+
+// 服务器通知客户端更新属性
+message NotifyUpdateProperty {
+	optional int32 charlevel = 1;		// 角色等级
+	optional uint64 cur_exp = 2;		// 当前等级的当前验值
+	optional uint64 max_exp = 3;		// 当前等级的经验上限
+	optional uint64 gold = 4;			// 人民币货币
+	optional uint64 bindgold = 5;		// 绑定的人民币货币
+	optional uint64 money = 6;			// 身上金币
+	optional uint64 safemoney = 7;		// 仓库金币
+
+	optional int32 lvup_point = 10;		// 升级后的属性点
+	optional int32 cur_str = 11;		// 力量
+	optional int32 cur_dex = 12;		// 敏捷
+	optional int32 cur_int = 13;		// 智力
+	optional int32 cur_con = 14;		// 体力
+	optional int32 cur_wiz = 15;		// 精神
+
+	optional int32 cur_hp = 16;			// 当前血量
+	optional int32 cur_mp = 17;			// 当前魔法值
+	optional int32 max_hp = 18;			// 最大血量
+	optional int32 max_mp = 19;			// 最大魔法值
+	optional int32 attack = 20;			// 攻击力
+	optional int32 phy_defence = 21;	// 物理防御力
+	optional int32 mag_defence = 22;	// 魔法防御力
+	optional int32 move_speed = 23;		// 移动速度
+	optional int32 pk_count = 24;		// 罪恶值
+	optional float hit_chance = 25;		// 命中率
+	optional float dodge_chance = 26;	// 躲避率
+	optional float critical = 27;		 // 暴击率
+	optional float critical_dodge = 28;  // 防暴率
+
+	optional string matename = 29;		// 配偶名字
+	optional string guildname = 30;		// 公会名字
+	optional int32 guild_credits = 31;	// 当前公会积分
+
+	optional uint64 total_gold = 32;		// 累计充值
+	optional int32 total_guild_credits = 33;// 累计公会积分
+}
+
+
+// 客户端请求加点
+message RequestUseLvupPoint {
+	optional uint32 inc_str = 1;		// 力量
+	optional uint32 inc_dex = 2;		// 增加敏捷
+	optional uint32 inc_intgent = 3;	// 增加智力
+	optional uint32 inc_con = 4;		// 增加体力
+	optional uint32 inc_wiz = 5;		// 增加精神
+}
+
+message ResponseUseLvupPoint {
+	optional uint32 result = 1;			// 结果
+}
+
+
+// 请求快速充值(服务器无需返回)
+message RequestRecharge {
+	optional uint32 reserve = 1;			// 保留字段
+}
+
+
+// 请求设置快捷键
+message RequestSetShortcutKey {
+	optional ShortcutKeyData data = 1;			// 快捷键数据
+}
+
+
+// ------------ 查看装备 --------------
+// 请求查看对方装备
+message RequestLookCharEquip {
+	optional string name = 1;	// 角色名
+}
+
+message ResponseLookCharEquip {
+	optional string		name = 1;			// 角色名
+	optional int32		level = 2;			// 等级
+	optional int32		race = 3;			// 职业
+	optional string		guild_name = 4;		// 公会名字
+	repeated ItemData	equip_items = 10;	// 职业装备
+	repeated ItemData	avatar_items = 11;	// 时装装备
+}
+
+
+// ------------ 领取VIP奖励 --------------
+message RequestTakeVipAward {
+	optional uint32 vip_award_id = 1;
+}
+
+message ResponseTakeVipAward {
+	optional int32 vip_award_id = 1;
+}
+
+
+// ------------ 请求保存设置界面的参数 --------------
+message RequestSaveSetting {
+	optional SettingData setting_data = 1;
+}

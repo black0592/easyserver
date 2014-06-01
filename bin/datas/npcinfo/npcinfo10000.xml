@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<npcinfo>
+
+	<npc BaseId="201" BirthX="57" BirthY="11" NpcFunc="0" StoreId="0" ScriptFile="battlefield_exit" />
+
+</npcinfo>
+

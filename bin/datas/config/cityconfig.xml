@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<cityinfo>
+
+	<!--回城地图坐标-->
+	<country1>
+		<map id="11001" x="6" y="8" minlv="1" maxlv="10" />
+		<map id="2" x="19" y="27" minlv="11" maxlv="100" />
+	</country1>
+
+	<country2>
+		<map id="11001" x="6" y="8" minlv="1" maxlv="10" />
+		<map id="1002" x="19" y="27" minlv="11" maxlv="100" />
+	</country2>
+
+</cityinfo>

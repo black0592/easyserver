@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jumppoint>
+
+	<point MapX="25" MapY="48" TargetMapId="11020" TargetMapX="50" TargetMapY="10" ScriptFile="" />
+	<point MapX="3" MapY="8" TargetMapId="11036" TargetMapX="5" TargetMapY="53" ScriptFile="" />
+	<point MapX="46" MapY="14" TargetMapId="11050" TargetMapX="19" TargetMapY="10" ScriptFile="" />
+
+</jumppoint>
+

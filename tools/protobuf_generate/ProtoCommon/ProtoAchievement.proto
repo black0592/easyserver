@@ -1,0 +1,40 @@
+option optimize_for = LITE_RUNTIME;
+
+import "ProtoGameData.proto";
+
+package Protocol;
+
+// 成就系统
+
+//-------------------------
+//  成就操作符号
+enum AchievementOpCode {
+	OP_ACHIEVE_GET_LIST = 1;	// 获得成就数据列表
+	OP_ACHIEVE_TAKE_AWARD = 2;	// 领取成就奖励
+}
+
+
+/////////////////// 成就 begin ///////////////////////////
+
+// -----------------------------
+// 请求成就进度
+message RequestGetAchievementList {
+	optional int32 reserve = 1;
+}
+
+message ResponseGetAchievementList {
+	repeated AchievementData achievements = 1;	// 成就数据
+}
+
+// 请求领取成就
+message RequestTakeAchievementAward {
+	optional int32 id = 1;		// 成就的id
+}
+
+message ResponseTakeAchievementAward {
+	optional int32 id = 1;		// 成就的id
+}
+
+
+
+/////////////////// 成就 end ///////////////////////////

@@ -1,0 +1,40 @@
+option optimize_for = LITE_RUNTIME;
+
+package Protocol;
+
+// 游戏主消息类型(客户端和服务器之间)
+enum MessageType {
+	MSG_TIME			= 51;
+	MSG_LOGIN			= 52;	// 登录
+	MSG_SELECTCHAR		= 53;	// 角色选择，创建，删除
+	MSG_CHARDATA		= 54;	// 角色数据
+	MSG_ITEM			= 55;	// 物品
+	MSG_TRADE			= 56;	// 交易
+	MSG_TEAM			= 57;	// 组队
+	MSG_SIEGEWAR		= 58;	// 攻城战
+	MSG_SELFSTORE		= 59;	// 摆摊
+	MSG_MISSION			= 60;	// 任务
+	MSG_GUILD			= 61;	// 公会
+	MSG_GAMEDATA		= 62;	// 待整理(场景信息)
+	MSG_FIGHT			= 63;	// 战斗
+	MSG_MAIL			= 64;	// 邮件
+	MSG_SKILL			= 65;	// 技能
+	MSG_RELATIONS		= 66;	// 好友、仇人、黑名单、夫妻
+	MSG_SCRIPT			= 67;	// 脚本
+	MSG_TOPLIST			= 68;	// 排行榜
+	MSG_EQUIPUPGRADE	= 69;	// 装备强化系列
+	MSG_AUCTION			= 70;	// 拍卖行
+	MSG_CHATTING		= 71;	// 聊天
+	MSG_ACHIEVEMENT		= 72;	// 成就系统
+	MSG_ACTIVITY		= 73;	// 活动系统
+	MSG_ONLINE_REWARDS	= 74;	// 在线奖励
+	
+
+	MSG_GUILDMARK		= 140;
+	MSG_OTHER			= 150;	//杂项功能
+
+	MSG_GENERAL			= 200;	// 通用错误提示
+}
+
+
+// notify  服务器主动通知

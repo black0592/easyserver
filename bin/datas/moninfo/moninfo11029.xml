@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<moninfo>
+
+	<mon BaseId="1036" Num="8" AI="0" Speed="100" View="3" BirthX="45" BirthY="21" BirthWidth="12" BirthHeight="14" DropId="0" DropProb="8000" DropType="1" ReviveTime="1" />
+	<mon BaseId="1037" Num="8" AI="0" Speed="100" View="3" BirthX="14" BirthY="58" BirthWidth="12" BirthHeight="14" DropId="0" DropProb="8000" DropType="1" ReviveTime="1" />
+
+</moninfo>
+

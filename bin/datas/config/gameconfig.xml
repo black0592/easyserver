@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+
+	<!-- ExpRate:全服经验倍率 -->
+	<data name="ExpRate" value="1"/>
+
+	<!-- ShowOnline:0-不显示,1-显示在线人数 -->
+	<data name="ShowOnline" value="0"/>
+	
+	<!-- PayUrl:充值地址 -->
+	<data name="PayUrl" value="https://me.alipay.com/valenjason"/>
+
+	<!-- MonMoveType:0-怪物简单寻路,1-自动切换寻路,2-怪物高级寻路 -->
+	<data name="MonMoveType" value="2"/>
+
+	<!-- AttackCheckPath:玩家攻击怪物之前，判断下寻路路径 -->
+	<data name="AttackCheckPath" value="0"/>
+
+	<!-- TeamLevelLimit:组队等级限制 -->
+	<data name="TeamLevelLimit" value="100"/>
+
+	<!-- 定时保存角色数据的时间(秒) -->
+	<data name="AutoSaveTime" value="300"/>
+
+	<!-- DropProb:全服掉落概率(万分比) -->
+	<data name="DropProb" value="1000"/>
+
+	<!-- OfflineExp:离线经验，1分钟的经验 -->
+	<data name="OfflineExp" value="0"/>
+
+	<!-- PkDropEquipProb:PK掉落身上的概率 -->
+	<!-- PkDropBagProb:PK掉落背包的概率 -->
+	<!-- PkDropLockItem:PK是否掉落锁定道具 -->
+	<!--
+	<data name="PkDropBagProb" value="0"/>
+	<data name="PkDropEquipProb" value="0"/>
+	<data name="PkDropBindItem" value="0"/>
+	-->
+	
+</config>

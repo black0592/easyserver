@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<novice>
+
+	<!--出生地图坐标-->
+	<novicemap>
+		<map id="11001" x="6" y="8" country="1" />
+		<map id="11001" x="6" y="8" country="2" />
+	</novicemap>
+
+	<!--通用道具、技能、任务、金币、钻石-->
+	<global>
+		<item id="20001" quality="0" overlay="99" shortkey="3"/>
+		<item id="20005" quality="0" overlay="99" shortkey="0"/>
+		<item id="53001" quality="0" overlay="99" shortkey="-1"/>
+		<mission id="1" />
+		<money num="1000" />
+		<gold num="500" />
+	</global>
+
+	<!--男战士-->
+	<race0>
+		<skill id="1000" level="1" shortkey="-1"/>
+		<skill id="1001" level="1" shortkey="1"/>
+		<skill id="1002" level="1" shortkey="-1"/>
+		<skill id="1003" level="1" shortkey="2"/>
+		<skill id="1004" level="1" shortkey="4"/>
+		<skill id="1005" level="1" shortkey="5"/>
+	</race0>
+
+	<!--女战士-->
+	<race1>
+		<skill id="1000" level="1" shortkey="-1"/>
+		<skill id="1001" level="1" shortkey="1"/>
+		<skill id="1002" level="1" shortkey="-1"/>
+		<skill id="1003" level="1" shortkey="2"/>
+		<skill id="1004" level="1" shortkey="4"/>
+		<skill id="1005" level="1" shortkey="5"/>
+	</race1>
+
+	<!--男法师-->
+	<race2>
+		<skill id="2000" level="1" shortkey="-1"/>
+		<skill id="2001" level="1" shortkey="1"/>
+		<skill id="2002" level="1" shortkey="2"/>
+		<skill id="2003" level="1" shortkey="4"/>
+		<skill id="2004" level="1" shortkey="5"/>
+		<skill id="2005" level="1" shortkey="6"/>
+	</race2>
+
+	<!--女法师-->
+	<race3>
+		<skill id="2000" level="1" shortkey="-1"/>
+		<skill id="2001" level="1" shortkey="1"/>
+		<skill id="2002" level="1" shortkey="2"/>
+		<skill id="2003" level="1" shortkey="4"/>
+		<skill id="2004" level="1" shortkey="5"/>
+		<skill id="2005" level="1" shortkey="6"/>
+	</race3>
+
+	<!--男游侠-->
+	<race4>
+		<skill id="3000" level="1" shortkey="-1"/>
+		<skill id="3001" level="1" shortkey="1"/>
+		<skill id="3002" level="1" shortkey="2"/>
+		<skill id="3003" level="1" shortkey="4"/>
+		<skill id="3004" level="1" shortkey="5"/>
+		<skill id="3005" level="1" shortkey="6"/>
+	</race4>
+
+	<!--女游侠-->
+	<race5>
+		<skill id="3000" level="1" shortkey="-1"/>
+		<skill id="3001" level="1" shortkey="1"/>
+		<skill id="3002" level="1" shortkey="2"/>
+		<skill id="3003" level="1" shortkey="4"/>
+		<skill id="3004" level="1" shortkey="5"/>
+		<skill id="3005" level="1" shortkey="6"/>
+	</race5>
+
+</novice>

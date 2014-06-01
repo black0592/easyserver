@@ -1,0 +1,191 @@
+option optimize_for = LITE_RUNTIME;
+
+import "ProtoGameData.proto";
+
+package Protocol;
+
+
+//-------------------------
+// 拍卖行操作符号
+enum AuctionOpCode {
+	OP_AUCTION_GET_MONEY_LIST = 1;		// 金币寄售列表
+	OP_AUCTION_SELL_MONEY = 2;			// 寄售金币
+	OP_AUCTION_BUY_MONEY = 3;			// 购买金币
+	OP_AUCTION_BACKOUT_MONEY = 4;		// 撤销金币寄售
+	OP_AUCTION_GET_SELF_MONEY_LIST = 5;	// 获得自己的金币寄售列表
+
+	OP_AUCTION_GET_ITEM_LIST = 10;		// 道具寄售列表
+	OP_AUCTION_SELL_ITEM = 11;			// 寄售道具
+	OP_AUCTION_BUY_ITEM = 12;			// 购买道具
+	OP_AUCTION_GET_ITEM_DETAIL = 13;	// 查询寄售道具的详细信息
+	OP_AUCTION_BACKOUT_ITEM = 14;		// 撤销物品寄售
+	OP_AUCTION_GET_SELF_ITEM_LIST = 15;	// 获得自己的道具寄售列表
+
+	OP_AUCTION_UPDATE_PARAM = 16;		// 更新拍卖行的参数信息(每个人不一样的)
+}
+
+
+/////////////////// 拍卖行 begin ///////////////////////////
+
+// 排序规则
+enum AuctionSort {
+	AUC_SORT_NONE = 0;	// 不排序
+	AUC_SORT_ASCE = 1;	// 升序
+	AUC_SORT_DESC = 2;	// 降序
+}
+
+// 金币寄售信息
+message AuctionMoneyInfo {
+	optional int32 auction_id = 1;		// 订单唯一编号
+	optional int32 require_gold = 2;	// 出售总价(钻石)
+	optional int32 total_money = 3;		// 寄售总金币
+	optional int32 unit_money = 4;		// 寄售金币的单价
+	optional int32 time = 5;			// 寄售剩余时间
+}
+
+// 道具寄售信息
+message AuctionItemInfo {
+	optional int32 auction_id = 1;		// 订单唯一编号
+	optional int32 require_money = 2;	// 出售总价(金币)
+	optional int32 item_id = 3;			// 寄售的物品编号
+	optional int32 item_level = 4;		// 寄售的物品需求等级
+	optional int32 item_overlay = 5;	// 寄售的物品数量
+	optional int32 item_star = 6;		// 寄售的物品强化等级
+	optional int32 time = 7;			// 寄售剩余时间
+}
+
+// -----------------------------
+// 金币寄售列表
+message RequestAuctionGetMoneyList {
+	optional int32 page = 1 [default = 1];		// 请求第几页(1开始)
+	optional AuctionSort sort_total_money = 2;	// 寄售金额排序
+	optional AuctionSort sort_unit_money = 3;	// 寄售单价排序
+	optional AuctionSort sort_require_gold = 4;	// 寄售总价排序
+	optional int32 filter_money_min = 5;		// 最低金币过滤
+	optional int32 filter_money_max = 6;		// 最高金币过滤
+}
+
+message ResponseAuctionGetMoneyList {
+	optional int32 page = 1;			// 当前第几页
+	optional int32 max_page = 2;		// 一共有几页
+	repeated AuctionMoneyInfo auction_list = 3;
+}
+
+// 寄售金币
+message RequestAuctionSellMoney {
+	optional int32 money = 1;			// 金币数量
+	optional int32 require_gold = 2;	// 出售价格(钻石)
+}
+
+message ResponseAuctionSellMoney {
+	optional int32 result = 1;
+	optional AuctionMoneyInfo info = 2;
+}
+
+// 购买金币订单
+message RequestAuctionBuyMoney {
+	optional int32 auction_id = 1;		// 寄售订单的唯一id
+}
+
+message ResponseAuctionBuyMoney {
+	optional int32 result = 1;
+}
+
+// 撤销金币订单
+message RequestAuctionBackoutMoney {
+	optional int32 auction_id = 1;		// 寄售订单的唯一id
+}
+
+message ResponseAuctionBackoutMoney {
+	optional int32 result = 1;
+}
+
+// 自己的金币寄售列表
+message RequestAuctionGetSelfMoneyList {
+	optional int32 reserve = 1;
+}
+
+message ResponseAuctionGetSelfMoneyList {
+	repeated AuctionMoneyInfo auction_list = 1;
+}
+
+// -----------------------------
+// 道具寄售列表
+message RequestAuctionGetItemList {
+	optional int32 page = 1 [default = 1];			// 请求第几页(1开始)
+	optional AuctionSort sort_quality = 2;			// 物品品质排序
+	optional AuctionSort sort_level = 3;			// 物品需求等级排序
+	optional AuctionSort sort_overlay = 4;			// 物品数量排序
+	optional AuctionSort sort_require_money = 5;	// 总价排序
+	optional int32 filter_item_main_type = 6;		// 物品主类型过滤
+	optional int32 filter_item_sub_type = 7;		// 物品子类型过滤
+	optional int32 filter_item_level = 8;			// 物品等级过滤
+	optional string filter_item_name = 9;			// 物品名字包含过滤
+}
+
+message ResponseAuctionGetItemList {
+	optional int32 page = 1;			// 当前第几页
+	optional int32 max_page = 2;		// 一共有几页
+	repeated AuctionItemInfo auction_list = 3;
+}
+
+// 寄售物品
+message RequestAuctionSellItem {
+	optional ItemLocNum loc_num = 1;		// 物品位置信息和数量信息
+	optional int32 require_money = 2;	// 出售价格(金币)
+}
+
+message ResponseAuctionSellItem {
+	optional int32 result = 1;
+	optional AuctionItemInfo info = 2;
+}
+
+// 获得寄售物品的详细信息
+message RequestAuctionGetItemDetail {
+	optional int32 auction_id = 2;		// 寄售订单的唯一id
+}
+
+message ResponseAuctionGetItemDetail {
+	optional int32 auction_id = 1;		// 寄售订单的唯一id
+	optional ItemData item = 2;			// 物品详细信息
+	optional string seller = 3;			// 寄售人
+	optional int32 require_money = 4;	// 出售总价(金币)
+}
+
+// 购买物品订单
+message RequestAuctionBuyItem {
+	optional int32 auction_id = 1;		// 寄售订单的唯一id
+}
+
+message ResponseAuctionBuyItem {
+	optional int32 result = 1;
+}
+
+// 撤销物品订单
+message RequestAuctionBackoutItem {
+	optional int32 auction_id = 1;		// 寄售订单的唯一id
+}
+
+message ResponseAuctionBackoutItem {
+	optional int32 result = 1;
+}
+
+// 自己的物品寄售列表
+message RequestAuctionGetSelfItemList {
+	optional int32 reserve = 1;
+}
+
+message ResponseAuctionGetSelfItemList {
+	repeated AuctionItemInfo auction_list = 1;
+}
+
+// 服务器主动更新拍卖行参数(每个人不一样的)
+message NotifyAuctionUpdateParam {
+	optional int32 sell_item_cost = 1;	// 寄售道具的手续费
+	optional int32 sell_money_tax = 2;	// 金币寄售的交易税
+	optional int32 sell_item_tax = 3;	// 道具寄售的交易税
+	optional int32 sell_money_max = 4;	// 金币寄售的最大订单数量
+	optional int32 sell_item_max = 5;	// 道具寄售的最大订单数量
+}
+
+/////////////////// 拍卖行 end ///////////////////////////

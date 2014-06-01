@@ -1,0 +1,83 @@
+option optimize_for = LITE_RUNTIME;
+
+import "ProtoGameData.proto";
+
+package Protocol;
+
+//-------------------------
+// 排行版逻辑操作号
+enum TopListOpCode {
+	OP_TOPLIST_GET_LIST = 1;		// 请求排行榜信息
+}
+
+
+/////////////////////////////////////////////
+
+// 排榜行类型
+enum TopListType {
+	TOP_LEVEL = 0;			// 等级排行
+	TOP_GRADE = 1;			// 实力排行
+	TOP_MONEY = 2;			// 财富排行
+	TOP_GUILD_GRADE = 3;	// 公会实力排行
+	TOP_Count = 4;			// 排行类型总数
+}
+
+// 等级排行信息
+message TopLevelInfo {
+	optional int32 order = 1;		// 排名
+	optional int32 country = 2;		// 国家
+	optional int32 charid = 3;		// 角色id
+	optional string charname = 4;	// 角色名
+	optional int32 charrace = 5;	// 角色职业
+	optional int32 charlevel = 6;	// 角色等级
+}
+
+// 实力排行信息
+message TopGradeInfo {
+	optional int32 order = 1;		// 排名
+	optional int32 country = 2;		// 国家
+	optional int32 charid = 3;		// 角色id
+	optional string charname = 4;	// 角色名
+	optional int32 charrace = 5;	// 角色职业
+	optional int32 chargrade = 6;	// 个人实力
+}
+
+// 金币排行信息
+message TopMoneyInfo {
+	optional int32 order = 1;		// 排名
+	optional int32 country = 2;		// 国家
+	optional int32 charid = 3;		// 角色id
+	optional string charname = 4;	// 角色名
+	optional int32 charrace = 5;	// 角色职业
+	optional int32 charmoney = 6;	// 玩家金币数量
+}
+
+// 公会实力排行信息
+message TopGuildGardeInfo {
+	optional int32 order = 1;		// 排名
+	optional int32 country = 2;		// 国家
+	optional int32 guildid = 3;		// 公会id
+	optional string guildname = 4;	// 公会名字
+	optional string master = 5;		// 会长名字
+	optional int32 guildgrade = 6;	// 公会实力
+}
+
+// 排行榜内容
+message TopListInfo {
+	optional TopLevelInfo level_info = 1;			// 个人等级
+	optional TopGradeInfo grade_info = 2;			// 个人实力
+	optional TopMoneyInfo money_info = 3;			// 个人金币
+	optional TopGuildGardeInfo guildgarde_info = 4;	// 公会实力
+}
+
+// 请求获得排行榜数据
+message RequestGetTopList {
+	optional TopListType top_type = 1;		// 排行类型
+}
+
+// 返回排行榜数据
+message ResponseGetTopList {
+	optional TopListType top_type = 1;	// 排行类型
+	repeated TopListInfo top_list = 2;	// 排行榜数据(前50名数据)
+	optional int32 my_order = 3;		// 我的排名
+}

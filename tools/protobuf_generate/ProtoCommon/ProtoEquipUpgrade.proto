@@ -1,0 +1,71 @@
+option optimize_for = LITE_RUNTIME;
+
+import "ProtoGameData.proto";
+
+package Protocol;
+
+//-------------------------
+// 装备强化相关逻辑操作
+enum EquipUpgradeOpCode {
+	OP_EQUIP_UPGRADE = 1;			// 装备升级(改变star属性)
+	OP_EQUIP_ADD_GROOVE = 2;		// 装备打孔
+	OP_EQUIP_FILL_GROOVE = 3;		// 装备镶嵌宝石
+	OP_EQUIP_REMOVE_JEWEL = 4;		// 装备摘除/销毁宝石
+	OP_JEWEL_UPGRADE = 5;			// 宝石升级
+}
+
+
+/////////////////// 装备强化相关 begin ///////////////////////////
+// 装备强化(改变star属性)
+message RequestUpgradeEquip {
+	optional ItemLoc equip_loc = 1;		// 装备位置
+}
+
+message ResponseUpgradeEquip {
+	optional int32 result = 1;	// 结果
+}
+
+
+// 装备打孔
+message RequestAddEquipGroove {
+	optional ItemLoc equip_loc = 1;		// 装备位置
+}
+
+message ResponseAddEquipGroove {
+	optional int32 result = 1;	// 结果
+}
+
+
+// 装备镶嵌
+message RequestFillEquipGroove {
+	optional ItemLoc equip_loc = 1;		// 装备位置
+	optional ItemLoc stuff_loc = 2;		// 材料位置
+}
+
+message ResponseFillEquipGroove {
+	optional int32 result = 1;	// 结果
+}
+
+
+// 装备摘除/销毁宝石
+message RequestRemoveEquipJewel {
+	optional ItemLoc equip_loc = 1;	// 装备位置
+	optional int32 index = 2;		// 下标(0开始)
+	optional bool destroy = 3;		// 是否销毁
+}
+
+message ResponseRemoveEquipJewel {
+	optional int32 result = 1;	// 结果
+}
+
+
+// 宝石升级
+message RequestUpgradeJewel {
+	optional ItemLoc loc = 1;	// 物品位置
+}
+
+message ResponseUpgradeJewel {
+	optional int32 result = 1;	// 结果
+}
+
+/////////////////// 装备强化相关 end ///////////////////////////

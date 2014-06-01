@@ -1,0 +1,99 @@
+option optimize_for = LITE_RUNTIME;
+
+import "ProtoGameData.proto";
+
+package Protocol;
+
+//-------------------------
+// 通用操作号
+enum GeneralOpCode {
+	OP_GENERAL_ERROR = 1;			// 发生错误
+	OP_GENERAL_GAME_CONFIG = 2;		// 游戏配置参数
+	OP_GENERAL_OPEN_GUI = 3;		// 通知客户端打开一个游戏界面
+	OP_GENERAL_CLOSE_GUI = 4;		// 通知客户端关闭一个游戏界面
+	OP_GENERAL_SERVER_TIME = 5;		// 通知客户端游戏服务器的时间
+	OP_GENERAL_SHOW_GAMEPROMPT = 6;	// 通知客户端显示游戏提示
+	OP_GENERAL_HIDE_GAMEPROMPT = 7;	// 通知客户端隐藏游戏提示
+	OP_GENERAL_ROLLING_NOTICE = 8;	// 滚动公告
+}
+
+//-------------------------
+// 错误号
+enum ErrorCode {
+	ERROR_GATEWAY_NOT_OPEN = 1;		// 网关未开启
+}
+
+//-------------------------
+// 错误信息(提示信息)
+message NotifyGeneralError {
+	optional ErrorCode code = 1;	// 错误编号(保留)
+	optional string content = 2;	// 错误内容
+}
+
+// 通知客户端游戏常用的参数
+message NotifyGameConfig {
+	optional int32 max_bag_size = 1;		// 背包的最大格子数量
+	optional int32 max_safe_size = 2;		// 仓库的最大格子数量
+	optional int32 unmarry_gold = 3;		// 强制离婚的费用
+	
+	optional int32 create_guild_money = 4;	// 创建公会的金币
+	optional int32 join_guild_level = 5;	// 加入行会的等级
+	optional int32 guild_res1_itemid = 6;	// 原木
+	optional int32 guild_res2_itemid = 7;	// 秘银
+	optional int32 guild_res1_rate = 8;		// 原木兑换积分比例
+	optional int32 guild_res2_rate = 9;		// 秘银兑换积分比例
+
+	optional int32 revive_item = 10;		// 原地复活道具
+
+	optional int32 bag_extendcard = 11;		// 背包扩充卡
+	optional int32 safe_extendcard = 12;	// 仓库扩充卡
+}
+
+// 通知客户端打开一个界面
+message NotifyOpenGUI {
+	optional string gui_name = 1;	// 界面名称
+}
+
+// 通知客户端关闭一个界面
+message NotifyCloseGUI {
+	optional string gui_name = 1;	// 界面名称
+}
+
+// 通知客户端游戏服务器的时间
+message NotifyServerTime {
+	optional int64 time = 1;		// 服务器时间
+}
+
+
+// 游戏内容提示
+enum GamePromptType {
+	PromptMail = 1;				// 未读取邮件
+	PromptActivity = 2;			// 已经开启的活动
+	PromptAchievement = 3;		// 已达成的成就
+	PromptGuildApplyFor = 4;	// 新的公会申请
+	PromptLevelupPoint = 5;		// 未分配的点数
+}
+
+// 通知客户端显示提示
+message NotifyShowGamePrompt {
+	optional GamePromptType type = 1;	// 提示类型
+	optional int32 count = 2;			// 个数
+}
+
+// 通知客户端隐藏提示
+message NotifyHideGamePrompt {
+	optional GamePromptType type = 1;	// 提示类型
+}
+
+// 公告结构体
+message RollingNoticeInfo {
+	required string content = 1;		// 内容
+	required int32 color = 2;		// 颜色
+
+}
+
+// 通知客户端显示滚动公告
+message NotifyRollingNotice {
+	repeated RollingNoticeInfo contents = 1;	// 显示内容
+	optional int32 times = 2;		// 显示次数
+}

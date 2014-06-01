@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<gmlist>
+	<!-- accid:账号名, priv:权限 -->
+	<gm accid="gm001" priv="8" />
+	<gm accid="gm002" priv="1" />
+	<gm accid="gm003" priv="1" />
+	<gm accid="game007" priv="8" />
+	<gm accid="crackgame" priv="8" />
+</gmlist>

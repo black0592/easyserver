@@ -1,0 +1,63 @@
+option optimize_for = LITE_RUNTIME;
+
+import "ProtoGameData.proto";
+
+package Protocol;
+
+// 职业技能、工匠技能
+
+//-------------------------
+//  技能操作符号
+enum SkillOpCode {
+	OP_LEARN_SKILL = 1;			// 学习新技能
+	OP_UPDATE_SKILL = 2;		// 服务器主动更新技能信息
+	OP_REMOVE_SKILL = 3;		// 删除一个技能
+
+	OP_ADD_BUFF = 4;			// 添加一个buff
+	OP_REMOVE_BUFF = 5;			// 删除一个buff
+}
+
+
+/////////////////// 职业技能 begin ///////////////////////////
+
+// -----------------------------
+// 请求学习职业技能
+message RequestLearnSkill {
+	optional ItemLoc loc = 1;		// 技能书的位置
+}
+
+// 返回技能信息
+message ResponseLearnSkill {
+	optional SkillData data = 1;
+}
+
+// 服务器更新技能信息
+message NotifyUpdateSkill {
+	optional SkillData data = 1;
+}
+
+// 删除技能
+message NotifyRemoveSkill {
+	optional int32 skill_id = 1;
+	optional int32 skill_level = 2;
+}
+
+
+// -----------------------------
+// BUFF
+// 添加一个buff
+message NotifyAddBuff {
+	optional int32 obj_type = 1;
+	optional int32 obj_id = 2;
+	optional SkillBuffData data = 3;
+}
+
+// 删除一个buff
+message NotifyRemoveBuff {
+	optional int32 obj_type = 1;
+	optional int32 obj_id = 2;
+	optional SkillBuffData data = 3;
+}
+
+
+/////////////////// 职业技能 end ///////////////////////////

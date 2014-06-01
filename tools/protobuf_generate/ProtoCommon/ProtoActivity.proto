@@ -1,0 +1,62 @@
+option optimize_for = LITE_RUNTIME;
+
+import "ProtoGameData.proto";
+
+package Protocol;
+
+// 活动系统
+
+//-------------------------
+//  活动操作符号
+enum ActivityOpCode {
+	OP_ACTIVITY_GET_LIST = 1;	// 获得成就数据列表
+	OP_ACTIVITY_TAKE_AWARD = 2;	// 领取活动奖励(专属于领取活动)
+	OP_ACTIVITY_JOINT = 3;		// 请求加入活动(服务器会调用相应的脚本函数)
+}
+
+
+/////////////////// 活动 begin ///////////////////////////
+
+// 活动时间表
+message ActivityTimeInfo {
+	optional int32 id = 1;
+	optional int32 begin_day = 2;
+	optional int32 end_day = 3;
+	optional double begin_time = 4;
+	optional double end_time = 5;
+	optional string opened_weeks = 6;
+	optional int32 times = 7;	// 最大次数
+}
+
+
+
+// -----------------------------
+// 请求活动进度
+message RequestGetActivityList {
+	optional int32 reserve = 1;
+}
+
+message ResponseGetActivityList {
+	repeated ActivityTimeInfo timeinfos = 1;	// 活动时间表
+	repeated ActivityData activitys = 2;		// 活动数据
+}
+
+
+// 请求领取活动奖励
+message RequestTakeActivityAward {
+	optional int32 id = 1;		// 活动的id
+}
+
+message ResponseTakeActivityAward {
+	optional ActivityData activity_data = 1;	// 最新的活动数据
+}
+
+
+// 请求参加活动
+message RequestJoinActivity {
+	optional int32 type = 1;	// 活动类型
+	optional int32 id = 2;		// 活动的id
+}
+
+
+/////////////////// 活动 end ///////////////////////////

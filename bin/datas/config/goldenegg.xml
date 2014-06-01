@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+
+	<!-- 福袋活动 -->
+	<!-- param1:福袋数量,s_month:开始月,s_day:开始天,s_hour:开始小时,s_minute:开始分钟,e_month:结束月,e_day:结束天,e_hour:结束小时,e_minute:结束分钟 -->
+	<event open="0">
+		<time param1="5" s_month="06" s_day="23" s_hour="00" s_minute="00" e_month="06" e_day="24" e_hour="23" e_minute="59" />
+	</event>
+
+	<!-- 福袋配置 -->
+	<goldenegg>
+		<egg minlv="1" maxlv="20" eggid="5350" />
+		<egg minlv="21" maxlv="40" eggid="5351" />
+		<egg minlv="41" maxlv="60" eggid="5352" />
+		<egg minlv="61" maxlv="200" eggid="5353" />
+	</goldenegg>
+
+</root>

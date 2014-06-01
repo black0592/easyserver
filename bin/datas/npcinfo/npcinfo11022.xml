@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<npcinfo>
+
+	<npc BaseId="13" BirthX="42" BirthY="78" NpcFunc="1" StoreId="1" ScriptFile="" />
+	<npc BaseId="16" BirthX="13" BirthY="60" NpcFunc="1" StoreId="2" ScriptFile="" />
+	<npc BaseId="10" BirthX="64" BirthY="15" NpcFunc="0" StoreId="0" ScriptFile="common2" />
+	<npc BaseId="14" BirthX="72" BirthY="92" NpcFunc="0" StoreId="0" ScriptFile="common1" />
+
+</npcinfo>
+

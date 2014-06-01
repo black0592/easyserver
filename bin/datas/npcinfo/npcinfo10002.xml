@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<npcinfo>
+
+	<npc BaseId="203" BirthX="7" BirthY="51" NpcFunc="0" StoreId="0" ScriptFile="exit_map_10003" />
+
+</npcinfo>
+

@@ -1,0 +1,111 @@
+option optimize_for = LITE_RUNTIME;
+
+import "ProtoGameData.proto";
+
+package Protocol;
+
+
+//-------------------------
+// 邮件操作符号
+enum MailOpCode {
+	OP_GET_MAILS = 1;			// 请求服务器下发邮件列表
+	OP_READ_MAIL = 2;			// 读取邮件内容(请求指定id的邮件内容)
+	OP_TAKEOUT_ATTACHMENT = 3;	// 取出附件(包含金币和钻石等，支持批量)
+	OP_WRITE_MAIL = 4;			// 写邮件
+	OP_DELETE_MAIL = 5;			// 删除邮件(支持批量)
+}
+
+
+/////////////////// 邮件 begin ///////////////////////////
+
+message MailItem {
+	repeated ItemData item_list = 1;	// 附件物品
+}
+
+enum MailFlag {
+	MAILFLAG_NEW = 0;		// 新邮件
+	MAILFLAG_READ = 1;		// 已读邮件
+	MAILFLAG_TAKEN = 2;		// 附件已提取(必定已读取)
+}
+
+// 单封邮件的信息
+message MailInfo {
+	optional int32 id = 1;				// 邮件编号
+	optional MailFlag flag = 2;			// 邮件状态
+	optional int32 system = 3;			// 是否系统邮件(0-玩家，1-系统)
+	optional string sender = 4;			// 发送人名字
+	optional string receiver = 5;		// 接收人名字
+	optional string title = 6;			// 标题
+	optional string content = 7;		// 内容
+	optional uint64 money = 8;			// 金币
+	optional uint64 gold = 9;			// 钻石
+	optional uint64 bindgold = 10;		// 绑定钻石
+	optional uint64 exp = 11;			// 经验值
+	optional uint32 sendtime = 12;		// 发送时间
+	optional uint32 expiredtime = 13;	// 过期时间
+	optional bool have_attachment = 14;	// 是否存在附件
+	optional MailItem mail_item = 15;	// 附件列表
+}
+
+
+// -----------------------------
+// 请求邮件列表
+message RequestGetMail {
+	optional int32 reserve = 1;		// 保留字段
+}
+
+// 返回邮件列表
+message ResponseGetMail {
+	repeated MailInfo mail_list = 1;	// 邮件的简要信息
+}
+
+
+// -----------------------------
+// 请求读取邮件
+message RequestReadMail {
+	optional int32 id = 1;		// 邮件编号
+}
+
+// 返回邮件的详细信息
+message ResponseReadMail {
+	optional MailInfo mail = 1;		// 详细的邮件内容
+}
+
+
+// -----------------------------
+// 请求提取邮件附件
+message RequestTakeOutAttachment {
+	repeated int32 id_list = 1;		// 邮件编号编号列表
+}
+
+// 服务器返回真正被提取的邮件列表
+message ResponseTakeOutAttachment {
+	repeated int32 id_list = 1;		// 真正被提取的邮件编号列表
+}
+
+
+// -----------------------------
+// 请求写邮件
+message RequestWriteMail {
+	optional MailInfo mail = 1;			// 邮件信息
+	repeated ItemLocNum loc_list = 2;	// 附件在背包中的位置信息
+}
+
+// 返回写邮件的结果
+message ResponseWriteMail {
+	optional int32 result = 1;
+}
+
+
+// -----------------------------
+// 请求删除邮件
+message RequestDeleteMail {
+	repeated int32 id_list = 1;		// 邮件编号列表
+}
+
+// 返回被删除的邮件编号列表
+message ResponseDeleteMail {
+	repeated int32 id_list = 1;		// 邮件编号列表
+}
+
+/////////////////// 邮件 end ///////////////////////////

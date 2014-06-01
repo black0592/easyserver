@@ -1,0 +1,42 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+
+<Root>
+
+	<!-- 国家配置信息 birthmap 出生点 mapid,x,y -->
+	<CountryInfo>
+		<Country id="1" name="龙之国" birthmap="1,30,70" backto="2,30,70" />
+		<Country id="2" name="火之国" birthmap="102,30,70" backto="2,30,70" />
+	</CountryInfo>
+
+	<!--地图在各个GameServer中分布情况-->
+	<ServerInfo>
+		<!-- 国家1 -->
+		<Server id="101">
+			<Country id="1">
+				<Map id="2" />
+				<Map id="1" />
+				<Map id="3" />
+				<Map id="4" />
+				<Map id="5" />
+			</Country>
+		</Server>
+		<!-- 国家2 -->
+		<Server id="102">
+			<Country id="2">
+				<Map id="102" />
+				<Map id="101" />
+				<Map id="103" />
+				<Map id="104" />
+				<Map id="105" />
+			</Country>
+		</Server>
+	</ServerInfo>
+
+
+	<MapInfo>
+		<Map id="2" name="新手村" logicMap="02mj" blockMap="02mj" backto="3,130,170" flag="0" enterlevel="1-999" />
+		<Map id="3" name="王城" logicMap="02mj" blockMap="02mj" backto="" flag="0" enterlevel="1-10" />
+		<Map id="4" name="野外1层" logicMap="02mj" blockMap="02mj" backto="" flag="0" enterlevel="10-20" />
+	</MapInfo>
+
+</Root>

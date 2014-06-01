@@ -1,0 +1,146 @@
+option optimize_for = LITE_RUNTIME;
+
+import "ProtoGameData.proto";
+
+package Protocol;
+
+// 好友，仇人，黑名单
+
+//-------------------------
+//  社交操作符号
+enum RelationsOpCode {
+	OP_FRIEND_GET_LIST = 1;		// 获得好友列表
+	OP_FRIEND_ADD = 2;			// 添加一个好友
+	OP_FRIEND_REMOVE = 3;		// 删除一个好友
+	OP_FRIEND_ADD_TIPS = 4;		// 添加好友温馨提示(被添加者会收到)
+
+	OP_ENEMY_GET_LIST = 5;		// 获得仇人列表
+	OP_ENEMY_ADD = 6;			// 添加一个仇人
+	OP_ENEMY_REMOVE = 7;		// 删除一个仇人
+
+	OP_MARRIAGE_MARRY = 8;		// 结婚
+	OP_MARRIAGE_ASK_MARRY = 9;	// 被请求结婚(转发给目标玩家)
+	OP_MARRIAGE_UNMARRY = 10;	// 离婚
+	OP_MARRIAGE_ASK_UNMARRY = 11;// 被请求离婚(转发给目标玩家)
+}
+
+
+/////////////////// 好友 begin ///////////////////////////
+
+message RelationsInfo
+{
+	optional int32 type = 1;	// 关系类型
+	optional uint32 charid = 2;	// 对方角色id
+	optional string name = 3;	// 角色名字
+	optional int32 race  = 4;	// 角色职业
+	optional int32 level = 5;	// 角色等级
+	optional int32 mapid = 6;	// 地图编号
+	optional uint32 time = 7;	// 离线时间(秒)
+	optional bool online = 8;	// 是否在线
+}
+
+// -----------------------------
+
+// 获得好友列表
+message RequestFriendList {
+	optional int32 reserve = 1;		// 保留字段
+}
+
+// 返回好友列表
+message ResponseFriendList {
+	repeated RelationsInfo friend_list = 1;
+}
+
+// 请求添加好友
+message RequestAddFriend {
+	optional string name = 1;	// 角色名字
+}
+
+// 添加好友返回
+message ResponseAddFriend {
+	optional RelationsInfo info = 1;	// 角色信息
+}
+
+// 通知被添加的玩家
+message NotifyAddFriendTips {
+	optional string name = 1;	// 对方玩家名字
+}
+
+// 请求删除好友
+message RequestRemoveFriend {
+	optional uint32 charid = 1;
+}
+
+// 返回好友删除
+message ResponseRemoveFriend {
+	optional uint32 charid = 1;
+}
+
+/////////////////// 好友 end ///////////////////////////
+
+
+
+
+/////////////////// 仇人 begin ///////////////////////////
+// 获得仇人列表
+message RequestEnemyList {
+	optional int32 reserve = 1;		// 保留字段
+}
+
+// 返回仇人列表
+message ResponseEnemyList {
+	repeated RelationsInfo enemy_list = 1;
+}
+
+// 通知添加仇人
+message NotifyAddEnemy {
+	optional RelationsInfo info = 1;	// 角色信息
+}
+
+// 请求删除仇人
+message RequestRemoveEnemy {
+	optional uint32 charid = 1;
+}
+
+// 返回仇人删除
+message ResponseRemoveEnemy {
+	optional uint32 charid = 1;
+}
+
+/////////////////// 仇人 end ///////////////////////////
+
+
+
+
+/////////////////// 婚姻 begin ///////////////////////////
+
+// 请求结婚
+message RequestMarry {
+	optional int32 type = 1;		// 结婚的类型(档次)
+}
+// 被请求结婚
+message RequestAskMarry {
+	optional bool agree = 1;		// 对方是否同意(发起者，不用填写)
+}
+
+// 通知结婚结果
+message NotifyMarry {
+	optional int32 result = 1;		// 失败的话就表示对方不同意
+	optional RelationsInfo info = 2;
+}
+
+// 请求离婚(可能需要支持离线离婚)
+message RequestUnmarry {
+	optional int32 type = 1;		// 0 - 协议离婚（需要都在线）, 1 - 强制离婚（需要扣钱）
+}
+// 被请求离婚
+message RequestAskUnmarry {
+	optional bool agree = 1;		// 对方是否同意(发起者，不用填写)
+}
+
+// 通知离婚结果
+message NotifyUnmarry {
+	optional int32 result = 1;		// 失败的话就表示对方不同意
+}
+
+/////////////////// 婚姻 end ///////////////////////////

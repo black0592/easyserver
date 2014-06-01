@@ -1,0 +1,79 @@
+option optimize_for = LITE_RUNTIME;
+
+import "ProtoGameData.proto";
+
+package Protocol;
+
+// 任务
+
+//-------------------------
+//  任务操作符号
+enum MissionOpCode {
+	OP_MISSION_ACCEPT = 1;		// 接收任务
+	OP_MISSION_COMPETE = 2;		// 完成任务
+	OP_MISSION_CANCEL = 3;		// 取消任务
+	OP_MISSION_UPDATE = 4;		// 更新任务进度
+	OP_MISSION_CHANGE = 5;		// 更换任务(花金币换任务，只能换成同类型的)
+}
+
+
+/////////////////// 任务 begin ///////////////////////////
+
+// -----------------------------
+// 请求接收任务
+message RequestAcceptMission {
+	optional int32 mission_id = 1;		// 任务编号
+}
+
+message ResponseAcceptMission {
+	optional int32 mission_id = 1;		// 任务编号
+	optional int32 result = 2;
+}
+
+
+// 请求完成任务
+message RequestCompleteMission {
+	optional int32 mission_id = 1;		// 任务编号
+}
+
+message ResponseCompleteMission {
+	optional int32 mission_id = 1;		// 任务编号
+	optional int32 result = 2;
+}
+
+
+// 请求放弃任务
+message RequestCancelMission {
+	optional int32 mission_id = 1;		// 任务编号
+}
+
+message ResponseCancelMission {
+	optional int32 mission_id = 1;		// 任务编号
+	optional int32 result = 2;
+}
+
+
+// 更新任务数据
+// 特殊逻辑：只能更新访问npc类型的任务，只能更新为完成状态
+message RequestUpdateMission {
+	optional int32 mission_id = 1;		// 任务编号
+}
+
+message NotifyUpdateMission {
+	optional MissionData data = 1;		//  任务数据
+}
+
+
+// 更换当前任务
+message RequestChangeMission {
+	optional int32 mission_type = 1;
+}
+
+message NotifyChangeMission {
+	optional int32 require_money = 1;	// 刷新每日任务的金币需求
+	optional MissionData data = 2;		// 任务数据
+}
+
+
+
+/////////////////// 任务 end ///////////////////////////

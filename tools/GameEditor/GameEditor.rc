@@ -1,0 +1,564 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(中华人民共和国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#include ""res\\GameEditor.rc2""  // 非 Microsoft Visual C++ 编辑资源\r\n"
+    "#include ""afxres.rc""         // 标准组件\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\GameEditor.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+    SEPARATOR
+    BUTTON      ID_VIEW_MAIN
+    BUTTON      ID_VIEW_BLOCK
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "退出(&X)",                      ID_APP_EXIT
+    END
+    POPUP "编辑(&E)"
+    BEGIN
+        MENUITEM "撤消\tCtrl+Z(&U)",              ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "剪切\tCtrl+X(&T)",              ID_EDIT_CUT
+        MENUITEM "复制\tCtrl+C(&C)",              ID_EDIT_COPY
+        MENUITEM "粘贴\tCtrl+V(&P)",              ID_EDIT_PASTE
+    END
+    POPUP "视图(&V)"
+    BEGIN
+        MENUITEM "工具栏(&T)",                     ID_VIEW_TOOLBAR
+        MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR
+        MENUITEM "主面板(&M)",                     ID_VIEW_MAIN
+        MENUITEM "显示阻挡(&B)",                    ID_VIEW_BLOCK
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "关于 GameEditor(&A)...",        ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 138
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 GameEditor"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "GameEditor Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2010",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "确定",IDOK,178,7,50,16,WS_GROUP
+    LTEXT           "M按键显示/隐藏小地图",IDC_STATIC,41,42,119,8
+END
+
+IDD_DLG_MAIN DIALOGEX 0, 0, 432, 307
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "主面板"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,88,286,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "取消",IDCANCEL,169,286,50,14,NOT WS_VISIBLE
+    COMBOBOX        IDC_COMBO_BOARD,7,47,109,111,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_MAPLIST,7,7,109,165,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "加载地图",IDC_BT_LOADMAP,125,7,54,18
+    LTEXT           "100,100",IDC_STATIC_POS_INFO,50,24,54,8
+    LTEXT           "------------------------------------------------------------------------------------------------------------------------------------",IDC_STATIC,7,35,418,8
+    LTEXT           "坐标信息：",IDC_STATIC,7,24,40,8
+    PUSHBUTTON      "重新加载所有表格",IDC_BTN_LOADDROPITEM,345,7,80,18
+END
+
+IDD_DLG_NPCINFO DIALOGEX 0, 0, 428, 268
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,163,213,20,14,NOT WS_VISIBLE
+    PUSHBUTTON      "取消",IDCANCEL,187,213,21,14,NOT WS_VISIBLE
+    LTEXT           "功能：无",IDC_STATIC_FUNC,0,7,96,9,NOT WS_VISIBLE
+    LTEXT           "商店编号：255",IDC_STATIC_SHOP_NUM,150,7,97,10,NOT WS_VISIBLE
+    CONTROL         "",IDC_LIST_NPC,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,4,26,416,180
+    PUSHBUTTON      "新建NPC(&N)",IDC_BTN_CREATENPC,6,210,53,18
+    PUSHBUTTON      "删除NPC(&D)",IDC_BTN_DEL_NPC,74,210,53,18
+END
+
+IDD_DLG_MONSTER DIALOGEX 0, 0, 420, 259
+STYLE DS_SETFONT | WS_CHILD
+FONT 9, "宋体", 0, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_LIST_MONSTER,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,4,28,409,195
+    PUSHBUTTON      "保存怪物(&S)",IDC_BTN_SAVE,181,228,53,19,NOT WS_VISIBLE
+    PUSHBUTTON      "新建怪物(&N)",IDC_BTN_CREATEMON,6,228,53,19
+    PUSHBUTTON      "删除怪物(&D)",IDC_BTN_DEL_MONSTER,74,228,53,19
+    CONTROL         "我想看掉落",IDC_CHECK_DROP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,8,71,9
+END
+
+IDD_DLG_NEW_MON DIALOGEX 0, 0, 220, 246
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "新建怪物"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_RACE,49,9,124,212,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_NUM,49,28,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_AI,49,47,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_MVSPEED,49,66,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_VIEW,49,85,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DROPID,49,103,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DROPPROB,49,133,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_REVIVE_TIME,49,151,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_X1,49,169,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_Y1,49,187,63,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "确定",IDOK,21,217,50,14
+    PUSHBUTTON      "取消",IDCANCEL,112,217,50,14
+    LTEXT           "名称：",IDC_STATIC,25,10,24,8
+    LTEXT           "数量：",IDC_STATIC,25,30,24,8
+    LTEXT           "智能：",IDC_STATIC,25,49,24,8
+    LTEXT           "移速：",IDC_STATIC,25,68,24,8
+    LTEXT           "视野：",IDC_STATIC,25,87,24,8
+    LTEXT           "掉落编号：",IDC_STATIC,9,106,40,8
+    LTEXT           "掉落概率：",IDC_STATIC,9,137,40,8
+    LTEXT           "复活时间：",IDC_STATIC,9,156,40,8
+    LTEXT           "随机分布的数量",IDC_STATIC,120,29,58,8
+    LTEXT           "0 - 被动怪，1- 主动怪",IDC_STATIC,120,49,75,8
+    LTEXT           "(默认100%)",IDC_STATIC,119,69,65,8
+    LTEXT           "格子(红色)",IDC_STATIC,120,88,58,8
+    LTEXT           "秒",IDC_STATIC,120,154,58,8
+    LTEXT           "万分比",IDC_STATIC,120,136,58,8
+    PUSHBUTTON      "...",IDC_BTN_DROPLIST,120,104,25,12
+    LTEXT           "出生区域：",IDC_STATIC,7,174,40,8
+    LTEXT           "出生矩形的宽(黄色)",IDC_STATIC,120,171,76,8
+    LTEXT           "出生矩形的高(黄色)",IDC_STATIC,120,189,81,8
+    CONTROL         "BOSS掉落",IDC_CHECK_BOSS_DROP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,152,105,48,10
+    LTEXT           "备注：掉落备注",IDC_EDIT_DROP_NAME,9,116,139,8
+END
+
+IDD_DIALOG1 DIALOGEX 0, 0, 294, 198
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "掉落列表"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,237,7,50,14
+    PUSHBUTTON      "取消",IDCANCEL,237,24,50,14
+    LISTBOX         IDC_LIST1,18,30,76,112,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LIST2,123,30,78,112,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "掉落编号列表",IDC_STATIC,18,15,58,8
+    LTEXT           "掉落物品列表",IDC_STATIC,123,15,63,8
+END
+
+IDD_DLG_DROPITEMS DIALOGEX 0, 0, 184, 263
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "掉落物品"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,41,242,50,14
+    PUSHBUTTON      "取消",IDCANCEL,7,244,36,12,NOT WS_VISIBLE
+    CONTROL         "",IDC_LIST_ITEM,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,7,170,225
+END
+
+IDD_DLG_NEW_NPC DIALOGEX 0, 0, 226, 163
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "新建NPC"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_RACE,49,9,124,212,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_STORE_ID,61,60,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SCRIPT_FILE,61,94,99,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "确定",IDOK,20,132,50,14
+    PUSHBUTTON      "取消",IDCANCEL,111,132,50,14
+    LTEXT           "名称：",IDC_STATIC,21,10,24,8
+    LTEXT           "功能",IDC_STATIC,21,30,24,8
+    LTEXT           "商店编号：",IDC_STATIC,21,63,40,8
+    LTEXT           "脚本文件：",IDC_STATIC,21,96,40,8
+    LTEXT           "备注：脚本名称(不要写扩展名)",IDC_STATIC,21,109,139,8
+    PUSHBUTTON      "...",IDC_BTN_STORE_LIST,134,60,25,12
+    COMBOBOX        IDC_COMBO_FUNC,49,28,101,212,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "备注：武器商店",IDC_EDIT_STORE_NAME,21,74,139,8
+END
+
+IDD_DLG_STOREITEMS DIALOGEX 0, 0, 187, 274
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "出售物品"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,50,253,50,14
+    PUSHBUTTON      "取消",IDCANCEL,7,255,36,12,NOT WS_VISIBLE
+    CONTROL         "",IDC_LIST_ITEM,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,7,173,241
+END
+
+IDD_DLG_JUMPPOINT DIALOGEX 0, 0, 424, 268
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,163,213,20,14,NOT WS_VISIBLE
+    PUSHBUTTON      "取消",IDCANCEL,187,213,21,14,NOT WS_VISIBLE
+    CONTROL         "",IDC_LIST_JUMPPOINT,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,4,26,408,180
+    PUSHBUTTON      "新建(&N)",IDC_BTN_CREATE_JUMPPOINT,6,210,53,18
+    PUSHBUTTON      "删除(&D)",IDC_BTN_DEL_JUMPPOINT,72,210,53,18
+END
+
+IDD_DLG_NEW_JUMPPOINT DIALOGEX 0, 0, 226, 163
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "新建跳转点"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_TARGET_MAP,65,9,124,212,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_TARGETX,70,34,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_TARGETY,70,55,63,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SCRIPT_FILE2,61,94,99,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "确定",IDOK,20,132,50,14
+    PUSHBUTTON      "取消",IDCANCEL,111,132,50,14
+    LTEXT           "目标地图：",IDC_STATIC,21,10,41,8
+    LTEXT           "目标X坐标：",IDC_STATIC,22,36,44,8
+    LTEXT           "脚本文件：",IDC_STATIC,21,96,40,8
+    LTEXT           "备注：脚本名称(不要写扩展名)",IDC_STATIC,21,109,139,8
+    LTEXT           "目标Y坐标：",IDC_STATIC,22,58,44,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080403a8"
+        BEGIN
+            VALUE "CompanyName", "TODO: <公司名>"
+            VALUE "FileDescription", "TODO: <文件说明>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "GameEditor.exe"
+            VALUE "LegalCopyright", "TODO: (C) <公司名>。保留所有权利。"
+            VALUE "OriginalFilename", "GameEditor.exe"
+            VALUE "ProductName", "TODO: <产品名>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "翻译", 0x804, 936
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 131
+    END
+
+    IDD_DLG_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 425
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 300
+    END
+
+    IDD_DLG_NPCINFO, DIALOG
+    BEGIN
+        RIGHTMARGIN, 358
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 261
+    END
+
+    IDD_DLG_MONSTER, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 256
+    END
+
+    IDD_DLG_NEW_MON, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 213
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 239
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 287
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 191
+    END
+
+    IDD_DLG_DROPITEMS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 177
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 256
+    END
+
+    IDD_DLG_NEW_NPC, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 219
+        TOPMARGIN, 9
+        BOTTOMMARGIN, 156
+    END
+
+    IDD_DLG_STOREITEMS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 267
+    END
+
+    IDD_DLG_JUMPPOINT, DIALOG
+    BEGIN
+        RIGHTMARGIN, 358
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 261
+    END
+
+    IDD_DLG_NEW_JUMPPOINT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 219
+        TOPMARGIN, 9
+        BOTTOMMARGIN, 156
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "可视化游戏编辑器"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "GameEditor"
+    AFX_IDS_IDLEMESSAGE     "就绪"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "显示程序信息、版本号和版权\n关于"
+    ID_APP_EXIT             "退出应用程序；提示保存文档\n退出"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "切换到下一个窗格\n下一窗格"
+    ID_PREV_PANE            "切换回上一个窗格\n上一窗格"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "将活动窗口拆分为多个窗格\n拆分"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "清除选定内容\n清除"
+    ID_EDIT_CLEAR_ALL       "清除全部内容\n全部清除"
+    ID_EDIT_COPY            "复制选定内容并将其放到剪贴板上\n复制"
+    ID_EDIT_CUT             "剪切选定内容并将其放到剪贴板上\n剪切"
+    ID_EDIT_FIND            "查找指定的文本\n查找"
+    ID_EDIT_PASTE           "插入剪贴板内容\n粘贴"
+    ID_EDIT_REPEAT          "重复上一操作\n重复"
+    ID_EDIT_REPLACE         "用其他文本替换特定的文本\n替换"
+    ID_EDIT_SELECT_ALL      "选定整个文档\n全选"
+    ID_EDIT_UNDO            "撤消上一操作\n撤消"
+    ID_EDIT_REDO            "恢复上次撤消的操作\n重做"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "显示或隐藏工具栏\n切换工具栏"
+    ID_VIEW_STATUS_BAR      "显示或隐藏状态栏\n切换状态栏"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "更改窗口大小"
+    AFX_IDS_SCMOVE          "更改窗口位置"
+    AFX_IDS_SCMINIMIZE      "将窗口缩小为图标"
+    AFX_IDS_SCMAXIMIZE      "使窗口最大化显示"
+    AFX_IDS_SCNEXTWINDOW    "切换到下一个文档窗口"
+    AFX_IDS_SCPREVWINDOW    "切换到前一个文档窗口"
+    AFX_IDS_SCCLOSE         "关闭活动窗口并提示保存文档"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "将窗口恢复到正常大小"
+    AFX_IDS_SCTASKLIST      "激活任务列表"
+END
+
+#endif    // 中文(中华人民共和国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE 4, 2
+#pragma code_page(936)
+#include "res\GameEditor.rc2"  // 非 Microsoft Visual C++ 编辑资源
+#include "afxres.rc"         // 标准组件
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

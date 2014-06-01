@@ -1,0 +1,96 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+
+<Config>
+	<Global>
+		<SuperServer ip="127.0.0.1" port="6000" maxclient="100" />
+		<!--<ZoneServer ip="127.0.0.1" port="9005" maxclient="100" id="3" name="研发"/>-->
+		<ZoneServer ip="192.168.0.149" port="9005" maxclient="100" id="3" name="研发"/>
+		<!--<ZoneServer ip="192.168.0.174" port="9005" maxclient="100" id="3" name="研发"/>-->
+	</Global>
+
+	<LoginServer>
+		<!--register:0禁止注册，1:手动注册, 2:自动注册-->
+		<Server port="7102" maxclient="4000" register="1"/>
+	</LoginServer>
+
+	<GameServer>
+		<Server id="101" port="30001" maxclient="100" />
+		<Server id="102" port="30002" maxclient="100" />
+		<Server id="103" port="30003" maxclient="100" />
+	</GameServer>
+
+	<GatewayServer>
+		<Server port="20001" maxclient="2000" />
+		<Server port="20002" maxclient="2000" />
+		<Server port="20003" maxclient="2000" />
+		<Server port="20004" maxclient="2000" />
+		<Server port="20005" maxclient="2000" />
+		<Server port="20006" maxclient="2000" />
+		<Server port="20007" maxclient="2000" />
+		<Server port="20008" maxclient="2000" />
+		<Server port="20009" maxclient="2000" />
+		<Server port="20010" maxclient="2000" />
+
+		<Server port="20011" maxclient="2000" />
+		<Server port="20012" maxclient="2000" />
+		<Server port="20013" maxclient="2000" />
+		<Server port="20014" maxclient="2000" />
+		<Server port="20015" maxclient="2000" />
+		<Server port="20016" maxclient="2000" />
+		<Server port="20017" maxclient="2000" />
+		<Server port="20018" maxclient="2000" />
+		<Server port="20019" maxclient="2000" />
+		<Server port="20020" maxclient="2000" />
+
+		<Server port="20021" maxclient="2000" />
+		<Server port="20022" maxclient="2000" />
+		<Server port="20023" maxclient="2000" />
+		<Server port="20024" maxclient="2000" />
+		<Server port="20025" maxclient="2000" />
+		<Server port="20026" maxclient="2000" />
+		<Server port="20027" maxclient="2000" />
+		<Server port="20028" maxclient="2000" />
+		<Server port="20029" maxclient="2000" />
+		<Server port="20030" maxclient="2000" />
+
+		<Server port="20031" maxclient="2000" />
+		<Server port="20032" maxclient="2000" />
+		<Server port="20033" maxclient="2000" />
+		<Server port="20034" maxclient="2000" />
+		<Server port="20035" maxclient="2000" />
+		<Server port="20036" maxclient="2000" />
+		<Server port="20037" maxclient="2000" />
+		<Server port="20038" maxclient="2000" />
+		<Server port="20039" maxclient="2000" />
+		<Server port="20040" maxclient="2000" />
+
+		<Server port="20041" maxclient="2000" />
+		<Server port="20042" maxclient="2000" />
+		<Server port="20043" maxclient="2000" />
+		<Server port="20044" maxclient="2000" />
+		<Server port="20045" maxclient="2000" />
+		<Server port="20046" maxclient="2000" />
+		<Server port="20047" maxclient="2000" />
+		<Server port="20048" maxclient="2000" />
+		<Server port="20049" maxclient="2000" />
+		<Server port="20050" maxclient="2000" />
+	</GatewayServer>
+
+	<!--
+	<SessionServer>
+		<Server port="40001" />
+	</SessionServer>
+	-->
+
+	<LoginDB>
+		<Database ip="192.168.0.149" port="3306" dbname="login_db" user="root" password="crack!@#" />
+		<Server port="1001" maxclient="50" autoregiter="0" />
+	</LoginDB>
+
+	<GameDB>
+		<Database ip="192.168.0.149" port="3306" dbname="game_db" user="root" password="crack!@#" />
+		<Server port="2001" maxclient="50" />
+		<Server port="2002" maxclient="50" />
+	</GameDB>
+
+</Config>
