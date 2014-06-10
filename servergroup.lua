@@ -63,7 +63,7 @@ local gamedb_includedirs =
 }
 
 
---[[
+
 -- 超级服务器(全局唯一)
 project 'super_server'
         location( builddir )
@@ -73,6 +73,7 @@ project 'super_server'
 			files {'libgame/**.*'}
 		end
 
+--[[
 -- 大区服务器(每个区唯一)
 project 'zone_server'
         location( builddir )

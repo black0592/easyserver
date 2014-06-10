@@ -54,6 +54,7 @@ int main(int argc, char *argv[])
 				//pScript->dostring("main_test()");
 				count++;
 			}
+			ScriptManager::getInstance().printInfo();
 			printf("\n=============== ½áÊø½Å±¾Ö´ÐÐ ================\n");
 		}
 

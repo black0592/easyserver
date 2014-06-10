@@ -10,6 +10,7 @@
 #include "time/Timer.h"
 #include "debugger/Profiler.h"
 #include "logger/Logger.h"
+#include "ServiceConfig.h"
 
 
 namespace easygame {
@@ -40,8 +41,11 @@ namespace easygame {
 	class NetService
 	{
 	public:
-		NetService(const string& name)
-			:mName(name)
+		NetService(const string& shortName, bool isAutoPort)
+			:mShortName(shortName)
+			,mFullName(shortName+"server")
+			,mIsAutoPort(isAutoPort)
+			,mCurInfoIndex(0)
 			,mMainTimer("MainTimer")
 		{
 #ifndef WIN32
@@ -58,6 +62,10 @@ namespace easygame {
 			// 处理线程池线程数
 			mSvrPtr.threads = 1;
 
+			// 初始化minidump
+			MiniDump::InitMiniDump("./crashlog/", mName.c_str());
+
+			// 初始化全局日志
 			g_Logger.start("./log/serverglobal/serverglobal", mName.c_str(), true);
 
 			mMainTimer.addTimer(new TimerForNetService(0));
@@ -65,6 +73,9 @@ namespace easygame {
 
 		virtual ~NetService(void)
 		{
+			shutdown();
+			ShutdownProtobufLibrary();
+
 			stop();
 		}
 
@@ -152,8 +163,20 @@ namespace easygame {
 			shutdown();
 		}
 
+		// 读取服务自己的基础配置
+		bool loadConfigBase()
+		{
+
+		}
+
 		// 初始化服务的逻辑
-		virtual bool initialise() = 0;
+		virtual bool initialise()
+		{
+			// 初始化当前服务的日志
+			string strLogFile = strformat("./log/%s/%s", mName.c_str(), mName.c_str());
+			SuperLogger::getInstance().start(strLogFile.c_str(), "super", true);
+
+		}
 
 		// 退出服务的逻辑
 		virtual bool shutdown() = 0;
@@ -179,10 +202,14 @@ namespace easygame {
 
 	protected:
 		lance::net::TCPSrv<TTCPTask> mSvrPtr;
-		Timer mMainTimer;	// 主线程计时器
-		string mName;		// 服务名称
+		Timer mMainTimer;		// 主线程计时器
+		string mShortName;		// 服务短名称
+		string mFullName;		// 服务全名称(在短名后面加server)
+		bool mIsAutoPort;		// 是否自动获取可用端口
+		vector<stServiceConfig> mLocalInfoList;
+		int mCurInfoIndex;
 		//bool mIsInitialise;
-		bool mIsDebug;		// 是否debug模式
+		bool mIsDebug;			// 是否debug模式
 	};
 
 

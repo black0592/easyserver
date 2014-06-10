@@ -11,7 +11,7 @@ project 'libbase'
 	configuration 'Debug'
         targetsuffix '_d'
 
---[[	
+
 --game base project
 project 'libgame'
 	targetdir './lib/libgame'
@@ -22,5 +22,5 @@ project 'libgame'
 	vpaths { ['./*'] = {'libgame/**.*'}, }
 	configuration 'Debug'
         targetsuffix '_d'
-]]
+
 

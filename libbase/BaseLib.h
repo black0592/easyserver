@@ -1,18 +1,13 @@
 #ifndef __BASELIB_H__
 #define __BASELIB_H__
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <sys/timeb.h>
-
-
-// 标准库头文件
+// stl头文件
 #include <map>
 //#include <hash_map>
 #include <stack>
 #include <string>
 #include <vector>
+#include <list>
 #include <set>
 #include <queue>
 #include <fstream>
@@ -20,6 +15,14 @@
 #include <sstream>
 #include <algorithm>
 using namespace std;
+
+
+// 系统标准库
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <sys/timeb.h>
+
 
 // 常用库头文件
 #include "BaseDefine.h"

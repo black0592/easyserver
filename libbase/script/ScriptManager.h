@@ -6,7 +6,7 @@
 #include "BaseTypes.h"
 #include "misc/Singleton.h"
 #include <string>
-#include <vector>
+#include <map>
 using namespace std;
 
 namespace easygame {
@@ -49,6 +49,12 @@ public:
 	bool dobuffer(const char* buff, size_t len);
 	bool dostring(const char* script);
 
+	// 运行一次GC清理
+	void runGC();
+
+	// 获得当前脚本占用内存大小(单位K字节)
+	int getMemory();
+
 	void close();
 
 protected:
@@ -62,8 +68,6 @@ private:
 
 class ScriptManager : public Singleton<ScriptManager>
 {
-	typedef vector< ScriptObject* > ScriptList;
-
 public:
 	ScriptManager();
 	virtual ~ScriptManager();
@@ -71,14 +75,19 @@ public:
 	ScriptObject* createScript();
 	void destroyScript(ScriptObject*& pScript);
 
-	ScriptObject* getScript(size_t index);
+	//ScriptObject* getScript(size_t index);
 
 	void reladAllScript();
+
+	// 获得所有脚本占用内存大小(单位K字节)
+	int getTotalMemory();
+
+	void printInfo();
 
 protected:
 private:
 	
-	ScriptList  mScriptList;
+	map<ScriptObject*,ScriptObject*> mScriptList;
 };
 
 

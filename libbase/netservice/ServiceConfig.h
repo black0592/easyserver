@@ -1,7 +1,5 @@
-#ifndef __SERVER_SCRUCT_H__
-#define __SERVER_STRUCT_H__
+#pragma once
 
-/*
 struct stServiceConfig 
 {
 	// 服务器相关
@@ -28,8 +26,5 @@ struct stServiceConfig
 		dbPort = 0;
 	};
 };
-*/
 
 
-
-#endif

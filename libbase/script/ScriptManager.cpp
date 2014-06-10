@@ -50,6 +50,16 @@ void ScriptObject::close()
 	}
 }
 
+void ScriptObject::runGC()
+{
+	lua_gc(mLuaState, LUA_GCCOLLECT, 0);
+}
+
+int ScriptObject::getMemory()
+{
+	return lua_gc(mLuaState, LUA_GCCOUNT, 0);
+}
+
 //////////////////////////////////////////////////////////////////////////
 
 ScriptManager::ScriptManager()
@@ -58,37 +68,57 @@ ScriptManager::ScriptManager()
 
 ScriptManager::~ScriptManager()
 {
-	while (!mScriptList.empty()) {
-		delete mScriptList[mScriptList.size()-1];
-		mScriptList.pop_back();
+	for (auto it=mScriptList.begin(); it!=mScriptList.end(); it++) {
+		delete it->second;
 	}
+	mScriptList.clear();
 }
 
 ScriptObject* ScriptManager::createScript()
 {
 	ScriptObject* pScript = new ScriptObject();
-	mScriptList.push_back(pScript);
+	mScriptList[pScript] = pScript;
 	return pScript;
 }
 
 void ScriptManager::destroyScript(ScriptObject*& pScript)
 {
+	auto it = mScriptList.find(pScript);
+	if (it == mScriptList.end()) {
+		BLOGE("not find pScript");
+		return;
+	}
+
 	SAFE_DELETE(pScript);
+	mScriptList.erase(it);
 }
 
-ScriptObject* ScriptManager::getScript(size_t index)
-{
-	if (index >= mScriptList.size())
-		return NULL;
-
-	return mScriptList[index];
-}
+//ScriptObject* ScriptManager::getScript(size_t index)
+//{
+//	if (index >= mScriptList.size())
+//		return NULL;
+//
+//	return mScriptList[index];
+//}
 
 void ScriptManager::reladAllScript()
 {
 	// TODO
 }
 
+int ScriptManager::getTotalMemory()
+{
+	int totalMemory = 0;
+	for (auto it=mScriptList.begin(); it!=mScriptList.end(); it++) {
+		totalMemory += it->second->getMemory();
+	}
 
+	return totalMemory;
+}
+
+void ScriptManager::printInfo()
+{
+	printf("script memory: %dK\n", getTotalMemory());
+}
 
 }	// namespace
