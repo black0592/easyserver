@@ -40,7 +40,7 @@ bool TestService::loadConfig()
 	//mLocalPort = atoi(node.attribute("port").value());
 	//mMaxClient = atoi(node.attribute("maxclient").value());
 
-	mLocalPort = 10000;
+	mLocalPort = 6666;
 	mMaxClient = 4000;
 
 	return true;
