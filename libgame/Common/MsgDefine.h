@@ -1,7 +1,5 @@
 #ifndef __MSG_DEFINE_H__
 #define __MSG_DEFINE_H__
-#include "ProtoMsgType.pb.h"
-using namespace Protocol;
 
 // µÇÂ¼ÏûÏ¢
 #define CMD_LOGIN(op)			MSG(MSG_LOGIN, op)

@@ -1,12 +1,6 @@
 #ifndef __TEST_CLIENT_H__
 #define __TEST_CLIENT_H__
 
-#include "ProtoLogin.pb.h"
-#include "ProtoSelectChar.pb.h"
-#include "ProtoCharData.pb.h"
-#include "ProtoScene.pb.h"
-using namespace Protocol;
-
 //enum ConnectState
 //{
 //	Connect_None,	// Œﬁ¡¥Ω”
@@ -48,37 +42,8 @@ public:
 
 protected:
 	virtual bool onTimer();
-	virtual bool handleProtoMsg(const EventArgs& args);
 
-	bool handleErrorMsg(const EventArgs& args);
-	bool handleLoginMsg(const EventArgs& args);
-	bool handleSelCharMsg(const EventArgs& args);
-	bool handleCharDataMsg(const EventArgs& args);
-	bool handleRelationsMsg(const EventArgs& args);
-	bool handleScriptMsg(const EventArgs& args);
-	bool handleSceneMsg(const EventArgs& args);
 
-	//////////////////////////////////////////////////////////////////////////
-
-	void mainLoop();
-	void updateRegister();
-	void updateLogin();
-	void updateSelectZone();
-	void updateEnterZone();
-	void updateSelectChar();
-	void updateStartGame();
-	void updateGameLogic();
-
-	//////////////////////////////////////////////////////////////////////////
-
-	bool getDefaultSkill(uint& skillId, uint& skillLevel);
-
-	//////////////////////////////////////////////////////////////////////////
-
-	void requestCharList();
-
-	// ≈˙¡ø◊¢≤·≤‚ ‘’ ∫≈
-	void batchRegister();
 
 private:
 	void waiting();
@@ -97,13 +62,6 @@ private:
 
 	string mGatewayIP;
 	uint mGatewayPort;
-
-	vector<ZoneInfo> mZoneList;
-	vector<SelectCharInfo> mCharList;
-
-	CharBase mCharBase;
-	CharBinaryData mCharBin;
-
 };
 
 

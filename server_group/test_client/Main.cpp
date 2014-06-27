@@ -1,26 +1,5 @@
 #include "ClientHeader.h"
-#include "GMCmd.h"
 #include "TimeForMainLoop.h"
-
-
-#include "ItemTable.h"
-#include "equipmentTable.h"
-#include "MapTable.h"
-#include "NpcTable.h"
-#include "MonsterTable.h"
-#include "SkillTable.h"
-#include "EquipUpgradeTable.h"
-#include "EquipGrooveTable.h"
-#include "GemCompositeTable.h"
-#include "GemAttributeTable.h"
-#include "MainMissionTable.h"
-#include "MarriageTable.h"
-#include "ItemClassifyTable.h"
-#include "VipTable.h"
-using namespace Store;
-
-#define PAK_FILE_MAIN	"./datas.pak"
-
 
 int rand_reconnect = 0;
 
@@ -107,11 +86,6 @@ int main(int argc, char *argv[])
 	MiniDump::InitMiniDump("./crashlog/", "testclient");
 	ClientLogger::getInstance().start("./log/client/client", "client", true);
 
-	FileSystem::getInstance().detachAllPakFile();
-	if (!FileSystem::getInstance().attachPakFile(PAK_FILE_MAIN, "127.0.0.1")) {
-		LOGE("¼ÓÔØPakÎÄ¼þÊ§°Ü, file=%s", PAK_FILE_MAIN);
-	}
-
 	Platform::setWindowTitle("TestClient");
 
 	Timer mainTimer("TestClient");
@@ -123,14 +97,6 @@ int main(int argc, char *argv[])
 #else
 	int MAX_CLIENT = num;
 #endif
-	TestClient* clients = new TestClient[CLIENT_START+MAX_CLIENT];
-	for (int i=CLIENT_START; i<CLIENT_START+MAX_CLIENT; i++) {
-		TestClient* pClient = &clients[i];
-		pClient->setIndex(i);
-		mainTimer.addTimer(pClient);
-
-		GMCmdProcesser::pushTestClient(pClient);
-	}
 
 	mainTimer.addTimer(new TimeForMainLoop(1));
 	mainTimer.start();
@@ -150,14 +116,12 @@ int main(int argc, char *argv[])
 		} else if (cmd == "info") {
 			//GameService::getInstance().PrintInfo();
 		} else {
-			GMCmdProcesser::pushCmd(cmd.c_str());
+			//GMCmdProcesser::pushCmd(cmd.c_str());
 		}
 	}
 
 
 	ClientLogger::getInstance().stop();
-
-	GMCmdProcesser::clearTestClient();
 
 	ShutdownProtobufLibrary();
 

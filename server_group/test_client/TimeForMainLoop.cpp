@@ -1,6 +1,5 @@
 #include "ClientHeader.h"
 #include "TimeForMainLoop.h"
-#include "GMCmd.h"
 
 TimeForMainLoop::TimeForMainLoop(uint elapse)
 : TimerEvent(elapse, true)
@@ -23,7 +22,7 @@ bool TimeForMainLoop::onTimer()
 void TimeForMainLoop::timeForGmCommand()
 {
 	// Ö´ÐÐgmÃüÁî(¿ØÖÆÌ¨ÃüÁî)
-	GMCmdProcesser::execCommandList();
+	//GMCmdProcesser::execCommandList();
 }
 
 
