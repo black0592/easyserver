@@ -72,6 +72,15 @@ project 'super_server'
 		if os.is("linux") then
 			files {'libgame/**.*'}
 		end
+		
+-- 通用服务器框架
+project 'server'
+        location( builddir )
+        links { 'libbase', 'libgame' }
+        files {'server_group/server/**.*'}
+		if os.is("linux") then
+			files {'libgame/**.*'}
+		end		
 
 --[[
 -- 大区服务器(每个区唯一)
