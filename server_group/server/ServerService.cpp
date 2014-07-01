@@ -2,6 +2,35 @@
 #include "ServerService.h"
 #include "TimerForMain.h"
 
+
+const EventType EVT_TestEvent = "TestEvent";
+
+class TestComponent : public Component
+{
+public:
+	static const string type;
+
+	TestComponent()
+	{
+		BindGameEvent(EVT_TestEvent, TestComponent::onEventTest);
+	}
+
+	virtual ~TestComponent(){}
+
+	void onEventTest(const GameEvent& evt)
+	{
+		string event = evt.event;
+		event = event;
+		LOGE("onEventTest evt=%s", evt.event.c_str());
+	}
+
+protected:
+private:
+};
+
+const string TestComponent::type = "TestComponent";
+
+
 ServerServiceAsync::ServerServiceAsync()
 	: NetService("ServerServiceAsync")
 {
@@ -19,6 +48,13 @@ void ServerServiceAsync::onInputCmd(const string& cmd)
 {
 	if (cmd == "i") {
 		printf("task: %d\n", TCPTaskManager::getInstance().size());
+	}
+
+	//  ¬º˛≤‚ ‘
+	{
+		GameObject gameObj;
+		gameObj.createComponent<TestComponent>();
+		gameObj.notify(EVT_TestEvent);
 	}
 
 	// lua≤‚ ‘

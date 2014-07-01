@@ -53,6 +53,7 @@ using namespace std;
 #include "protohandler/ProtoDataFill.h"
 #include "protohandler/ProtoTask.h"
 #include "protohandler/ProtoClient.h"
+#include "objectsystem/GameObject.h"
 
 #define SOCKET_CLIENT	SocketClient
 
