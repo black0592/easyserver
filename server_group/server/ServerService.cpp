@@ -22,6 +22,10 @@ public:
 		string event = evt.event;
 		event = event;
 		LOGE("onEventTest evt=%s", evt.event.c_str());
+
+		int hp = atoi(getOwner()->getProperties().getValue("hp"));
+		int mp = atoi(getOwner()->getProperties().getValue("mp"));
+		LOGE("Prop: hp=%d, mp=%d", hp, mp);
 	}
 
 protected:
@@ -53,6 +57,8 @@ void ServerServiceAsync::onInputCmd(const string& cmd)
 	// ÊÂ¼þ²âÊÔ
 	{
 		GameObject gameObj;
+		gameObj.getProperties().addValue("hp", 100);
+		gameObj.getProperties().addValue("mp", 200);
 		gameObj.createComponent<TestComponent>();
 		gameObj.notify(EVT_TestEvent);
 	}

@@ -27,9 +27,9 @@ namespace easygame {
 		Component();
 		virtual ~Component();
 
-		void setMaster(GameObject* owner);
+		void setOwner(GameObject* owner);
 
-		GameObject* getMaster();
+		GameObject* getOwner();
 
 		// 绑定事件函数
 		void bindGameEvent(const EventType& event, GameEventFunc func);

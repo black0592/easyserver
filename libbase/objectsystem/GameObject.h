@@ -1,6 +1,7 @@
 #pragma once
 #include "event/GameEvent.h"
 #include "Component.h"
+#include "data/Properties.h"
 #include <vector>
 #include <map>
 
@@ -13,6 +14,13 @@ namespace easygame {
 	public:
 		GameObject();
 		virtual ~GameObject();
+
+		//////////////////////////////////////////////////////////////////////////
+		// 属性
+
+		// 返回属性对象
+		Properties& getProperties() { return mProperties; }
+
 
 		//////////////////////////////////////////////////////////////////////////
 		// 事件通知
@@ -42,7 +50,7 @@ namespace easygame {
 		{
 			assert( !hasComponent() );
 			mComponents[T::type] = component;
-			mComponents[T::type]->setMaster(this);
+			mComponents[T::type]->setOwner(this);
 		}
 
 		template <class T>
@@ -50,7 +58,7 @@ namespace easygame {
 		{
 			assert(mComponents[T::type] == NULL);
 			mComponents[T::type] = new T();
-			mComponents[T::type]->setMaster(this);
+			mComponents[T::type]->setOwner(this);
 		}
 
 		template <class T>
@@ -70,7 +78,11 @@ namespace easygame {
 	protected:
 
 	private:
+		// 组件列表
 		std::map<string,Component*> mComponents;
+
+		// 属性结构
+		Properties mProperties;
 	};
 
 

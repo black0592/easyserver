@@ -17,12 +17,12 @@ namespace easygame {
 		mGameEvtFuncMap.clear();
 	}
 
-	void Component::setMaster(GameObject* owner)
+	void Component::setOwner(GameObject* owner)
 	{
 		mOwner = dynamic_cast<GameObject*>(owner);
 	}
 
-	GameObject* Component::getMaster()
+	GameObject* Component::getOwner()
 	{
 		return mOwner;
 	}

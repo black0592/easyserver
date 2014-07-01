@@ -1,5 +1,8 @@
 #ifndef __PROPERTIES_H__
 #define __PROPERTIES_H__
+#include <string>
+#include <map>
+using namespace std;
 
 namespace easygame {
 
