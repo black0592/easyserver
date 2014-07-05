@@ -175,8 +175,8 @@ namespace easygame {
 		virtual void stop()
 		{
 			ThreadManager::getInstance().stopAllThread();
-			getSingletonRleaser().manualRelease();
-			ThreadManager::destroy();
+			//getSingletonRleaser().manualRelease();
+			//ThreadManager::destroy();
 			mSvrPtr.stop();
 		}
 

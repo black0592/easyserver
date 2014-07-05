@@ -5,7 +5,7 @@
 #define ENABLE_DATABASE	1
 
 // 是否开启内存检测
-#define ENABLE_MEMORYCHECK	0
+#define ENABLE_MEMORYCHECK	1
 
 // 是否编译dump模块
 #define ENABLE_MINIDUMP	1

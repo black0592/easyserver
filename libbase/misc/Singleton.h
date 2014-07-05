@@ -23,8 +23,11 @@ namespace easygame {
 			//assert(nullptr == msInstance, "Singleton instance " << getClassTypeName() << " already exsist");
 			msInstance = static_cast<T*>(this);
 
-			//if (autoRelease)
-			//	getSingletonRleaser().m_funcs.push_back(&destroy);
+			if (autoRelease) {
+				getSingletonRleaser().m_funcs.push_back(&destroy);
+			} else {
+				autoRelease = autoRelease;
+			}
 		}
 
 		virtual ~Singleton()

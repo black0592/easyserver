@@ -20,7 +20,7 @@ using namespace std;
 // 内存跟踪调试结构
 
 // 申请内存的跟踪
-void addTrack(void* ptr, size_t size, const char* file, uint line);
+void addTrack(void* ptr, size_t size, const char* file, unsigned int line);
 
 // 释放内存的跟踪
 void removeTrack(void* ptr);
@@ -34,7 +34,7 @@ void printTrack();
 //////////////////////////////////////////////////////////////////////////
 // new, delete, new[], delete[] 算符重载
 
-__inline void* operator new(size_t size, const char* file, uint line)
+__inline void* operator new(size_t size, const char* file, unsigned int line)
 {
 	void* ptr = (void*)malloc(size);
 	addTrack(ptr,size,file,line);
@@ -48,7 +48,7 @@ __inline void operator delete(void* ptr)
 }
 
 
-__inline void* operator new [](size_t size, const char* file, uint line)
+__inline void* operator new [](size_t size, const char* file, unsigned int line)
 {
 	void* ptr = (void*)malloc(size);
 	addTrack(ptr,size,file,line);

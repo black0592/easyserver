@@ -18,7 +18,7 @@ namespace easygame {
 	这个版本因为释放会有一些问题，考虑到机器性能越来越好
 	是否需要在自己的系统中加入对象池，有待测试
 	**/
-#if 1
+#if ENABLE_MEMORYCHECK == 0
 
 
 //#define THREAD_SAFE
@@ -130,7 +130,21 @@ namespace easygame {
 	template<class T, int BLOCK_NUM >
 	int ObjectPool<T, BLOCK_NUM >::mObjCount = NULL;
 
-#endif
+#else		// else ObjectPool
+
+template <class T, int BLOCK_NUM= 50>
+class ObjectPool
+{
+public:
+protected:
+	~ObjectPool()
+	{
+	}
+private:
+};
+
+
+#endif		// end ObjectPool
 
 
 

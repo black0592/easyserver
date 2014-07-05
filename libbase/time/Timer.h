@@ -50,6 +50,9 @@ namespace easygame {
 	protected:
 		virtual bool run();
 
+		// 删除所有的定时器
+		void deleteAllTimer();
+
 	private:
 		TimerEventMap mTimerEventMap;
 		Mutex mLock;

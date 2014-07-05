@@ -12,16 +12,21 @@ namespace easygame {
 
 	Timer::~Timer(void)
 	{
-		//stop();
+		deleteAllTimer();
+	}
 
-		//MutexScopeLock scopelock(mLock);
-		//for (TimerEventMapIter it = mTimerEventMap.begin(); it != mTimerEventMap.end();) {
-		//	TimerEvent* event = it->second;
-		//	mTimerEventMap.erase(it++);
-		//	if (event->mIsAutoDelete) {
-		//		SAFE_DELETE(event)
-		//	}
-		//}
+	void Timer::deleteAllTimer()
+	{
+		stop();
+
+		MutexScopeLock scopelock(mLock);
+		for (TimerEventMapIter it = mTimerEventMap.begin(); it != mTimerEventMap.end();) {
+			TimerEvent* event = it->second;
+			mTimerEventMap.erase(it++);
+			if (event->mIsAutoDelete) {
+				SAFE_DELETE(event)
+			}
+		}
 	}
 
 	bool Timer::run()

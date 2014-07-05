@@ -21,13 +21,13 @@ FILE* g_logfile = NULL;
 #endif
 
 
-typedef uint64	mem_adress;
+typedef unsigned long long mem_adress;
 
 struct stTrackInfo 
 {
 	size_t size;
 	const char* file;
-	uint line;
+	unsigned int line;
 
 	stTrackInfo()
 	{
@@ -41,7 +41,7 @@ typedef map<mem_adress, stTrackInfo> TrackInfoMap;
 typedef map<mem_adress, stTrackInfo>::iterator TrackInfoMapIter;
 TrackInfoMap trackInfoMap;
 
-void addTrack(void* ptr, size_t size, const char* file, uint line)
+void addTrack(void* ptr, size_t size, const char* file, unsigned int line)
 {
 	stTrackInfo trackInfo;
 	trackInfo.size = size;
@@ -87,7 +87,7 @@ void printTrack()
 		mem_adress address = (mem_adress)it->first;
 		stTrackInfo& info = it->second;
 		sprintf(szBuf,"%s(%u), size=%lu, address=0x%08x\r\n",
-			info.file, info.line, info.size, (uint)address);
+			info.file, info.line, info.size, (unsigned int)address);
 		LEAK_TRACE(szBuf);
 	}
 	LEAK_TRACE("------------------------------------------------\r\n\r\n");
