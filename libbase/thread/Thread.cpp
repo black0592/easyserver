@@ -123,7 +123,7 @@ namespace easygame {
 
 
 	ThreadManager::ThreadManager()
-		: Singleton(true)
+		: Singleton(INT_MIN)
 	{
 
 	}

@@ -11,10 +11,10 @@ TestService::TestService()
 
 TestService::~TestService()
 {
-	shutdown();
+
 }
 
-bool TestService::initialise()
+bool TestService::onInitialise()
 { 
 	TestLogger::getInstance().start("./log/testserver/testserver", "test", true);
 	loadConfig();
@@ -22,10 +22,9 @@ bool TestService::initialise()
 	return true;
 }
 
-bool TestService::shutdown()		
+void TestService::onShutdown()		
 {
 	TestService::getInstance().stop();
-	return true;
 }
 
 bool TestService::loadConfig()

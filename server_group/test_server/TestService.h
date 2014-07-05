@@ -9,8 +9,8 @@ class TestService :
 public:
 	TestService();
 	virtual ~TestService();
-	virtual bool initialise();
-	virtual bool shutdown()	;
+	virtual bool onInitialise();
+	virtual void onShutdown();
 	bool loadConfig();
 	// 更新窗口标题信息
 	void updateWindowTitle();

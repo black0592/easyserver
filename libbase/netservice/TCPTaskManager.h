@@ -16,11 +16,11 @@ namespace easygame {
 	class TCPTaskManager : public Singleton<TCPTaskManager>
 	{
 	public:
-		typedef map<int,TCPTask*> TaskMap;
-		typedef map<int,TCPTask*>::iterator TaskMapItr;
-
 		TCPTaskManager(void);
 		virtual ~TCPTaskManager(void);
+
+		// 安全的关闭所有链接(Service退出前调用这个函数)
+		void destroyAllTaskSafe();
 
 		// 加入等待队列
 		bool addWaitList(TCPTask* task);
@@ -60,7 +60,8 @@ namespace easygame {
 		void processRecycleTask();
 
 		// 删除断开的链接
-		void processDestroyTask();
+		// count - 一次调用最多能清理几个Task
+		void processDestroyTask(int count);
 
 	private:
 		UniqueID16 mUniqueID;
@@ -72,11 +73,14 @@ namespace easygame {
 		// 保存在线链接
 		ElapseTimer mRecycleTimer;
 		Mutex mMapMutex;
-		TaskMap mTaskMap;
+		map<int,TCPTask*> mTaskMap;
 	
 		// 链接管理器，增加一个删除对象队列，防止IOCP还在操作
 		ElapseTimer mDestroyTimer;
 		list<TCPTask*> mDestroyList;
+
+		// 输出调试信息的时间
+		ElapseTimer mPrintInfoTimer;
 	};
 
 

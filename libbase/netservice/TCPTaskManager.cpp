@@ -10,12 +10,38 @@ namespace easygame {
 	TCPTaskManager::TCPTaskManager(void)
 		: mRecycleTimer(200)
 		, mDestroyTimer(500)
+		, mPrintInfoTimer(1000)
 	{
 	}
 
 	TCPTaskManager::~TCPTaskManager(void)
 	{
+	}
 
+	void TCPTaskManager::destroyAllTaskSafe()
+	{
+		// 直到所有链接正常退出，才能释放TaskManager
+		printf("Server is exiting! Waitting!\n");
+		while (!mTaskMap.empty() 
+			|| !mWaitAddList.empty() 
+			|| !mDestroyList.empty())
+		{
+			if (mPrintInfoTimer.isTimeout()) {
+				// 踢掉所有链接
+				kickAllTask();
+
+				// 快速清理（可以快速退出服务器）
+				processDestroyTask(mDestroyList.size());
+
+				// 打印信息
+				printf("Task %d, WaitAddTask %d, DestroyTask %d\n",
+					mTaskMap.size(), mWaitAddList.size(), mDestroyList.size());
+			}
+			
+			onTimer();
+
+			Platform::sleep(1);
+		}
 	}
 
 	bool TCPTaskManager::addWaitList(TCPTask* task)
@@ -32,7 +58,7 @@ namespace easygame {
 		MutexScopeLock lock(mMapMutex);
 
 		TCPTask* task = NULL;
-		TaskMapItr itFind = mTaskMap.find(id);
+		auto itFind = mTaskMap.find(id);
 		if (itFind != mTaskMap.end()) {
 			task = itFind->second;
 		}
@@ -97,7 +123,7 @@ namespace easygame {
 		int64 curTick = Platform::tick();
 		vector<ushort> taskIdList;
 		TCPTask* task = NULL;
-		for (TaskMapItr it=mTaskMap.begin(); it!=mTaskMap.end(); it++) {
+		for (auto it=mTaskMap.begin(); it!=mTaskMap.end(); it++) {
 			task = it->second;
 
 			if (task->delayCloseTime > 0 && task->isEventEmpty()) {
@@ -137,18 +163,19 @@ namespace easygame {
 		}
 	}
 
-	void TCPTaskManager::processDestroyTask()
+	void TCPTaskManager::processDestroyTask(int count)
 	{
 		if (mDestroyList.empty())
 			return;
 
-		int64 curTick = Platform::tick();
-		TCPTask* task = mDestroyList.front();
-		if (curTick - task->getLastDestroyTime() > 10 * 1000) {
-			//TRACE( strformat("[processDestroyTask] clt at 0x%08x\n", task) );
-			BLOGW( "[processDestroyTask] clt at 0x%08x\n", task );
-			delete task;
-			mDestroyList.pop_front();
+		for (int i=0; i<count; i++) {
+			int64 curTick = Platform::tick();
+			TCPTask* task = mDestroyList.front();
+			if (curTick - task->getLastDestroyTime() > 10 * 1000) {
+				//BLOGW( "[processDestroyTask] clt at 0x%08x\n", task );
+				delete task;
+				mDestroyList.pop_front();
+			}
 		}
 	}
 
@@ -158,7 +185,7 @@ namespace easygame {
 		MutexScopeLock lock(mMapMutex);
 
 		TCPTask* task = NULL;
-		TaskMapItr itFind = mTaskMap.find(id);
+		auto itFind = mTaskMap.find(id);
 		if (itFind != mTaskMap.end()) {
 			task = itFind->second;
 			task->closeDelay();
@@ -173,7 +200,7 @@ namespace easygame {
 		MutexScopeLock lock(mMapMutex);
 
 		TCPTask* task = NULL;
-		for (TaskMapItr it=mTaskMap.begin(); it!=mTaskMap.end(); it++) {
+		for (auto it=mTaskMap.begin(); it!=mTaskMap.end(); it++) {
 			task = it->second;
 			task->closeDelay();
 		}
@@ -189,7 +216,7 @@ namespace easygame {
 			return false;
 
 		// 先检测，节省循环的开销(doMsgQueue只在消息队列任务中使用)
-		TaskMapItr it = mTaskMap.begin();
+		auto it = mTaskMap.begin();
 		TCPTask* task = it->second;
 		if (task->getType() != SyncType)
 			return false;
@@ -215,7 +242,7 @@ namespace easygame {
 		MutexScopeLock lock(mMapMutex);
 
 		TCPTask* task = NULL;
-		TaskMapItr itFind = mTaskMap.find(id);
+		auto itFind = mTaskMap.find(id);
 		if (itFind != mTaskMap.end()) {
 			task = itFind->second;
 			task->sendCmd(cmd, cmdLen);
@@ -230,7 +257,7 @@ namespace easygame {
 		MutexScopeLock lock(mMapMutex);
 
 		TCPTask* task = NULL;
-		TaskMapItr itFind = mTaskMap.find(id);
+		auto itFind = mTaskMap.find(id);
 		if (itFind != mTaskMap.end()) {
 			task = itFind->second;
 			task->sendRawData(data, dataLen);
@@ -245,7 +272,7 @@ namespace easygame {
 		MutexScopeLock lock(mMapMutex);
 
 		TCPTask* task = NULL;
-		for (TaskMapItr it=mTaskMap.begin(); it!=mTaskMap.end(); it++) {
+		for (auto it=mTaskMap.begin(); it!=mTaskMap.end(); it++) {
 			task = it->second;
 			task->sendCmd(cmd, cmdLen);
 		}
@@ -256,7 +283,7 @@ namespace easygame {
 		MutexScopeLock lock(mMapMutex);
 
 		TCPTask* task = NULL;
-		for (TaskMapItr it=mTaskMap.begin(); it!=mTaskMap.end(); it++) {
+		for (auto it=mTaskMap.begin(); it!=mTaskMap.end(); it++) {
 			task = it->second;
 			task->sendRawData(data, dataLen);
 		}
@@ -268,7 +295,7 @@ namespace easygame {
 
 		TCPTask* task = NULL;
 		for (size_t i=0; i<taskIdList.size(); i++) {
-			TaskMapItr itFind = mTaskMap.find(taskIdList[i]);
+			auto itFind = mTaskMap.find(taskIdList[i]);
 			if (itFind != mTaskMap.end()) {
 				task = itFind->second;
 				task->sendCmd(cmd, cmdLen);
@@ -282,7 +309,7 @@ namespace easygame {
 
 		TCPTask* task = NULL;
 		for (size_t i=0; i<taskIdList.size(); i++) {
-			TaskMapItr itFind = mTaskMap.find(taskIdList[i]);
+			auto itFind = mTaskMap.find(taskIdList[i]);
 			if (itFind != mTaskMap.end()) {
 				task = itFind->second;
 				task->sendRawData(data, dataLen);
@@ -308,7 +335,7 @@ namespace easygame {
 
 		//int totalSize = 0;
 		//TCPTask* task = NULL;
-		//for (TaskMapItr it=mTaskMap.begin(); it!=mTaskMap.end(); it++) {
+		//for (auto it=mTaskMap.begin(); it!=mTaskMap.end(); it++) {
 		//	task = it->second;
 		//	totalSize += 0;//task->getSendBuffSize();
 		//}
@@ -337,7 +364,7 @@ namespace easygame {
 
 		// 删除过期的task，释放内存
 		if (mDestroyTimer.isTimeout()) {
-			processDestroyTask();
+			processDestroyTask(1);
 		}
 	}
 

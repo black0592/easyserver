@@ -11,8 +11,6 @@ SuperService::SuperService()
 
 SuperService::~SuperService()
 {
-	shutdown();
-	ShutdownProtobufLibrary();
 }
 
 void SuperService::onInputCmd(const string& cmd)
@@ -38,7 +36,7 @@ void SuperService::onInputCmd(const string& cmd)
 	}
 }
 
-bool SuperService::initialise()
+bool SuperService::onInitialise()
 { 
 	// ≥ı ºªØminidump
 	MiniDump::InitMiniDump("./crashlog/", mName.c_str());
@@ -60,11 +58,9 @@ bool SuperService::initialise()
 	return true;
 }
 
-bool SuperService::shutdown()		
+void SuperService::onShutdown()		
 {
 	SuperLogger::getInstance().stop();
-
-	return true;
 }
 
 bool SuperService::loadConfig()

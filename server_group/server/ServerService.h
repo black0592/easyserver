@@ -7,9 +7,8 @@ class ServerServiceAsync :
 public:
 	ServerServiceAsync();
 	virtual ~ServerServiceAsync();
-	virtual bool initialise();
-	virtual bool shutdown()	;
-
+	virtual bool onInitialise();
+	virtual void onShutdown();
 	virtual void onInputCmd(const string& cmd);
 
 	bool loadConfig();

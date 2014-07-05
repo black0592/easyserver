@@ -56,6 +56,8 @@ namespace easygame {
 			mIsDebug = false;
 #endif
 
+			mIsRunning = true;
+
 			// 处理线程池线程数
 			mSvrPtr.threads = 1;
 
@@ -70,10 +72,6 @@ namespace easygame {
 
 		virtual ~NetService(void)
 		{
-			shutdown();
-			ShutdownProtobufLibrary();
-
-			stop();
 		}
 
 		// 加入定时器事件
@@ -88,6 +86,7 @@ namespace easygame {
 			mMainTimer.deleteTimer(event);
 		}
 
+		// 启动服务器
 		virtual bool start(ushort port)
 		{
 			//BLOGE("监听端口 %u", port);
@@ -126,16 +125,23 @@ namespace easygame {
 			return true;
 		}
 
-		virtual void onInputCmd(const string& cmd) {}
+		// 关闭服务器
+		void stop()
+		{
+			mIsRunning = false;
+		}
 
 		// 启动主循环
 		virtual void main()
 		{
 			// 初始化
-			initialise();
+			if ( !initialise() ) {
+				// Fail
+				return;
+			}
 
 			string cmd;
-			while (true)
+			while (mIsRunning)
 			{
 #ifdef WIN32
 				cout << "请输入指令(exit - 退出服务器)：\n";
@@ -166,36 +172,45 @@ namespace easygame {
 
 		}
 
-		// 初始化服务的逻辑
-		virtual bool initialise() {return true;}
-
-		// 退出服务的逻辑
-		virtual bool shutdown() {return true;}
-
-		virtual void stop()
-		{
-			ThreadManager::getInstance().stopAllThread();
-			//getSingletonRleaser().manualRelease();
-			//ThreadManager::destroy();
-			mSvrPtr.stop();
-		}
-
 		// debug标识，用于一些测试功能的检测
 		bool isDebug() { return mIsDebug; }
 		void setDebugFlag(bool debug) { mIsDebug = debug; }
 
-	protected:
-		virtual bool onTimer()
+	private:
+		// 初始化服务的逻辑
+		bool initialise()
 		{
-			
-			return true;
+			return onInitialise();
 		}
+
+		// 退出服务的逻辑
+		void shutdown()
+		{
+			mMainTimer.deleteAllTimer();
+			TCPTaskManager::getInstance().destroyAllTaskSafe();
+			mSvrPtr.stop();
+			ShutdownProtobufLibrary();
+			ThreadManager::getInstance().stopAllThread();
+		}
+
+	protected:
+		// windows下命令回调
+		virtual void onInputCmd(const string& cmd) { }
+
+		// 定时器回调
+		virtual bool onTimer() { return true; }
+
+		// 退出回调
+		virtual bool onInitialise() { return true; }
+
+		// 退出回调
+		virtual void onShutdown() { }
 
 	protected:
 		string mName;
 		lance::net::TCPSrv<TTCPTask> mSvrPtr;
 		Timer mMainTimer;		// 主线程计时器
-		//bool mIsInitialise;
+		bool mIsRunning;		// 是否正在运行
 		bool mIsDebug;			// 是否debug模式
 	};
 

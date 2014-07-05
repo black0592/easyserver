@@ -44,8 +44,6 @@ ServerServiceAsync::ServerServiceAsync()
 
 ServerServiceAsync::~ServerServiceAsync()
 {
-	shutdown();
-	ShutdownProtobufLibrary();
 }
 
 void ServerServiceAsync::onInputCmd(const string& cmd)
@@ -80,7 +78,7 @@ void ServerServiceAsync::onInputCmd(const string& cmd)
 	}
 }
 
-bool ServerServiceAsync::initialise()
+bool ServerServiceAsync::onInitialise()
 { 
 	// 初始化minidump
 	MiniDump::InitMiniDump("./crashlog/", mName.c_str());
@@ -92,6 +90,7 @@ bool ServerServiceAsync::initialise()
 
 	loadConfig();
 
+	mLocalPort = 7102;
 
 	// 开启服务
 	addTimer(new TimerForMain);
@@ -102,11 +101,9 @@ bool ServerServiceAsync::initialise()
 	return true;
 }
 
-bool ServerServiceAsync::shutdown()		
+void ServerServiceAsync::onShutdown()		
 {
 	ServerLogger::getInstance().stop();
-
-	return true;
 }
 
 bool ServerServiceAsync::loadConfig()
@@ -126,7 +123,7 @@ bool ServerServiceAsync::loadConfig()
 
 void ServerServiceAsync::updateWindowTitle()
 {
-	string strTitle = strformat("SuperServer %d",getLocalPort());
+	string strTitle = strformat("ServerService %d",getLocalPort());
 	strTitle = Platform::utf8ToGbk(strTitle);
 	Platform::setWindowTitle(strTitle.c_str());
 }

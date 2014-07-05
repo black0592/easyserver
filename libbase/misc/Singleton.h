@@ -1,7 +1,7 @@
 #ifndef _SINGLETON_H_
 #define _SINGLETON_H_
 
-#include <vector>
+#include <set>
 #include "thread/Mutex.h"
 
 namespace easygame {
@@ -18,16 +18,12 @@ namespace easygame {
 	public:
 		typedef Singleton<T> Base;
 
-		Singleton(bool autoRelease = true)
+		Singleton(int priority = 0)
 		{
 			//assert(nullptr == msInstance, "Singleton instance " << getClassTypeName() << " already exsist");
 			msInstance = static_cast<T*>(this);
 
-			if (autoRelease) {
-				getSingletonRleaser().m_funcs.push_back(&destroy);
-			} else {
-				autoRelease = autoRelease;
-			}
+			getSingletonRleaser().push(&destroy, priority);
 		}
 
 		virtual ~Singleton()
@@ -68,6 +64,11 @@ namespace easygame {
 			return msInstance;
 		}
 
+		static bool hasInstance()
+		{
+			return msInstance != 0;
+		}
+
 		static const char* getClassTypeName()
 		{
 			return mClassTypeName;
@@ -87,18 +88,33 @@ namespace easygame {
 	// 自动释放机制
 	class SingletonRleaser
 	{
-		template <class T> friend class Singleton;
+		//template <class T> friend class Singleton;
 	public:
 		typedef void (*DESTROY_FUNC)();
 
+		struct stFuncData
+		{
+			DESTROY_FUNC pFunc;
+			int priority;
+		};
+
+		// 比较函数
+		struct stFuncCompare
+		{
+			bool operator()(const stFuncData& s1, const stFuncData& s2) const
+			{
+				return s1.priority > s2.priority;  // 比较优先级
+			}
+		};
+
 	public:
 		~SingletonRleaser();
-		void push(DESTROY_FUNC func);
+		void push(DESTROY_FUNC func, int priority = 0);
 		void manualRelease();
 
 	private:
 		Mutex mMutex;
-		std::vector<DESTROY_FUNC> m_funcs;
+		std::multiset<stFuncData,stFuncCompare> m_funcs;
 	};
 
 	inline SingletonRleaser::~SingletonRleaser()
@@ -109,18 +125,18 @@ namespace easygame {
 	inline void SingletonRleaser::manualRelease()
 	{
 		mMutex.lock();
-		for(std::vector<DESTROY_FUNC>::const_iterator it=m_funcs.begin();it!=m_funcs.end();++it)
-		{
-			(**it)();
+		for (auto funcData : m_funcs) {
+			(*funcData.pFunc)();
 		}
 		m_funcs.clear();
 		mMutex.unlock();
 	}
 
-	inline void SingletonRleaser::push(DESTROY_FUNC func)
+	inline void SingletonRleaser::push(DESTROY_FUNC func, int priority)
 	{
 		mMutex.lock();
-		m_funcs.push_back(func);
+		stFuncData funcData  = {func, priority};
+		m_funcs.insert(funcData);
 		mMutex.unlock();
 	}
 

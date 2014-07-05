@@ -8,9 +8,8 @@ class SuperService :
 public:
 	SuperService();
 	virtual ~SuperService();
-	virtual bool initialise();
-	virtual bool shutdown()	;
-
+	virtual bool onInitialise();
+	virtual void onShutdown();
 	virtual void onInputCmd(const string& cmd);
 
 	bool loadConfig();

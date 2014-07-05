@@ -10,7 +10,7 @@ namespace easygame {
 	class GameObject;
 
 	// 游戏事件处理函数
-	typedef std::function<void (const GameEvent& evt)> GameEventFunc; 
+	typedef std::function<void (const GameEvent& evt)> GameEventFunc;
 
 	// 便利的事件绑定宏定义
 	#define BindGameEvent(event, func) bindGameEvent(event, std::bind(&func, this, std::placeholders::_1));

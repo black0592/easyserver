@@ -47,11 +47,11 @@ namespace easygame {
 		// 删除定时器(注意，不能在定时器onTimer里面删除)
 		void deleteTimer(TimerEvent*& event);
 
-	protected:
-		virtual bool run();
-
 		// 删除所有的定时器
 		void deleteAllTimer();
+
+	protected:
+		virtual bool run();
 
 	private:
 		TimerEventMap mTimerEventMap;
