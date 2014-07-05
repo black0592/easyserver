@@ -41,7 +41,7 @@ bool ServerTaskAsync::handleProtoMsg(const EventArgs& args)
 		//sendCmd(cmd, cmdLen);
 		//return true;
 
-		LOGE("非法的服务器消息号 cmd=%d", pCmd->cmd);
+		LOGD("非法的服务器消息号 cmd=%d", pCmd->cmd);
 		return false;
 	}
 

@@ -6,7 +6,6 @@ int main(int argc, char *argv[])
 {
 	// 建立服务器
 	TestService service;
-	service.initialise();
 	service.start( service.getLocalPort() );
 	service.updateWindowTitle();
 	printf("开始监听端口 %d \n", service.getLocalPort());
