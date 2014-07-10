@@ -4,14 +4,24 @@
 
 namespace easygame {
 
-ScriptObject::ScriptObject()
+ScriptObject::ScriptObject(lua_State* mainState)
 {
-	mLuaState = luaL_newstate();
-	luaL_openlibs(mLuaState);
-	lua_tinker::init(mLuaState);	// 支持64位
+	if (mainState == NULL) {
+		// 新的虚拟机
+		mScriptType = ScriptType::NewState;
+		
+		mLuaState = luaL_newstate();
+		luaL_openlibs(mLuaState);
+		lua_tinker::init(mLuaState);	// 支持64位
 
-	// 注册自定义加载函数
-	initScriptLoader(mLuaState);
+		// 注册自定义加载函数
+		initScriptLoader(mLuaState);
+	} else {
+		// 协程
+		mScriptType = ScriptType::ThreadState;
+		mLuaState = lua_newthread(mainState);
+		//lua_resume(mLuaState, 0);
+	}
 }
 
 ScriptObject::~ScriptObject()
@@ -45,9 +55,13 @@ bool ScriptObject::dostring(const char* script)
 
 void ScriptObject::close()
 {
-	if (mLuaState) {
-		lua_close(mLuaState);
+	if (mScriptType == ScriptType::NewState) {
+		if (mLuaState) {
+			lua_close(mLuaState);
+		}
 	}
+
+	mLuaState = NULL;
 }
 
 void ScriptObject::runGC()
@@ -64,19 +78,37 @@ int ScriptObject::getMemory()
 
 ScriptManager::ScriptManager()
 {
+	mLuaState = luaL_newstate();
+	luaL_openlibs(mLuaState);
+	lua_tinker::init(mLuaState);	// 支持64位
+
+	// 注册自定义加载函数
+	initScriptLoader(mLuaState);
 }
 
 ScriptManager::~ScriptManager()
 {
+	if (mLuaState) {
+		lua_close(mLuaState);
+	}
+
 	for (auto it=mScriptList.begin(); it!=mScriptList.end(); it++) {
 		delete it->second;
 	}
 	mScriptList.clear();
 }
 
-ScriptObject* ScriptManager::createScript()
+ScriptObject* ScriptManager::createScript(ScriptType type)
 {
-	ScriptObject* pScript = new ScriptObject();
+	ScriptObject* pScript = NULL;
+	if (type == ScriptType::NewState) {
+		// 新虚拟机
+		pScript = new ScriptObject(NULL);
+	} else if (type == ScriptType::ThreadState) {
+		// 协程
+		pScript = new ScriptObject(mLuaState);
+	}
+
 	mScriptList[pScript] = pScript;
 	return pScript;
 }

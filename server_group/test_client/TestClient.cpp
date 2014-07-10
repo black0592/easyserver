@@ -78,3 +78,9 @@ bool TestClient::onTimer()
 	return true;
 }
 
+
+bool TestClient::handleProtoMsg(const EventArgs& args)
+{
+
+	return true;
+}

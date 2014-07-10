@@ -140,6 +140,7 @@ LUA_API lua_CFunction lua_atpanic (lua_State *L, lua_CFunction panicf) {
 LUA_API lua_State *lua_newthread (lua_State *L) {
   lua_State *L1;
   lua_lock(L);
+
   luaC_checkGC(L);
   L1 = luaE_newthread(L);
   setthvalue(L, L->top, L1);

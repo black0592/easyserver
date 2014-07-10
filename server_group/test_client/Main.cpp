@@ -1,7 +1,10 @@
 #include "ClientHeader.h"
 #include "TimeForMainLoop.h"
+#include "ProtoSvrLogin.pb.h"
 
 int rand_reconnect = 0;
+uint start  = 0;
+uint num  = 0;
 
 int main(int argc, char *argv[])
 {
@@ -71,13 +74,21 @@ int main(int argc, char *argv[])
 	//system("pause");
 	//return 0;
 
+	/*
 	if (argc < 3) {
 		printf("参数错误 usage: test_client 开始编号 客户端数量 重连概率\n");
 		return 0;
 	}
-	uint start  = atoi(argv[1]);
-	uint num  = atoi(argv[2]);
+
+	start  = atoi(argv[1]);
+	num  = atoi(argv[2]);
 	rand_reconnect = atoi(argv[3]);
+	*/
+
+	start = 1;
+	num = 1;
+	rand_reconnect = 0;
+
 
 	srand( (uint)time(NULL) );
 
@@ -102,6 +113,9 @@ int main(int argc, char *argv[])
 	mainTimer.start();
 
 
+	TestClient client;
+	client.connect("127.0.0.1", 7102);
+
 	string cmd;
 	while (true)
 	{
@@ -113,9 +127,13 @@ int main(int argc, char *argv[])
 		} else if (cmd == "crash") {
 			char* p = NULL;
 			*p = 'a';
-		} else if (cmd == "info") {
-			//GameService::getInstance().PrintInfo();
+		} else if (cmd == "i") {
+			client.reconnect();
+			printf("重连服务器\n");
 		} else {
+			LoginCmd::RequestRegisterGameServer protoMsg;
+			client.sendProtoMsg(protoMsg, 100);
+			printf("发送测试消息\n");
 			//GMCmdProcesser::pushCmd(cmd.c_str());
 		}
 	}

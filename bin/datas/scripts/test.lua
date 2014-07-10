@@ -57,6 +57,14 @@ function main_test()
 	end
 end
 
+function main_test2()
+	for i = 1, 1000000000 do
+		print("aaaa")
+		if i == 5 then
+			return
+		end
+	end
+end
 
 co = coroutine.create(
 	function ()  

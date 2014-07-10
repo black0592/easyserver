@@ -39,6 +39,7 @@ public:
 	void setState(ClientState state) { mState = state; }
 	uint getState() { return mState; }
 
+	virtual bool handleProtoMsg(const EventArgs& args);
 
 protected:
 	virtual bool onTimer();

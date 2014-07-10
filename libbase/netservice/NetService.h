@@ -68,6 +68,8 @@ namespace easygame {
 			g_Logger.start("./log/serverglobal/serverglobal", mName.c_str(), true);
 
 			mMainTimer.addTimer(new TimerForNetService(0));
+
+			//printf("######## Init Service %s ########\n", mName.c_str());
 		}
 
 		virtual ~NetService(void)
@@ -121,6 +123,8 @@ namespace easygame {
 
 			// 开启主线程计时器
 			mMainTimer.start();
+
+			printf("######## Start Service %s ########\n", mName.c_str());
 
 			return true;
 		}

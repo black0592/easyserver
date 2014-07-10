@@ -105,8 +105,13 @@ namespace easygame {
 			mTaskMap[uid] = task;
 			mMapMutex.unlock();
 
-			// 开始接受数据
+			// 通知链接成功
 			task->OnConnect();
+
+			// 通知调度系统接收数据
+			// 数据这时并没有真正接收，当客户端有数据发送来时
+			// 调度器自动接收数据，然后通过OnRecv通知数据接收完成
+			task->recv();
 
 			// 加入成功
 			return;

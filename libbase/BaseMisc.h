@@ -138,6 +138,7 @@ __inline int getDigitalIP(string ip)
 // 非线程安全
 __inline const char* strformat(const char* pszFmt, ...)
 {
+#if 0
 	static char szBuffer[ 1024 ];
 	va_list ap;
 	va_start( ap, pszFmt );
@@ -145,6 +146,19 @@ __inline const char* strformat(const char* pszFmt, ...)
 	szBuffer[ 1023 ] = 0;
 	va_end( ap );
 	return szBuffer;
+#else
+	static const int s_MaxCount = 10;
+	static char s_szBuffer[s_MaxCount][2048];
+	static int s_CurIndex = 0;
+	va_list argptr;
+	va_start(argptr, pszFmt);
+	vsnprintf(s_szBuffer[s_CurIndex], sizeof(s_szBuffer[s_CurIndex]), pszFmt, argptr );
+	s_szBuffer[s_CurIndex][sizeof(s_szBuffer[s_CurIndex])-1] = 0;
+	va_end(argptr);
+	const char* pResult = s_szBuffer[s_CurIndex];
+	s_CurIndex = (++s_CurIndex)%s_MaxCount;
+	return pResult;
+#endif
 }
 
 //__inline void hexToStrLower(char* buffer, uint value)

@@ -5,28 +5,42 @@
 #endif
 
 
-class ObjPoolTest : public ObjectPool<ObjPoolTest>
+//class ObjPoolTest : public ObjectPool<ObjPoolTest>
+//{
+//public:
+//	ObjPoolTest();
+//	virtual ~ObjPoolTest();
+//
+//protected:
+//private:
+//};
+
+
+void runAsyncServer()
 {
-public:
-	ObjPoolTest();
-	virtual ~ObjPoolTest();
-
-protected:
-private:
-};
-
-
-void runServer()
-{
-	// 建立服务器
+	// 建立异步服务器
 	ServerServiceAsync service;
 	service.main();
 }
 
+void runSyncServer()
+{
+	// 建立同步服务器
+	ServerServiceSync service;
+	service.main();
+}
 
 int main(int argc, char *argv[])
 {
-	runServer();
+	bool isAsyncServer = false;
+
+	if (isAsyncServer) {
+		// 异步服务
+		runAsyncServer();
+	} else {
+		// 同步服务
+		runSyncServer();
+	}
 
 	return 0;
 }

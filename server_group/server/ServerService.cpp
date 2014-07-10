@@ -35,6 +35,35 @@ private:
 const string TestComponent::type = "TestComponent";
 
 
+//////////////////////////////////////////////////////////////////////////
+
+void execServiceOnInputCmd(ScriptObject* pScript, const char* cmd)
+{
+	// 事件测试
+	{
+		//GameObject gameObj;
+		//gameObj.getProperties().addValue("hp", 100);
+		//gameObj.getProperties().addValue("mp", 200);
+		//gameObj.createComponent<TestComponent>();
+		//gameObj.notify(EVT_TestEvent);
+	}
+
+	//for (int i=0; i<1; i++) {
+	//	ScriptObject* pScript2 = ScriptManager::getInstance().createScript();
+	//	//ScriptManager::getInstance().destroyScript(pScript2);
+	//}
+
+	pScript = ScriptManager::getInstance().createScript();
+	printf("\n=============== 开始执行脚本 ================\n");
+	pScript->dofile("./datas/scripts/server_service.lua");
+	pScript->dostring( format("ServerService_OnInputCmd(%s)", cmd) );
+	ScriptManager::getInstance().printInfo();
+	printf("\n=============== 结束脚本执行 ================\n");
+	ScriptManager::getInstance().destroyScript(pScript);
+}
+
+//////////////////////////////////////////////////////////////////////////
+
 ServerServiceAsync::ServerServiceAsync()
 	: NetService("ServerServiceAsync")
 {
@@ -52,30 +81,9 @@ void ServerServiceAsync::onInputCmd(const string& cmd)
 		printf("task: %d\n", TCPTaskManager::getInstance().size());
 	}
 
-	// 事件测试
-	{
-		GameObject gameObj;
-		gameObj.getProperties().addValue("hp", 100);
-		gameObj.getProperties().addValue("mp", 200);
-		gameObj.createComponent<TestComponent>();
-		gameObj.notify(EVT_TestEvent);
-	}
-
-	// lua测试
-	{
-		ScriptObject* pScript = ScriptManager::getInstance().createScript();
-		FUNC_PF("脚本执行时间");
-		printf("\n=============== 开始执行脚本 ================\n");
-		pScript->dofile("./datas/scripts/test.lua");
-		int count = 0;
-		for (int i=0; i<1; i++) {
-			//pScript->dostring("main_test()");
-			count++;
-		}
-		ScriptManager::getInstance().printInfo();
-		printf("\n=============== 结束脚本执行 ================\n");
-		ScriptManager::getInstance().destroyScript(pScript);
-	}
+	// 执行lua函数
+	FUNC_PF("脚本执行时间");
+	execServiceOnInputCmd(NULL, cmd.c_str());
 }
 
 bool ServerServiceAsync::onInitialise()
@@ -122,6 +130,82 @@ bool ServerServiceAsync::loadConfig()
 }
 
 void ServerServiceAsync::updateWindowTitle()
+{
+	string strTitle = strformat("ServerService %d",getLocalPort());
+	strTitle = Platform::utf8ToGbk(strTitle);
+	Platform::setWindowTitle(strTitle.c_str());
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+
+
+ServerServiceSync::ServerServiceSync()
+	: NetService("ServerServiceSync")
+{
+	mLocalPort = 0;
+	mMaxClient = 0;
+}
+
+ServerServiceSync::~ServerServiceSync()
+{
+}
+
+void ServerServiceSync::onInputCmd(const string& cmd)
+{
+	if (cmd == "i") {
+		printf("task: %d\n", TCPTaskManager::getInstance().size());
+	}
+
+	// 执行lua函数
+	FUNC_PF("脚本执行时间");
+	execServiceOnInputCmd(NULL, cmd.c_str());
+}
+
+bool ServerServiceSync::onInitialise()
+{ 
+	// 初始化minidump
+	MiniDump::InitMiniDump("./crashlog/", mName.c_str());
+
+	// 初始化日志
+	string strLogFile = strformat("./log/%s/%s", mName.c_str(), mName.c_str());
+	ServerLogger::getInstance().start(strLogFile.c_str(), "super", true);
+
+
+	loadConfig();
+
+	mLocalPort = 7102;
+
+	// 开启服务
+	addTimer(new TimerForMain);
+	start( getLocalPort() );
+	updateWindowTitle();
+	LOGI("开始监听端口 %d", getLocalPort());
+
+	return true;
+}
+
+void ServerServiceSync::onShutdown()		
+{
+	ServerLogger::getInstance().stop();
+}
+
+bool ServerServiceSync::loadConfig()
+{
+	pugi::xml_document doc;
+	if (!doc.load_file("./config/config.xml")) {
+		LOGE("加载config.xml文件失败");
+		return false;
+	}
+
+	pugi::xml_node node = doc.child("Config").child("Global").child("SuperServer");
+	mLocalPort = atoi(node.attribute("port").value());
+	mMaxClient = atoi(node.attribute("maxclient").value());
+
+	return true;
+}
+
+void ServerServiceSync::updateWindowTitle()
 {
 	string strTitle = strformat("ServerService %d",getLocalPort());
 	strTitle = Platform::utf8ToGbk(strTitle);

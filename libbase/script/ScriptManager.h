@@ -13,12 +13,18 @@ namespace easygame {
 
 class ScriptManager;
 
+enum class ScriptType
+{
+	NewState,		// 新的虚拟机
+	ThreadState,	// 协程
+};
+
 class ScriptObject
 {
 	friend class ScriptManager;
 
 protected:
-	ScriptObject();
+	ScriptObject(lua_State* mainState);
 	virtual ~ScriptObject();
 
 public:
@@ -61,6 +67,7 @@ protected:
 private:
 	string mFileName;		// 文件名
 	lua_State* mLuaState;	// lua虚拟机
+	ScriptType mScriptType;
 };
 
 
@@ -72,7 +79,7 @@ public:
 	ScriptManager();
 	virtual ~ScriptManager();
 
-	ScriptObject* createScript();
+	ScriptObject* createScript(ScriptType type = ScriptType::NewState);
 	void destroyScript(ScriptObject*& pScript);
 
 	//ScriptObject* getScript(size_t index);
@@ -86,7 +93,7 @@ public:
 
 protected:
 private:
-	
+	lua_State* mLuaState;	// 主虚拟机
 	map<ScriptObject*,ScriptObject*> mScriptList;
 };
 

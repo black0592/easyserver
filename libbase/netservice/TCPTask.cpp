@@ -95,11 +95,7 @@ namespace easygame {
 	{
 		// 真正的进入逻辑处理
 		//BLOGD("OnConnect: id=%d, ip=%s, port=%d, taskcount=%d\n", getID(), getIP(), port, TCPTaskManager::getInstance().size());
-
-		// 通知调度系统接收数据
-		// 数据这时并没有真正接收，当客户端有数据发送来时
-		// 调度器自动接收数据，然后通过OnRecv通知数据接收完成
-		recv();
+		
 		return true;
 	}
 
