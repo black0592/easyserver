@@ -2,10 +2,8 @@
 #include "ProtoDataFill.h"
 
 
-uint ProtoDataFill::fillProto2Buff(void* buff, uint buffLen, const ProtoMessage& msg, uint cmdID)
+uint ProtoDataFill::fillProto2Buff(void* buff, uint buffLen, const ProtoMessage& msg, const stBaseCmd& cmd)
 {
-	stBaseCmd baseCmd(cmdID);
-
 	int protoSize = msg.ByteSize();
 	uint cmdLen = sizeof(stBaseCmd) + protoSize;
 
@@ -17,7 +15,7 @@ uint ProtoDataFill::fillProto2Buff(void* buff, uint buffLen, const ProtoMessage&
 	byte* pBufferPtr = (byte*)buff;
 
 	// 写入消息内容
-	memcpy(pBufferPtr, &baseCmd, sizeof(stBaseCmd));
+	memcpy(pBufferPtr, &cmd, sizeof(stBaseCmd));
 	pBufferPtr += sizeof(stBaseCmd);
 
 	// 写入protobuf二进制流

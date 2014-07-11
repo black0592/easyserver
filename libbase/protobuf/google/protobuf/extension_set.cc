@@ -38,7 +38,7 @@
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/message_lite.h>
 #include <google/protobuf/io/coded_stream.h>
-//#include <google/protobuf/io/zero_copy_stream_impl.h>
+#include <google/protobuf/io/zero_copy_stream_impl.h>
 #include <google/protobuf/wire_format_lite_inl.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/stubs/map-util.h>

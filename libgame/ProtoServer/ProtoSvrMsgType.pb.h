@@ -22,6 +22,7 @@
 #include <google/protobuf/generated_message_util.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
+#include <google/protobuf/generated_enum_reflection.h>
 // @@protoc_insertion_point(includes)
 
 namespace ServerProtocol {
@@ -47,6 +48,16 @@ const SvrMessageType SvrMessageType_MIN = SVR_MSG_SUPER_SERVICE;
 const SvrMessageType SvrMessageType_MAX = SVR_MSG_GAMEDB_SERVICE;
 const int SvrMessageType_ARRAYSIZE = SvrMessageType_MAX + 1;
 
+const ::google::protobuf::EnumDescriptor* SvrMessageType_descriptor();
+inline const ::std::string& SvrMessageType_Name(SvrMessageType value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    SvrMessageType_descriptor(), value);
+}
+inline bool SvrMessageType_Parse(
+    const ::std::string& name, SvrMessageType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<SvrMessageType>(
+    SvrMessageType_descriptor(), name, value);
+}
 // ===================================================================
 
 
@@ -59,6 +70,19 @@ const int SvrMessageType_ARRAYSIZE = SvrMessageType_MAX + 1;
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace ServerProtocol
+
+#ifndef SWIG
+namespace google {
+namespace protobuf {
+
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::ServerProtocol::SvrMessageType>() {
+  return ::ServerProtocol::SvrMessageType_descriptor();
+}
+
+}  // namespace google
+}  // namespace protobuf
+#endif  // SWIG
 
 // @@protoc_insertion_point(global_scope)
 

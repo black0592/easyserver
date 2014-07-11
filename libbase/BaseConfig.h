@@ -10,5 +10,8 @@
 // 是否编译dump模块
 #define ENABLE_MINIDUMP	1
 
+// 是否开启proto反射功能
+#define ENABLE_PROTO_REFLECT	1
+
 
 #endif

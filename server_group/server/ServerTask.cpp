@@ -1,5 +1,6 @@
 #include "ServerHeader.h"
 #include "ServerTask.h"
+#include "ProtoSvrLogin.pb.h"
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -27,12 +28,21 @@ void execServerTaskOnDisconnect(ScriptObject* pScript)
 	ScriptManager::getInstance().destroyScript(pScript);
 }
 
-void execServerTaskHandleProtoMsg(ScriptObject* pScript, const EventArgs& args)
+void execServerTaskHandleProtoMsg(TCPTask* pTask, ScriptObject* pScript, const EventArgs& args)
 {
+	const NetEventArgs& netArgs = (const NetEventArgs&)args;
+	if (netArgs.protoMsg == NULL)
+		return;
+
+	LoginCmd::RequestRegisterGameServer* loinMsg = (LoginCmd::RequestRegisterGameServer*)netArgs.protoMsg;
+
 	pScript = ScriptManager::getInstance().createScript();
 	printf("\n=============== 开始执行脚本 ================\n");
 	pScript->dofile("./datas/scripts/server_task.lua");
-	pScript->dostring("ServerTask_handleProtoMsg()");
+	//Event2Proto();
+	ProtoMessage* pMsg = netArgs.protoMsg;
+	lua_tinker::call<void,TCPTask*,ProtoMessage*>(pScript->getState(), "ServerTask_handleProtoMsg", pTask, pMsg);
+	//pScript->dostring("ServerTask_handleProtoMsg()");
 	ScriptManager::getInstance().printInfo();
 	printf("\n=============== 结束脚本执行 ================\n");
 	ScriptManager::getInstance().destroyScript(pScript);
@@ -79,7 +89,7 @@ bool ServerTaskAsync::handleProtoMsg(const EventArgs& args)
 	// 消息性能记录
 	FUNC_PF_EXT(strformat("消息执行时间过长para=%d",pCmd->para), 50);
 
-	execServerTaskHandleProtoMsg(NULL, args);
+	execServerTaskHandleProtoMsg(this, NULL, args);
 
 	return true;
 }
@@ -127,7 +137,7 @@ bool ServerTaskSync::handleProtoMsg(const EventArgs& args)
 	// 消息性能记录
 	FUNC_PF_EXT(strformat("消息执行时间过长para=%d",pCmd->para), 50);
 
-	execServerTaskHandleProtoMsg(NULL, args);
+	execServerTaskHandleProtoMsg(this, NULL, args);
 
 	return true;
 }

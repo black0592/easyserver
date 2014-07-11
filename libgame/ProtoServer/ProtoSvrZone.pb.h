@@ -20,9 +20,11 @@
 #endif
 
 #include <google/protobuf/generated_message_util.h>
-#include <google/protobuf/message_lite.h>
+#include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
+#include <google/protobuf/generated_enum_reflection.h>
+#include <google/protobuf/unknown_field_set.h>
 #include "ProtoSvrServerData.pb.h"
 // @@protoc_insertion_point(includes)
 
@@ -55,9 +57,19 @@ const SvrZoneOpCode SvrZoneOpCode_MIN = ZONE_OP_REGISTER_SERVER;
 const SvrZoneOpCode SvrZoneOpCode_MAX = ZONE_OP_UNREG_ZONEUSER;
 const int SvrZoneOpCode_ARRAYSIZE = SvrZoneOpCode_MAX + 1;
 
+const ::google::protobuf::EnumDescriptor* SvrZoneOpCode_descriptor();
+inline const ::std::string& SvrZoneOpCode_Name(SvrZoneOpCode value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    SvrZoneOpCode_descriptor(), value);
+}
+inline bool SvrZoneOpCode_Parse(
+    const ::std::string& name, SvrZoneOpCode* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<SvrZoneOpCode>(
+    SvrZoneOpCode_descriptor(), name, value);
+}
 // ===================================================================
 
-class MsgRegisterServer : public ::google::protobuf::MessageLite {
+class MsgRegisterServer : public ::google::protobuf::Message {
  public:
   MsgRegisterServer();
   virtual ~MsgRegisterServer();
@@ -69,24 +81,24 @@ class MsgRegisterServer : public ::google::protobuf::MessageLite {
     return *this;
   }
 
-  static const MsgRegisterServer& default_instance();
-
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  // Returns the internal default instance pointer. This function can
-  // return NULL thus should not be used by the user. This is intended
-  // for Protobuf internal code. Please use default_instance() declared
-  // above instead.
-  static inline const MsgRegisterServer* internal_default_instance() {
-    return default_instance_;
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
   }
-  #endif
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgRegisterServer& default_instance();
 
   void Swap(MsgRegisterServer* other);
 
   // implements Message ----------------------------------------------
 
   MsgRegisterServer* New() const;
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const MsgRegisterServer& from);
   void MergeFrom(const MsgRegisterServer& from);
   void Clear();
@@ -97,6 +109,7 @@ class MsgRegisterServer : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -104,7 +117,7 @@ class MsgRegisterServer : public ::google::protobuf::MessageLite {
   void SetCachedSize(int size) const;
   public:
 
-  ::std::string GetTypeName() const;
+  ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
 
@@ -133,17 +146,15 @@ class MsgRegisterServer : public ::google::protobuf::MessageLite {
   inline void set_has_result();
   inline void clear_has_result();
 
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
   ::ServerInfo* info_;
   ::google::protobuf::int32 result_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_ProtoSvrZone_2eproto_impl();
-  #else
   friend void  protobuf_AddDesc_ProtoSvrZone_2eproto();
-  #endif
   friend void protobuf_AssignDesc_ProtoSvrZone_2eproto();
   friend void protobuf_ShutdownFile_ProtoSvrZone_2eproto();
 
@@ -152,7 +163,7 @@ class MsgRegisterServer : public ::google::protobuf::MessageLite {
 };
 // -------------------------------------------------------------------
 
-class MsgGetServerInfo : public ::google::protobuf::MessageLite {
+class MsgGetServerInfo : public ::google::protobuf::Message {
  public:
   MsgGetServerInfo();
   virtual ~MsgGetServerInfo();
@@ -164,24 +175,24 @@ class MsgGetServerInfo : public ::google::protobuf::MessageLite {
     return *this;
   }
 
-  static const MsgGetServerInfo& default_instance();
-
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  // Returns the internal default instance pointer. This function can
-  // return NULL thus should not be used by the user. This is intended
-  // for Protobuf internal code. Please use default_instance() declared
-  // above instead.
-  static inline const MsgGetServerInfo* internal_default_instance() {
-    return default_instance_;
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
   }
-  #endif
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgGetServerInfo& default_instance();
 
   void Swap(MsgGetServerInfo* other);
 
   // implements Message ----------------------------------------------
 
   MsgGetServerInfo* New() const;
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const MsgGetServerInfo& from);
   void MergeFrom(const MsgGetServerInfo& from);
   void Clear();
@@ -192,6 +203,7 @@ class MsgGetServerInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -199,7 +211,7 @@ class MsgGetServerInfo : public ::google::protobuf::MessageLite {
   void SetCachedSize(int size) const;
   public:
 
-  ::std::string GetTypeName() const;
+  ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
 
@@ -247,6 +259,8 @@ class MsgGetServerInfo : public ::google::protobuf::MessageLite {
   inline void set_has_result();
   inline void clear_has_result();
 
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
   ::google::protobuf::uint32 type_;
   ::google::protobuf::uint32 flag_;
   ::google::protobuf::RepeatedPtrField< ::ServerInfo > server_list_;
@@ -255,11 +269,7 @@ class MsgGetServerInfo : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_ProtoSvrZone_2eproto_impl();
-  #else
   friend void  protobuf_AddDesc_ProtoSvrZone_2eproto();
-  #endif
   friend void protobuf_AssignDesc_ProtoSvrZone_2eproto();
   friend void protobuf_ShutdownFile_ProtoSvrZone_2eproto();
 
@@ -268,7 +278,7 @@ class MsgGetServerInfo : public ::google::protobuf::MessageLite {
 };
 // -------------------------------------------------------------------
 
-class MsgUserSelectZone : public ::google::protobuf::MessageLite {
+class MsgUserSelectZone : public ::google::protobuf::Message {
  public:
   MsgUserSelectZone();
   virtual ~MsgUserSelectZone();
@@ -280,24 +290,24 @@ class MsgUserSelectZone : public ::google::protobuf::MessageLite {
     return *this;
   }
 
-  static const MsgUserSelectZone& default_instance();
-
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  // Returns the internal default instance pointer. This function can
-  // return NULL thus should not be used by the user. This is intended
-  // for Protobuf internal code. Please use default_instance() declared
-  // above instead.
-  static inline const MsgUserSelectZone* internal_default_instance() {
-    return default_instance_;
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
   }
-  #endif
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgUserSelectZone& default_instance();
 
   void Swap(MsgUserSelectZone* other);
 
   // implements Message ----------------------------------------------
 
   MsgUserSelectZone* New() const;
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const MsgUserSelectZone& from);
   void MergeFrom(const MsgUserSelectZone& from);
   void Clear();
@@ -308,6 +318,7 @@ class MsgUserSelectZone : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -315,7 +326,7 @@ class MsgUserSelectZone : public ::google::protobuf::MessageLite {
   void SetCachedSize(int size) const;
   public:
 
-  ::std::string GetTypeName() const;
+  ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
 
@@ -392,6 +403,8 @@ class MsgUserSelectZone : public ::google::protobuf::MessageLite {
   inline void set_has_gateway_port();
   inline void clear_has_gateway_port();
 
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
   ::std::string* account_;
   ::google::protobuf::uint32 login_key_;
   ::google::protobuf::uint32 client_taskid_;
@@ -403,11 +416,7 @@ class MsgUserSelectZone : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_ProtoSvrZone_2eproto_impl();
-  #else
   friend void  protobuf_AddDesc_ProtoSvrZone_2eproto();
-  #endif
   friend void protobuf_AssignDesc_ProtoSvrZone_2eproto();
   friend void protobuf_ShutdownFile_ProtoSvrZone_2eproto();
 
@@ -416,7 +425,7 @@ class MsgUserSelectZone : public ::google::protobuf::MessageLite {
 };
 // -------------------------------------------------------------------
 
-class MsgRecordCharToLoginDB : public ::google::protobuf::MessageLite {
+class MsgRecordCharToLoginDB : public ::google::protobuf::Message {
  public:
   MsgRecordCharToLoginDB();
   virtual ~MsgRecordCharToLoginDB();
@@ -428,24 +437,24 @@ class MsgRecordCharToLoginDB : public ::google::protobuf::MessageLite {
     return *this;
   }
 
-  static const MsgRecordCharToLoginDB& default_instance();
-
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  // Returns the internal default instance pointer. This function can
-  // return NULL thus should not be used by the user. This is intended
-  // for Protobuf internal code. Please use default_instance() declared
-  // above instead.
-  static inline const MsgRecordCharToLoginDB* internal_default_instance() {
-    return default_instance_;
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
   }
-  #endif
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgRecordCharToLoginDB& default_instance();
 
   void Swap(MsgRecordCharToLoginDB* other);
 
   // implements Message ----------------------------------------------
 
   MsgRecordCharToLoginDB* New() const;
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const MsgRecordCharToLoginDB& from);
   void MergeFrom(const MsgRecordCharToLoginDB& from);
   void Clear();
@@ -456,6 +465,7 @@ class MsgRecordCharToLoginDB : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -463,7 +473,7 @@ class MsgRecordCharToLoginDB : public ::google::protobuf::MessageLite {
   void SetCachedSize(int size) const;
   public:
 
-  ::std::string GetTypeName() const;
+  ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
 
@@ -483,16 +493,14 @@ class MsgRecordCharToLoginDB : public ::google::protobuf::MessageLite {
   inline void set_has_char_info();
   inline void clear_has_char_info();
 
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
   ::SvrZoneCharInfo* char_info_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_ProtoSvrZone_2eproto_impl();
-  #else
   friend void  protobuf_AddDesc_ProtoSvrZone_2eproto();
-  #endif
   friend void protobuf_AssignDesc_ProtoSvrZone_2eproto();
   friend void protobuf_ShutdownFile_ProtoSvrZone_2eproto();
 
@@ -501,7 +509,7 @@ class MsgRecordCharToLoginDB : public ::google::protobuf::MessageLite {
 };
 // -------------------------------------------------------------------
 
-class NotifyUpdateServerInfo : public ::google::protobuf::MessageLite {
+class NotifyUpdateServerInfo : public ::google::protobuf::Message {
  public:
   NotifyUpdateServerInfo();
   virtual ~NotifyUpdateServerInfo();
@@ -513,24 +521,24 @@ class NotifyUpdateServerInfo : public ::google::protobuf::MessageLite {
     return *this;
   }
 
-  static const NotifyUpdateServerInfo& default_instance();
-
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  // Returns the internal default instance pointer. This function can
-  // return NULL thus should not be used by the user. This is intended
-  // for Protobuf internal code. Please use default_instance() declared
-  // above instead.
-  static inline const NotifyUpdateServerInfo* internal_default_instance() {
-    return default_instance_;
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
   }
-  #endif
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const NotifyUpdateServerInfo& default_instance();
 
   void Swap(NotifyUpdateServerInfo* other);
 
   // implements Message ----------------------------------------------
 
   NotifyUpdateServerInfo* New() const;
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const NotifyUpdateServerInfo& from);
   void MergeFrom(const NotifyUpdateServerInfo& from);
   void Clear();
@@ -541,6 +549,7 @@ class NotifyUpdateServerInfo : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -548,7 +557,7 @@ class NotifyUpdateServerInfo : public ::google::protobuf::MessageLite {
   void SetCachedSize(int size) const;
   public:
 
-  ::std::string GetTypeName() const;
+  ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
 
@@ -584,6 +593,8 @@ class NotifyUpdateServerInfo : public ::google::protobuf::MessageLite {
   inline void set_has_state();
   inline void clear_has_state();
 
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
   ::google::protobuf::uint64 server_uid_;
   ::google::protobuf::int32 onlinenum_;
   ::google::protobuf::int32 state_;
@@ -591,11 +602,7 @@ class NotifyUpdateServerInfo : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_ProtoSvrZone_2eproto_impl();
-  #else
   friend void  protobuf_AddDesc_ProtoSvrZone_2eproto();
-  #endif
   friend void protobuf_AssignDesc_ProtoSvrZone_2eproto();
   friend void protobuf_ShutdownFile_ProtoSvrZone_2eproto();
 
@@ -604,7 +611,7 @@ class NotifyUpdateServerInfo : public ::google::protobuf::MessageLite {
 };
 // -------------------------------------------------------------------
 
-class MsgKickGatewayUser : public ::google::protobuf::MessageLite {
+class MsgKickGatewayUser : public ::google::protobuf::Message {
  public:
   MsgKickGatewayUser();
   virtual ~MsgKickGatewayUser();
@@ -616,24 +623,24 @@ class MsgKickGatewayUser : public ::google::protobuf::MessageLite {
     return *this;
   }
 
-  static const MsgKickGatewayUser& default_instance();
-
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  // Returns the internal default instance pointer. This function can
-  // return NULL thus should not be used by the user. This is intended
-  // for Protobuf internal code. Please use default_instance() declared
-  // above instead.
-  static inline const MsgKickGatewayUser* internal_default_instance() {
-    return default_instance_;
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
   }
-  #endif
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgKickGatewayUser& default_instance();
 
   void Swap(MsgKickGatewayUser* other);
 
   // implements Message ----------------------------------------------
 
   MsgKickGatewayUser* New() const;
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const MsgKickGatewayUser& from);
   void MergeFrom(const MsgKickGatewayUser& from);
   void Clear();
@@ -644,6 +651,7 @@ class MsgKickGatewayUser : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -651,7 +659,7 @@ class MsgKickGatewayUser : public ::google::protobuf::MessageLite {
   void SetCachedSize(int size) const;
   public:
 
-  ::std::string GetTypeName() const;
+  ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
 
@@ -683,17 +691,15 @@ class MsgKickGatewayUser : public ::google::protobuf::MessageLite {
   inline void set_has_result();
   inline void clear_has_result();
 
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
   ::std::string* account_;
   ::google::protobuf::int32 result_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_ProtoSvrZone_2eproto_impl();
-  #else
   friend void  protobuf_AddDesc_ProtoSvrZone_2eproto();
-  #endif
   friend void protobuf_AssignDesc_ProtoSvrZone_2eproto();
   friend void protobuf_ShutdownFile_ProtoSvrZone_2eproto();
 
@@ -702,7 +708,7 @@ class MsgKickGatewayUser : public ::google::protobuf::MessageLite {
 };
 // -------------------------------------------------------------------
 
-class MsgUnregZoneUser : public ::google::protobuf::MessageLite {
+class MsgUnregZoneUser : public ::google::protobuf::Message {
  public:
   MsgUnregZoneUser();
   virtual ~MsgUnregZoneUser();
@@ -714,24 +720,24 @@ class MsgUnregZoneUser : public ::google::protobuf::MessageLite {
     return *this;
   }
 
-  static const MsgUnregZoneUser& default_instance();
-
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  // Returns the internal default instance pointer. This function can
-  // return NULL thus should not be used by the user. This is intended
-  // for Protobuf internal code. Please use default_instance() declared
-  // above instead.
-  static inline const MsgUnregZoneUser* internal_default_instance() {
-    return default_instance_;
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
   }
-  #endif
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgUnregZoneUser& default_instance();
 
   void Swap(MsgUnregZoneUser* other);
 
   // implements Message ----------------------------------------------
 
   MsgUnregZoneUser* New() const;
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const MsgUnregZoneUser& from);
   void MergeFrom(const MsgUnregZoneUser& from);
   void Clear();
@@ -742,6 +748,7 @@ class MsgUnregZoneUser : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -749,7 +756,7 @@ class MsgUnregZoneUser : public ::google::protobuf::MessageLite {
   void SetCachedSize(int size) const;
   public:
 
-  ::std::string GetTypeName() const;
+  ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
 
@@ -781,17 +788,15 @@ class MsgUnregZoneUser : public ::google::protobuf::MessageLite {
   inline void set_has_result();
   inline void clear_has_result();
 
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
   ::std::string* account_;
   ::google::protobuf::int32 result_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_ProtoSvrZone_2eproto_impl();
-  #else
   friend void  protobuf_AddDesc_ProtoSvrZone_2eproto();
-  #endif
   friend void protobuf_AssignDesc_ProtoSvrZone_2eproto();
   friend void protobuf_ShutdownFile_ProtoSvrZone_2eproto();
 
@@ -820,11 +825,7 @@ inline void MsgRegisterServer::clear_info() {
   clear_has_info();
 }
 inline const ::ServerInfo& MsgRegisterServer::info() const {
-#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  return info_ != NULL ? *info_ : *default_instance().info_;
-#else
   return info_ != NULL ? *info_ : *default_instance_->info_;
-#endif
 }
 inline ::ServerInfo* MsgRegisterServer::mutable_info() {
   set_has_info();
@@ -1189,11 +1190,7 @@ inline void MsgRecordCharToLoginDB::clear_char_info() {
   clear_has_char_info();
 }
 inline const ::SvrZoneCharInfo& MsgRecordCharToLoginDB::char_info() const {
-#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  return char_info_ != NULL ? *char_info_ : *default_instance().char_info_;
-#else
   return char_info_ != NULL ? *char_info_ : *default_instance_->char_info_;
-#endif
 }
 inline ::SvrZoneCharInfo* MsgRecordCharToLoginDB::mutable_char_info() {
   set_has_char_info();
@@ -1482,6 +1479,19 @@ inline void MsgUnregZoneUser::set_result(::google::protobuf::int32 value) {
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace ZoneCmd
+
+#ifndef SWIG
+namespace google {
+namespace protobuf {
+
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::ZoneCmd::SvrZoneOpCode>() {
+  return ::ZoneCmd::SvrZoneOpCode_descriptor();
+}
+
+}  // namespace google
+}  // namespace protobuf
+#endif  // SWIG
 
 // @@protoc_insertion_point(global_scope)
 

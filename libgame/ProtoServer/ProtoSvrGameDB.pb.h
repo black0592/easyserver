@@ -20,9 +20,11 @@
 #endif
 
 #include <google/protobuf/generated_message_util.h>
-#include <google/protobuf/message_lite.h>
+#include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
+#include <google/protobuf/generated_enum_reflection.h>
+#include <google/protobuf/unknown_field_set.h>
 #include "ProtoSvrServerData.pb.h"
 // @@protoc_insertion_point(includes)
 
@@ -44,9 +46,19 @@ const SvrGameDBOpCode SvrGameDBOpCode_MIN = GAMEDB_OP_GET_CHARLIST;
 const SvrGameDBOpCode SvrGameDBOpCode_MAX = GAMEDB_OP_GET_CHARLIST;
 const int SvrGameDBOpCode_ARRAYSIZE = SvrGameDBOpCode_MAX + 1;
 
+const ::google::protobuf::EnumDescriptor* SvrGameDBOpCode_descriptor();
+inline const ::std::string& SvrGameDBOpCode_Name(SvrGameDBOpCode value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    SvrGameDBOpCode_descriptor(), value);
+}
+inline bool SvrGameDBOpCode_Parse(
+    const ::std::string& name, SvrGameDBOpCode* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<SvrGameDBOpCode>(
+    SvrGameDBOpCode_descriptor(), name, value);
+}
 // ===================================================================
 
-class RequestGetCharList : public ::google::protobuf::MessageLite {
+class RequestGetCharList : public ::google::protobuf::Message {
  public:
   RequestGetCharList();
   virtual ~RequestGetCharList();
@@ -58,24 +70,24 @@ class RequestGetCharList : public ::google::protobuf::MessageLite {
     return *this;
   }
 
-  static const RequestGetCharList& default_instance();
-
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  // Returns the internal default instance pointer. This function can
-  // return NULL thus should not be used by the user. This is intended
-  // for Protobuf internal code. Please use default_instance() declared
-  // above instead.
-  static inline const RequestGetCharList* internal_default_instance() {
-    return default_instance_;
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
   }
-  #endif
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const RequestGetCharList& default_instance();
 
   void Swap(RequestGetCharList* other);
 
   // implements Message ----------------------------------------------
 
   RequestGetCharList* New() const;
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const RequestGetCharList& from);
   void MergeFrom(const RequestGetCharList& from);
   void Clear();
@@ -86,6 +98,7 @@ class RequestGetCharList : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -93,7 +106,7 @@ class RequestGetCharList : public ::google::protobuf::MessageLite {
   void SetCachedSize(int size) const;
   public:
 
-  ::std::string GetTypeName() const;
+  ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
 
@@ -116,16 +129,14 @@ class RequestGetCharList : public ::google::protobuf::MessageLite {
   inline void set_has_account();
   inline void clear_has_account();
 
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
   ::std::string* account_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_ProtoSvrGameDB_2eproto_impl();
-  #else
   friend void  protobuf_AddDesc_ProtoSvrGameDB_2eproto();
-  #endif
   friend void protobuf_AssignDesc_ProtoSvrGameDB_2eproto();
   friend void protobuf_ShutdownFile_ProtoSvrGameDB_2eproto();
 
@@ -134,7 +145,7 @@ class RequestGetCharList : public ::google::protobuf::MessageLite {
 };
 // -------------------------------------------------------------------
 
-class ResponseGetCharList : public ::google::protobuf::MessageLite {
+class ResponseGetCharList : public ::google::protobuf::Message {
  public:
   ResponseGetCharList();
   virtual ~ResponseGetCharList();
@@ -146,24 +157,24 @@ class ResponseGetCharList : public ::google::protobuf::MessageLite {
     return *this;
   }
 
-  static const ResponseGetCharList& default_instance();
-
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  // Returns the internal default instance pointer. This function can
-  // return NULL thus should not be used by the user. This is intended
-  // for Protobuf internal code. Please use default_instance() declared
-  // above instead.
-  static inline const ResponseGetCharList* internal_default_instance() {
-    return default_instance_;
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
   }
-  #endif
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ResponseGetCharList& default_instance();
 
   void Swap(ResponseGetCharList* other);
 
   // implements Message ----------------------------------------------
 
   ResponseGetCharList* New() const;
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const ResponseGetCharList& from);
   void MergeFrom(const ResponseGetCharList& from);
   void Clear();
@@ -174,6 +185,7 @@ class ResponseGetCharList : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -181,7 +193,7 @@ class ResponseGetCharList : public ::google::protobuf::MessageLite {
   void SetCachedSize(int size) const;
   public:
 
-  ::std::string GetTypeName() const;
+  ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
 
@@ -204,16 +216,14 @@ class ResponseGetCharList : public ::google::protobuf::MessageLite {
   inline void set_has_account();
   inline void clear_has_account();
 
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
   ::std::string* account_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_ProtoSvrGameDB_2eproto_impl();
-  #else
   friend void  protobuf_AddDesc_ProtoSvrGameDB_2eproto();
-  #endif
   friend void protobuf_AssignDesc_ProtoSvrGameDB_2eproto();
   friend void protobuf_ShutdownFile_ProtoSvrGameDB_2eproto();
 
@@ -375,6 +385,19 @@ inline void ResponseGetCharList::set_allocated_account(::std::string* account) {
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace GameDBCmd
+
+#ifndef SWIG
+namespace google {
+namespace protobuf {
+
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::GameDBCmd::SvrGameDBOpCode>() {
+  return ::GameDBCmd::SvrGameDBOpCode_descriptor();
+}
+
+}  // namespace google
+}  // namespace protobuf
+#endif  // SWIG
 
 // @@protoc_insertion_point(global_scope)
 

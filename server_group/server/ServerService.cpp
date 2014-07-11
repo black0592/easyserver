@@ -2,7 +2,6 @@
 #include "ServerService.h"
 #include "TimerForMain.h"
 
-
 const EventType EVT_TestEvent = "TestEvent";
 
 class TestComponent : public Component
@@ -37,8 +36,11 @@ const string TestComponent::type = "TestComponent";
 
 //////////////////////////////////////////////////////////////////////////
 
-void execServiceOnInputCmd(ScriptObject* pScript, const char* cmd)
+void execServiceOnInputCmd(ScriptObject* pScript, const string& cmd)
 {
+	if (cmd.empty())
+		return;
+
 	// 事件测试
 	{
 		//GameObject gameObj;
@@ -56,7 +58,7 @@ void execServiceOnInputCmd(ScriptObject* pScript, const char* cmd)
 	pScript = ScriptManager::getInstance().createScript();
 	printf("\n=============== 开始执行脚本 ================\n");
 	pScript->dofile("./datas/scripts/server_service.lua");
-	pScript->dostring( format("ServerService_OnInputCmd(%s)", cmd) );
+	pScript->dostring( strformat("ServerService_OnInputCmd(\"%s\")", cmd.c_str()) );
 	ScriptManager::getInstance().printInfo();
 	printf("\n=============== 结束脚本执行 ================\n");
 	ScriptManager::getInstance().destroyScript(pScript);
@@ -83,7 +85,7 @@ void ServerServiceAsync::onInputCmd(const string& cmd)
 
 	// 执行lua函数
 	FUNC_PF("脚本执行时间");
-	execServiceOnInputCmd(NULL, cmd.c_str());
+	execServiceOnInputCmd(NULL, cmd);
 }
 
 bool ServerServiceAsync::onInitialise()
@@ -159,7 +161,7 @@ void ServerServiceSync::onInputCmd(const string& cmd)
 
 	// 执行lua函数
 	FUNC_PF("脚本执行时间");
-	execServiceOnInputCmd(NULL, cmd.c_str());
+	execServiceOnInputCmd(NULL, cmd);
 }
 
 bool ServerServiceSync::onInitialise()

@@ -9,21 +9,27 @@
 class NetEventArgs : public EventArgs
 {
 public:
-	NetEventArgs(stBaseCmd* _cmd, ushort _cmdLen, byte* _protoData, ushort _protoLen)
+	NetEventArgs(stBaseCmd* _cmd, ushort _cmdLen, byte* _protoData, ushort _protoLen, ProtoMessage* _protoMsg)
 		: pCmd(_cmd)
 		, cmdLen(_cmdLen)
 		, protoData(_protoData)
 		, protoLen(_protoLen)
-
+		, protoMsg(_protoMsg)
 	{
 
 	}
 
+	virtual ~NetEventArgs()
+	{
+		SAFE_DELETE(protoMsg);
+	}
+
 public:
-	stBaseCmd* pCmd;	// 基础消息类型
-	ushort cmdLen;		// 整个消息长度
-	byte* protoData;	// protobuf二进制数据
-	ushort protoLen;	// protobuf数据大小
+	stBaseCmd* pCmd;		// 基础消息类型
+	ushort cmdLen;			// 整个消息长度
+	byte* protoData;		// protobuf二进制数据
+	ushort protoLen;		// protobuf数据大小
+	ProtoMessage* protoMsg;	// proto反射出来的消息结构体
 };
 
 

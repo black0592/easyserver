@@ -22,18 +22,30 @@ typedef byte para_type;
 #define FLAG_ZIP		1	// 压缩
 #define FLAG_ENCRYPT	2	// 加密
 
+#define TYPE_NAME_SIZE	128	// 消息名称长度
+
 const cmd_type		CMD_NULL = 0;	//空指令编号
 const para_type		PARA_NULL = 0;	//空参数指令编号
+
+const cmd_type		CMD_PING = -1;	//ping指令编号
+const para_type		PARA_PING = -1;	//ping参数指令编号
+
 struct stBaseCmd 
 {
 	byte		flag;	// 压缩和加密标记
 	cmd_type	cmd;	// 主消息号
 	para_type	para;	// 子消息号
 
+#if ENABLE_PROTO_REFLECT
+	char		name[TYPE_NAME_SIZE];	// 消息名称
+#endif
+
 	stBaseCmd(cmd_type _cmd, para_type _para)
 		:cmd(_cmd), para(_para), flag(FLAG_NONE)
 	{
-
+#if ENABLE_PROTO_REFLECT
+		memset(name, 0, sizeof(name));
+#endif
 	}
 
 	stBaseCmd(uint _cmdID)
@@ -41,7 +53,27 @@ struct stBaseCmd
 		cmd = GET_CMD(_cmdID);
 		para = GET_PARA(_cmdID);
 		flag = FLAG_NONE;
+#if ENABLE_PROTO_REFLECT
+		memset(name, 0, sizeof(name));
+#endif
 	}
+
+#if ENABLE_PROTO_REFLECT
+	void setTypeName(const char* typeName)
+	{
+#ifdef _DEBUG
+		size_t len = strlen(typeName);
+		assert(len < TYPE_NAME_SIZE);
+#endif
+		strncpy(name, typeName, TYPE_NAME_SIZE-1);
+	}
+
+	const char* getTypeName()
+	{
+		return name;
+	}
+
+#endif
 
 	const uint getCmdID() const
 	{
@@ -54,7 +86,7 @@ struct stBaseCmd
 // 空的ping指令，保持联通
 struct stPing : public stBaseCmd
 {
-	stPing() : stBaseCmd(CMD_NULL, PARA_NULL)
+	stPing() : stBaseCmd(CMD_PING, PARA_PING)
 	{
 	}
 };

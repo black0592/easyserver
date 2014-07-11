@@ -10,31 +10,210 @@
 #include <google/protobuf/stubs/once.h>
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/wire_format_lite_inl.h>
+#include <google/protobuf/descriptor.h>
+#include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/reflection_ops.h>
+#include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 
 namespace GameCmd {
 
-void protobuf_ShutdownFile_ProtoSvrGame_2eproto() {
-  delete GatewayForwardCmd::default_instance_;
-  delete GatewayEnterGame::default_instance_;
-  delete GatewayUnregGameUser::default_instance_;
-  delete GatewayKickGameUser::default_instance_;
-  delete GatewayShutdownGame::default_instance_;
-  delete GatewayServerPing::default_instance_;
+namespace {
+
+const ::google::protobuf::Descriptor* GatewayForwardCmd_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  GatewayForwardCmd_reflection_ = NULL;
+const ::google::protobuf::Descriptor* GatewayEnterGame_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  GatewayEnterGame_reflection_ = NULL;
+const ::google::protobuf::Descriptor* GatewayUnregGameUser_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  GatewayUnregGameUser_reflection_ = NULL;
+const ::google::protobuf::Descriptor* GatewayKickGameUser_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  GatewayKickGameUser_reflection_ = NULL;
+const ::google::protobuf::Descriptor* GatewayShutdownGame_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  GatewayShutdownGame_reflection_ = NULL;
+const ::google::protobuf::Descriptor* GatewayServerPing_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  GatewayServerPing_reflection_ = NULL;
+const ::google::protobuf::EnumDescriptor* SvrGateway2GameOpCode_descriptor_ = NULL;
+
+}  // namespace
+
+
+void protobuf_AssignDesc_ProtoSvrGame_2eproto() {
+  protobuf_AddDesc_ProtoSvrGame_2eproto();
+  const ::google::protobuf::FileDescriptor* file =
+    ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
+      "ProtoSvrGame.proto");
+  GOOGLE_CHECK(file != NULL);
+  GatewayForwardCmd_descriptor_ = file->message_type(0);
+  static const int GatewayForwardCmd_offsets_[3] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayForwardCmd, client_taskid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayForwardCmd, charid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayForwardCmd, forward_cmd_),
+  };
+  GatewayForwardCmd_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      GatewayForwardCmd_descriptor_,
+      GatewayForwardCmd::default_instance_,
+      GatewayForwardCmd_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayForwardCmd, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayForwardCmd, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(GatewayForwardCmd));
+  GatewayEnterGame_descriptor_ = file->message_type(1);
+  static const int GatewayEnterGame_offsets_[3] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayEnterGame, client_taskid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayEnterGame, charid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayEnterGame, account_),
+  };
+  GatewayEnterGame_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      GatewayEnterGame_descriptor_,
+      GatewayEnterGame::default_instance_,
+      GatewayEnterGame_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayEnterGame, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayEnterGame, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(GatewayEnterGame));
+  GatewayUnregGameUser_descriptor_ = file->message_type(2);
+  static const int GatewayUnregGameUser_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayUnregGameUser, client_taskid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayUnregGameUser, charid_),
+  };
+  GatewayUnregGameUser_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      GatewayUnregGameUser_descriptor_,
+      GatewayUnregGameUser::default_instance_,
+      GatewayUnregGameUser_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayUnregGameUser, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayUnregGameUser, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(GatewayUnregGameUser));
+  GatewayKickGameUser_descriptor_ = file->message_type(3);
+  static const int GatewayKickGameUser_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayKickGameUser, client_taskid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayKickGameUser, charid_),
+  };
+  GatewayKickGameUser_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      GatewayKickGameUser_descriptor_,
+      GatewayKickGameUser::default_instance_,
+      GatewayKickGameUser_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayKickGameUser, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayKickGameUser, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(GatewayKickGameUser));
+  GatewayShutdownGame_descriptor_ = file->message_type(4);
+  static const int GatewayShutdownGame_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayShutdownGame, client_taskid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayShutdownGame, charid_),
+  };
+  GatewayShutdownGame_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      GatewayShutdownGame_descriptor_,
+      GatewayShutdownGame::default_instance_,
+      GatewayShutdownGame_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayShutdownGame, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayShutdownGame, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(GatewayShutdownGame));
+  GatewayServerPing_descriptor_ = file->message_type(5);
+  static const int GatewayServerPing_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayServerPing, timestamp_),
+  };
+  GatewayServerPing_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      GatewayServerPing_descriptor_,
+      GatewayServerPing::default_instance_,
+      GatewayServerPing_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayServerPing, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GatewayServerPing, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(GatewayServerPing));
+  SvrGateway2GameOpCode_descriptor_ = file->enum_type(0);
 }
 
-#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-void protobuf_AddDesc_ProtoSvrGame_2eproto_impl() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
+namespace {
 
-#else
+GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AssignDescriptors_once_);
+inline void protobuf_AssignDescriptorsOnce() {
+  ::google::protobuf::GoogleOnceInit(&protobuf_AssignDescriptors_once_,
+                 &protobuf_AssignDesc_ProtoSvrGame_2eproto);
+}
+
+void protobuf_RegisterTypes(const ::std::string&) {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    GatewayForwardCmd_descriptor_, &GatewayForwardCmd::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    GatewayEnterGame_descriptor_, &GatewayEnterGame::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    GatewayUnregGameUser_descriptor_, &GatewayUnregGameUser::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    GatewayKickGameUser_descriptor_, &GatewayKickGameUser::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    GatewayShutdownGame_descriptor_, &GatewayShutdownGame::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    GatewayServerPing_descriptor_, &GatewayServerPing::default_instance());
+}
+
+}  // namespace
+
+void protobuf_ShutdownFile_ProtoSvrGame_2eproto() {
+  delete GatewayForwardCmd::default_instance_;
+  delete GatewayForwardCmd_reflection_;
+  delete GatewayEnterGame::default_instance_;
+  delete GatewayEnterGame_reflection_;
+  delete GatewayUnregGameUser::default_instance_;
+  delete GatewayUnregGameUser_reflection_;
+  delete GatewayKickGameUser::default_instance_;
+  delete GatewayKickGameUser_reflection_;
+  delete GatewayShutdownGame::default_instance_;
+  delete GatewayShutdownGame_reflection_;
+  delete GatewayServerPing::default_instance_;
+  delete GatewayServerPing_reflection_;
+}
+
 void protobuf_AddDesc_ProtoSvrGame_2eproto() {
   static bool already_here = false;
   if (already_here) return;
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-#endif
+  ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
+    "\n\022ProtoSvrGame.proto\022\007GameCmd\"O\n\021Gateway"
+    "ForwardCmd\022\025\n\rclient_taskid\030\001 \001(\005\022\016\n\006cha"
+    "rid\030\002 \001(\005\022\023\n\013forward_cmd\030\003 \001(\014\"J\n\020Gatewa"
+    "yEnterGame\022\025\n\rclient_taskid\030\001 \001(\005\022\016\n\006cha"
+    "rid\030\002 \001(\005\022\017\n\007account\030\003 \001(\t\"=\n\024GatewayUnr"
+    "egGameUser\022\025\n\rclient_taskid\030\001 \001(\005\022\016\n\006cha"
+    "rid\030\002 \001(\005\"<\n\023GatewayKickGameUser\022\025\n\rclie"
+    "nt_taskid\030\001 \001(\005\022\016\n\006charid\030\002 \001(\005\"<\n\023Gatew"
+    "ayShutdownGame\022\025\n\rclient_taskid\030\001 \001(\005\022\016\n"
+    "\006charid\030\002 \001(\005\"&\n\021GatewayServerPing\022\021\n\tti"
+    "mestamp\030\001 \001(\005*\265\001\n\025SvrGateway2GameOpCode\022"
+    "\026\n\022SVR_OP_FORWARD_CMD\020\001\022\025\n\021SVR_OP_ENTER_"
+    "GAME\020\002\022\032\n\026SVR_OP_UNREG_GAME_USER\020\003\022\031\n\025SV"
+    "R_OP_KICK_GAME_USER\020\004\022\030\n\024SVR_OP_SHUTDOWN"
+    "_GAME\020\005\022\034\n\030SVR_OP_GATEWAY_PING_GAME\020d", 597);
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
+    "ProtoSvrGame.proto", &protobuf_RegisterTypes);
   GatewayForwardCmd::default_instance_ = new GatewayForwardCmd();
   GatewayEnterGame::default_instance_ = new GatewayEnterGame();
   GatewayUnregGameUser::default_instance_ = new GatewayUnregGameUser();
@@ -50,20 +229,16 @@ void protobuf_AddDesc_ProtoSvrGame_2eproto() {
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_ProtoSvrGame_2eproto);
 }
 
-#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AddDesc_ProtoSvrGame_2eproto_once_);
-void protobuf_AddDesc_ProtoSvrGame_2eproto() {
-  ::google::protobuf::::google::protobuf::GoogleOnceInit(&protobuf_AddDesc_ProtoSvrGame_2eproto_once_,
-                 &protobuf_AddDesc_ProtoSvrGame_2eproto_impl);
-}
-#else
 // Force AddDescriptors() to be called at static initialization time.
 struct StaticDescriptorInitializer_ProtoSvrGame_2eproto {
   StaticDescriptorInitializer_ProtoSvrGame_2eproto() {
     protobuf_AddDesc_ProtoSvrGame_2eproto();
   }
 } static_descriptor_initializer_ProtoSvrGame_2eproto_;
-#endif
+const ::google::protobuf::EnumDescriptor* SvrGateway2GameOpCode_descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return SvrGateway2GameOpCode_descriptor_;
+}
 bool SvrGateway2GameOpCode_IsValid(int value) {
   switch(value) {
     case 1:
@@ -88,7 +263,7 @@ const int GatewayForwardCmd::kForwardCmdFieldNumber;
 #endif  // !_MSC_VER
 
 GatewayForwardCmd::GatewayForwardCmd()
-  : ::google::protobuf::MessageLite() {
+  : ::google::protobuf::Message() {
   SharedCtor();
 }
 
@@ -96,7 +271,7 @@ void GatewayForwardCmd::InitAsDefaultInstance() {
 }
 
 GatewayForwardCmd::GatewayForwardCmd(const GatewayForwardCmd& from)
-  : ::google::protobuf::MessageLite() {
+  : ::google::protobuf::Message() {
   SharedCtor();
   MergeFrom(from);
 }
@@ -117,11 +292,7 @@ void GatewayForwardCmd::SharedDtor() {
   if (forward_cmd_ != &::google::protobuf::internal::kEmptyString) {
     delete forward_cmd_;
   }
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  if (this != &default_instance()) {
-  #else
   if (this != default_instance_) {
-  #endif
   }
 }
 
@@ -130,12 +301,13 @@ void GatewayForwardCmd::SetCachedSize(int size) const {
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
+const ::google::protobuf::Descriptor* GatewayForwardCmd::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GatewayForwardCmd_descriptor_;
+}
+
 const GatewayForwardCmd& GatewayForwardCmd::default_instance() {
-#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  protobuf_AddDesc_ProtoSvrGame_2eproto();
-#else
   if (default_instance_ == NULL) protobuf_AddDesc_ProtoSvrGame_2eproto();
-#endif
   return *default_instance_;
 }
 
@@ -156,6 +328,7 @@ void GatewayForwardCmd::Clear() {
     }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
 }
 
 bool GatewayForwardCmd::MergePartialFromCodedStream(
@@ -215,7 +388,8 @@ bool GatewayForwardCmd::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           return true;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
         break;
       }
     }
@@ -242,6 +416,36 @@ void GatewayForwardCmd::SerializeWithCachedSizes(
       3, this->forward_cmd(), output);
   }
 
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* GatewayForwardCmd::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // optional int32 client_taskid = 1;
+  if (has_client_taskid()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->client_taskid(), target);
+  }
+
+  // optional int32 charid = 2;
+  if (has_charid()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->charid(), target);
+  }
+
+  // optional bytes forward_cmd = 3;
+  if (has_forward_cmd()) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        3, this->forward_cmd(), target);
+  }
+
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
 }
 
 int GatewayForwardCmd::ByteSize() const {
@@ -270,15 +474,27 @@ int GatewayForwardCmd::ByteSize() const {
     }
 
   }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = total_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
-void GatewayForwardCmd::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const GatewayForwardCmd*>(&from));
+void GatewayForwardCmd::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const GatewayForwardCmd* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const GatewayForwardCmd*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
 }
 
 void GatewayForwardCmd::MergeFrom(const GatewayForwardCmd& from) {
@@ -294,6 +510,13 @@ void GatewayForwardCmd::MergeFrom(const GatewayForwardCmd& from) {
       set_forward_cmd(from.forward_cmd());
     }
   }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void GatewayForwardCmd::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void GatewayForwardCmd::CopyFrom(const GatewayForwardCmd& from) {
@@ -313,12 +536,17 @@ void GatewayForwardCmd::Swap(GatewayForwardCmd* other) {
     std::swap(charid_, other->charid_);
     std::swap(forward_cmd_, other->forward_cmd_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
   }
 }
 
-::std::string GatewayForwardCmd::GetTypeName() const {
-  return "GameCmd.GatewayForwardCmd";
+::google::protobuf::Metadata GatewayForwardCmd::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = GatewayForwardCmd_descriptor_;
+  metadata.reflection = GatewayForwardCmd_reflection_;
+  return metadata;
 }
 
 
@@ -331,7 +559,7 @@ const int GatewayEnterGame::kAccountFieldNumber;
 #endif  // !_MSC_VER
 
 GatewayEnterGame::GatewayEnterGame()
-  : ::google::protobuf::MessageLite() {
+  : ::google::protobuf::Message() {
   SharedCtor();
 }
 
@@ -339,7 +567,7 @@ void GatewayEnterGame::InitAsDefaultInstance() {
 }
 
 GatewayEnterGame::GatewayEnterGame(const GatewayEnterGame& from)
-  : ::google::protobuf::MessageLite() {
+  : ::google::protobuf::Message() {
   SharedCtor();
   MergeFrom(from);
 }
@@ -360,11 +588,7 @@ void GatewayEnterGame::SharedDtor() {
   if (account_ != &::google::protobuf::internal::kEmptyString) {
     delete account_;
   }
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  if (this != &default_instance()) {
-  #else
   if (this != default_instance_) {
-  #endif
   }
 }
 
@@ -373,12 +597,13 @@ void GatewayEnterGame::SetCachedSize(int size) const {
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
+const ::google::protobuf::Descriptor* GatewayEnterGame::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GatewayEnterGame_descriptor_;
+}
+
 const GatewayEnterGame& GatewayEnterGame::default_instance() {
-#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  protobuf_AddDesc_ProtoSvrGame_2eproto();
-#else
   if (default_instance_ == NULL) protobuf_AddDesc_ProtoSvrGame_2eproto();
-#endif
   return *default_instance_;
 }
 
@@ -399,6 +624,7 @@ void GatewayEnterGame::Clear() {
     }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
 }
 
 bool GatewayEnterGame::MergePartialFromCodedStream(
@@ -445,6 +671,9 @@ bool GatewayEnterGame::MergePartialFromCodedStream(
          parse_account:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_account()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+            this->account().data(), this->account().length(),
+            ::google::protobuf::internal::WireFormat::PARSE);
         } else {
           goto handle_uninterpreted;
         }
@@ -458,7 +687,8 @@ bool GatewayEnterGame::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           return true;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
         break;
       }
     }
@@ -481,10 +711,46 @@ void GatewayEnterGame::SerializeWithCachedSizes(
 
   // optional string account = 3;
   if (has_account()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->account().data(), this->account().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
     ::google::protobuf::internal::WireFormatLite::WriteString(
       3, this->account(), output);
   }
 
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* GatewayEnterGame::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // optional int32 client_taskid = 1;
+  if (has_client_taskid()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->client_taskid(), target);
+  }
+
+  // optional int32 charid = 2;
+  if (has_charid()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->charid(), target);
+  }
+
+  // optional string account = 3;
+  if (has_account()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->account().data(), this->account().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->account(), target);
+  }
+
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
 }
 
 int GatewayEnterGame::ByteSize() const {
@@ -513,15 +779,27 @@ int GatewayEnterGame::ByteSize() const {
     }
 
   }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = total_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
-void GatewayEnterGame::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const GatewayEnterGame*>(&from));
+void GatewayEnterGame::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const GatewayEnterGame* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const GatewayEnterGame*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
 }
 
 void GatewayEnterGame::MergeFrom(const GatewayEnterGame& from) {
@@ -537,6 +815,13 @@ void GatewayEnterGame::MergeFrom(const GatewayEnterGame& from) {
       set_account(from.account());
     }
   }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void GatewayEnterGame::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void GatewayEnterGame::CopyFrom(const GatewayEnterGame& from) {
@@ -556,12 +841,17 @@ void GatewayEnterGame::Swap(GatewayEnterGame* other) {
     std::swap(charid_, other->charid_);
     std::swap(account_, other->account_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
   }
 }
 
-::std::string GatewayEnterGame::GetTypeName() const {
-  return "GameCmd.GatewayEnterGame";
+::google::protobuf::Metadata GatewayEnterGame::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = GatewayEnterGame_descriptor_;
+  metadata.reflection = GatewayEnterGame_reflection_;
+  return metadata;
 }
 
 
@@ -573,7 +863,7 @@ const int GatewayUnregGameUser::kCharidFieldNumber;
 #endif  // !_MSC_VER
 
 GatewayUnregGameUser::GatewayUnregGameUser()
-  : ::google::protobuf::MessageLite() {
+  : ::google::protobuf::Message() {
   SharedCtor();
 }
 
@@ -581,7 +871,7 @@ void GatewayUnregGameUser::InitAsDefaultInstance() {
 }
 
 GatewayUnregGameUser::GatewayUnregGameUser(const GatewayUnregGameUser& from)
-  : ::google::protobuf::MessageLite() {
+  : ::google::protobuf::Message() {
   SharedCtor();
   MergeFrom(from);
 }
@@ -598,11 +888,7 @@ GatewayUnregGameUser::~GatewayUnregGameUser() {
 }
 
 void GatewayUnregGameUser::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  if (this != &default_instance()) {
-  #else
   if (this != default_instance_) {
-  #endif
   }
 }
 
@@ -611,12 +897,13 @@ void GatewayUnregGameUser::SetCachedSize(int size) const {
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
+const ::google::protobuf::Descriptor* GatewayUnregGameUser::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GatewayUnregGameUser_descriptor_;
+}
+
 const GatewayUnregGameUser& GatewayUnregGameUser::default_instance() {
-#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  protobuf_AddDesc_ProtoSvrGame_2eproto();
-#else
   if (default_instance_ == NULL) protobuf_AddDesc_ProtoSvrGame_2eproto();
-#endif
   return *default_instance_;
 }
 
@@ -632,6 +919,7 @@ void GatewayUnregGameUser::Clear() {
     charid_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
 }
 
 bool GatewayUnregGameUser::MergePartialFromCodedStream(
@@ -677,7 +965,8 @@ bool GatewayUnregGameUser::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           return true;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
         break;
       }
     }
@@ -698,6 +987,29 @@ void GatewayUnregGameUser::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->charid(), output);
   }
 
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* GatewayUnregGameUser::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // optional int32 client_taskid = 1;
+  if (has_client_taskid()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->client_taskid(), target);
+  }
+
+  // optional int32 charid = 2;
+  if (has_charid()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->charid(), target);
+  }
+
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
 }
 
 int GatewayUnregGameUser::ByteSize() const {
@@ -719,15 +1031,27 @@ int GatewayUnregGameUser::ByteSize() const {
     }
 
   }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = total_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
-void GatewayUnregGameUser::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const GatewayUnregGameUser*>(&from));
+void GatewayUnregGameUser::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const GatewayUnregGameUser* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const GatewayUnregGameUser*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
 }
 
 void GatewayUnregGameUser::MergeFrom(const GatewayUnregGameUser& from) {
@@ -740,6 +1064,13 @@ void GatewayUnregGameUser::MergeFrom(const GatewayUnregGameUser& from) {
       set_charid(from.charid());
     }
   }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void GatewayUnregGameUser::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void GatewayUnregGameUser::CopyFrom(const GatewayUnregGameUser& from) {
@@ -758,12 +1089,17 @@ void GatewayUnregGameUser::Swap(GatewayUnregGameUser* other) {
     std::swap(client_taskid_, other->client_taskid_);
     std::swap(charid_, other->charid_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
   }
 }
 
-::std::string GatewayUnregGameUser::GetTypeName() const {
-  return "GameCmd.GatewayUnregGameUser";
+::google::protobuf::Metadata GatewayUnregGameUser::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = GatewayUnregGameUser_descriptor_;
+  metadata.reflection = GatewayUnregGameUser_reflection_;
+  return metadata;
 }
 
 
@@ -775,7 +1111,7 @@ const int GatewayKickGameUser::kCharidFieldNumber;
 #endif  // !_MSC_VER
 
 GatewayKickGameUser::GatewayKickGameUser()
-  : ::google::protobuf::MessageLite() {
+  : ::google::protobuf::Message() {
   SharedCtor();
 }
 
@@ -783,7 +1119,7 @@ void GatewayKickGameUser::InitAsDefaultInstance() {
 }
 
 GatewayKickGameUser::GatewayKickGameUser(const GatewayKickGameUser& from)
-  : ::google::protobuf::MessageLite() {
+  : ::google::protobuf::Message() {
   SharedCtor();
   MergeFrom(from);
 }
@@ -800,11 +1136,7 @@ GatewayKickGameUser::~GatewayKickGameUser() {
 }
 
 void GatewayKickGameUser::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  if (this != &default_instance()) {
-  #else
   if (this != default_instance_) {
-  #endif
   }
 }
 
@@ -813,12 +1145,13 @@ void GatewayKickGameUser::SetCachedSize(int size) const {
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
+const ::google::protobuf::Descriptor* GatewayKickGameUser::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GatewayKickGameUser_descriptor_;
+}
+
 const GatewayKickGameUser& GatewayKickGameUser::default_instance() {
-#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  protobuf_AddDesc_ProtoSvrGame_2eproto();
-#else
   if (default_instance_ == NULL) protobuf_AddDesc_ProtoSvrGame_2eproto();
-#endif
   return *default_instance_;
 }
 
@@ -834,6 +1167,7 @@ void GatewayKickGameUser::Clear() {
     charid_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
 }
 
 bool GatewayKickGameUser::MergePartialFromCodedStream(
@@ -879,7 +1213,8 @@ bool GatewayKickGameUser::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           return true;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
         break;
       }
     }
@@ -900,6 +1235,29 @@ void GatewayKickGameUser::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->charid(), output);
   }
 
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* GatewayKickGameUser::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // optional int32 client_taskid = 1;
+  if (has_client_taskid()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->client_taskid(), target);
+  }
+
+  // optional int32 charid = 2;
+  if (has_charid()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->charid(), target);
+  }
+
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
 }
 
 int GatewayKickGameUser::ByteSize() const {
@@ -921,15 +1279,27 @@ int GatewayKickGameUser::ByteSize() const {
     }
 
   }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = total_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
-void GatewayKickGameUser::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const GatewayKickGameUser*>(&from));
+void GatewayKickGameUser::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const GatewayKickGameUser* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const GatewayKickGameUser*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
 }
 
 void GatewayKickGameUser::MergeFrom(const GatewayKickGameUser& from) {
@@ -942,6 +1312,13 @@ void GatewayKickGameUser::MergeFrom(const GatewayKickGameUser& from) {
       set_charid(from.charid());
     }
   }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void GatewayKickGameUser::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void GatewayKickGameUser::CopyFrom(const GatewayKickGameUser& from) {
@@ -960,12 +1337,17 @@ void GatewayKickGameUser::Swap(GatewayKickGameUser* other) {
     std::swap(client_taskid_, other->client_taskid_);
     std::swap(charid_, other->charid_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
   }
 }
 
-::std::string GatewayKickGameUser::GetTypeName() const {
-  return "GameCmd.GatewayKickGameUser";
+::google::protobuf::Metadata GatewayKickGameUser::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = GatewayKickGameUser_descriptor_;
+  metadata.reflection = GatewayKickGameUser_reflection_;
+  return metadata;
 }
 
 
@@ -977,7 +1359,7 @@ const int GatewayShutdownGame::kCharidFieldNumber;
 #endif  // !_MSC_VER
 
 GatewayShutdownGame::GatewayShutdownGame()
-  : ::google::protobuf::MessageLite() {
+  : ::google::protobuf::Message() {
   SharedCtor();
 }
 
@@ -985,7 +1367,7 @@ void GatewayShutdownGame::InitAsDefaultInstance() {
 }
 
 GatewayShutdownGame::GatewayShutdownGame(const GatewayShutdownGame& from)
-  : ::google::protobuf::MessageLite() {
+  : ::google::protobuf::Message() {
   SharedCtor();
   MergeFrom(from);
 }
@@ -1002,11 +1384,7 @@ GatewayShutdownGame::~GatewayShutdownGame() {
 }
 
 void GatewayShutdownGame::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  if (this != &default_instance()) {
-  #else
   if (this != default_instance_) {
-  #endif
   }
 }
 
@@ -1015,12 +1393,13 @@ void GatewayShutdownGame::SetCachedSize(int size) const {
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
+const ::google::protobuf::Descriptor* GatewayShutdownGame::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GatewayShutdownGame_descriptor_;
+}
+
 const GatewayShutdownGame& GatewayShutdownGame::default_instance() {
-#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  protobuf_AddDesc_ProtoSvrGame_2eproto();
-#else
   if (default_instance_ == NULL) protobuf_AddDesc_ProtoSvrGame_2eproto();
-#endif
   return *default_instance_;
 }
 
@@ -1036,6 +1415,7 @@ void GatewayShutdownGame::Clear() {
     charid_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
 }
 
 bool GatewayShutdownGame::MergePartialFromCodedStream(
@@ -1081,7 +1461,8 @@ bool GatewayShutdownGame::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           return true;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
         break;
       }
     }
@@ -1102,6 +1483,29 @@ void GatewayShutdownGame::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->charid(), output);
   }
 
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* GatewayShutdownGame::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // optional int32 client_taskid = 1;
+  if (has_client_taskid()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->client_taskid(), target);
+  }
+
+  // optional int32 charid = 2;
+  if (has_charid()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->charid(), target);
+  }
+
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
 }
 
 int GatewayShutdownGame::ByteSize() const {
@@ -1123,15 +1527,27 @@ int GatewayShutdownGame::ByteSize() const {
     }
 
   }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = total_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
-void GatewayShutdownGame::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const GatewayShutdownGame*>(&from));
+void GatewayShutdownGame::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const GatewayShutdownGame* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const GatewayShutdownGame*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
 }
 
 void GatewayShutdownGame::MergeFrom(const GatewayShutdownGame& from) {
@@ -1144,6 +1560,13 @@ void GatewayShutdownGame::MergeFrom(const GatewayShutdownGame& from) {
       set_charid(from.charid());
     }
   }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void GatewayShutdownGame::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void GatewayShutdownGame::CopyFrom(const GatewayShutdownGame& from) {
@@ -1162,12 +1585,17 @@ void GatewayShutdownGame::Swap(GatewayShutdownGame* other) {
     std::swap(client_taskid_, other->client_taskid_);
     std::swap(charid_, other->charid_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
   }
 }
 
-::std::string GatewayShutdownGame::GetTypeName() const {
-  return "GameCmd.GatewayShutdownGame";
+::google::protobuf::Metadata GatewayShutdownGame::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = GatewayShutdownGame_descriptor_;
+  metadata.reflection = GatewayShutdownGame_reflection_;
+  return metadata;
 }
 
 
@@ -1178,7 +1606,7 @@ const int GatewayServerPing::kTimestampFieldNumber;
 #endif  // !_MSC_VER
 
 GatewayServerPing::GatewayServerPing()
-  : ::google::protobuf::MessageLite() {
+  : ::google::protobuf::Message() {
   SharedCtor();
 }
 
@@ -1186,7 +1614,7 @@ void GatewayServerPing::InitAsDefaultInstance() {
 }
 
 GatewayServerPing::GatewayServerPing(const GatewayServerPing& from)
-  : ::google::protobuf::MessageLite() {
+  : ::google::protobuf::Message() {
   SharedCtor();
   MergeFrom(from);
 }
@@ -1202,11 +1630,7 @@ GatewayServerPing::~GatewayServerPing() {
 }
 
 void GatewayServerPing::SharedDtor() {
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  if (this != &default_instance()) {
-  #else
   if (this != default_instance_) {
-  #endif
   }
 }
 
@@ -1215,12 +1639,13 @@ void GatewayServerPing::SetCachedSize(int size) const {
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
+const ::google::protobuf::Descriptor* GatewayServerPing::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GatewayServerPing_descriptor_;
+}
+
 const GatewayServerPing& GatewayServerPing::default_instance() {
-#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  protobuf_AddDesc_ProtoSvrGame_2eproto();
-#else
   if (default_instance_ == NULL) protobuf_AddDesc_ProtoSvrGame_2eproto();
-#endif
   return *default_instance_;
 }
 
@@ -1235,6 +1660,7 @@ void GatewayServerPing::Clear() {
     timestamp_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
 }
 
 bool GatewayServerPing::MergePartialFromCodedStream(
@@ -1264,7 +1690,8 @@ bool GatewayServerPing::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           return true;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
         break;
       }
     }
@@ -1280,6 +1707,24 @@ void GatewayServerPing::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->timestamp(), output);
   }
 
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* GatewayServerPing::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // optional int32 timestamp = 1;
+  if (has_timestamp()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->timestamp(), target);
+  }
+
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
 }
 
 int GatewayServerPing::ByteSize() const {
@@ -1294,15 +1739,27 @@ int GatewayServerPing::ByteSize() const {
     }
 
   }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = total_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
-void GatewayServerPing::CheckTypeAndMergeFrom(
-    const ::google::protobuf::MessageLite& from) {
-  MergeFrom(*::google::protobuf::down_cast<const GatewayServerPing*>(&from));
+void GatewayServerPing::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const GatewayServerPing* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const GatewayServerPing*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
 }
 
 void GatewayServerPing::MergeFrom(const GatewayServerPing& from) {
@@ -1312,6 +1769,13 @@ void GatewayServerPing::MergeFrom(const GatewayServerPing& from) {
       set_timestamp(from.timestamp());
     }
   }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void GatewayServerPing::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void GatewayServerPing::CopyFrom(const GatewayServerPing& from) {
@@ -1329,12 +1793,17 @@ void GatewayServerPing::Swap(GatewayServerPing* other) {
   if (other != this) {
     std::swap(timestamp_, other->timestamp_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
   }
 }
 
-::std::string GatewayServerPing::GetTypeName() const {
-  return "GameCmd.GatewayServerPing";
+::google::protobuf::Metadata GatewayServerPing::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = GatewayServerPing_descriptor_;
+  metadata.reflection = GatewayServerPing_reflection_;
+  return metadata;
 }
 
 

@@ -20,9 +20,11 @@
 #endif
 
 #include <google/protobuf/generated_message_util.h>
-#include <google/protobuf/message_lite.h>
+#include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
+#include <google/protobuf/generated_enum_reflection.h>
+#include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
 namespace GameCmd {
@@ -52,9 +54,19 @@ const SvrGateway2GameOpCode SvrGateway2GameOpCode_MIN = SVR_OP_FORWARD_CMD;
 const SvrGateway2GameOpCode SvrGateway2GameOpCode_MAX = SVR_OP_GATEWAY_PING_GAME;
 const int SvrGateway2GameOpCode_ARRAYSIZE = SvrGateway2GameOpCode_MAX + 1;
 
+const ::google::protobuf::EnumDescriptor* SvrGateway2GameOpCode_descriptor();
+inline const ::std::string& SvrGateway2GameOpCode_Name(SvrGateway2GameOpCode value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    SvrGateway2GameOpCode_descriptor(), value);
+}
+inline bool SvrGateway2GameOpCode_Parse(
+    const ::std::string& name, SvrGateway2GameOpCode* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<SvrGateway2GameOpCode>(
+    SvrGateway2GameOpCode_descriptor(), name, value);
+}
 // ===================================================================
 
-class GatewayForwardCmd : public ::google::protobuf::MessageLite {
+class GatewayForwardCmd : public ::google::protobuf::Message {
  public:
   GatewayForwardCmd();
   virtual ~GatewayForwardCmd();
@@ -66,24 +78,24 @@ class GatewayForwardCmd : public ::google::protobuf::MessageLite {
     return *this;
   }
 
-  static const GatewayForwardCmd& default_instance();
-
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  // Returns the internal default instance pointer. This function can
-  // return NULL thus should not be used by the user. This is intended
-  // for Protobuf internal code. Please use default_instance() declared
-  // above instead.
-  static inline const GatewayForwardCmd* internal_default_instance() {
-    return default_instance_;
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
   }
-  #endif
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GatewayForwardCmd& default_instance();
 
   void Swap(GatewayForwardCmd* other);
 
   // implements Message ----------------------------------------------
 
   GatewayForwardCmd* New() const;
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const GatewayForwardCmd& from);
   void MergeFrom(const GatewayForwardCmd& from);
   void Clear();
@@ -94,6 +106,7 @@ class GatewayForwardCmd : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -101,7 +114,7 @@ class GatewayForwardCmd : public ::google::protobuf::MessageLite {
   void SetCachedSize(int size) const;
   public:
 
-  ::std::string GetTypeName() const;
+  ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
 
@@ -142,6 +155,8 @@ class GatewayForwardCmd : public ::google::protobuf::MessageLite {
   inline void set_has_forward_cmd();
   inline void clear_has_forward_cmd();
 
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
   ::google::protobuf::int32 client_taskid_;
   ::google::protobuf::int32 charid_;
   ::std::string* forward_cmd_;
@@ -149,11 +164,7 @@ class GatewayForwardCmd : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_ProtoSvrGame_2eproto_impl();
-  #else
   friend void  protobuf_AddDesc_ProtoSvrGame_2eproto();
-  #endif
   friend void protobuf_AssignDesc_ProtoSvrGame_2eproto();
   friend void protobuf_ShutdownFile_ProtoSvrGame_2eproto();
 
@@ -162,7 +173,7 @@ class GatewayForwardCmd : public ::google::protobuf::MessageLite {
 };
 // -------------------------------------------------------------------
 
-class GatewayEnterGame : public ::google::protobuf::MessageLite {
+class GatewayEnterGame : public ::google::protobuf::Message {
  public:
   GatewayEnterGame();
   virtual ~GatewayEnterGame();
@@ -174,24 +185,24 @@ class GatewayEnterGame : public ::google::protobuf::MessageLite {
     return *this;
   }
 
-  static const GatewayEnterGame& default_instance();
-
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  // Returns the internal default instance pointer. This function can
-  // return NULL thus should not be used by the user. This is intended
-  // for Protobuf internal code. Please use default_instance() declared
-  // above instead.
-  static inline const GatewayEnterGame* internal_default_instance() {
-    return default_instance_;
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
   }
-  #endif
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GatewayEnterGame& default_instance();
 
   void Swap(GatewayEnterGame* other);
 
   // implements Message ----------------------------------------------
 
   GatewayEnterGame* New() const;
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const GatewayEnterGame& from);
   void MergeFrom(const GatewayEnterGame& from);
   void Clear();
@@ -202,6 +213,7 @@ class GatewayEnterGame : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -209,7 +221,7 @@ class GatewayEnterGame : public ::google::protobuf::MessageLite {
   void SetCachedSize(int size) const;
   public:
 
-  ::std::string GetTypeName() const;
+  ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
 
@@ -250,6 +262,8 @@ class GatewayEnterGame : public ::google::protobuf::MessageLite {
   inline void set_has_account();
   inline void clear_has_account();
 
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
   ::google::protobuf::int32 client_taskid_;
   ::google::protobuf::int32 charid_;
   ::std::string* account_;
@@ -257,11 +271,7 @@ class GatewayEnterGame : public ::google::protobuf::MessageLite {
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_ProtoSvrGame_2eproto_impl();
-  #else
   friend void  protobuf_AddDesc_ProtoSvrGame_2eproto();
-  #endif
   friend void protobuf_AssignDesc_ProtoSvrGame_2eproto();
   friend void protobuf_ShutdownFile_ProtoSvrGame_2eproto();
 
@@ -270,7 +280,7 @@ class GatewayEnterGame : public ::google::protobuf::MessageLite {
 };
 // -------------------------------------------------------------------
 
-class GatewayUnregGameUser : public ::google::protobuf::MessageLite {
+class GatewayUnregGameUser : public ::google::protobuf::Message {
  public:
   GatewayUnregGameUser();
   virtual ~GatewayUnregGameUser();
@@ -282,24 +292,24 @@ class GatewayUnregGameUser : public ::google::protobuf::MessageLite {
     return *this;
   }
 
-  static const GatewayUnregGameUser& default_instance();
-
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  // Returns the internal default instance pointer. This function can
-  // return NULL thus should not be used by the user. This is intended
-  // for Protobuf internal code. Please use default_instance() declared
-  // above instead.
-  static inline const GatewayUnregGameUser* internal_default_instance() {
-    return default_instance_;
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
   }
-  #endif
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GatewayUnregGameUser& default_instance();
 
   void Swap(GatewayUnregGameUser* other);
 
   // implements Message ----------------------------------------------
 
   GatewayUnregGameUser* New() const;
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const GatewayUnregGameUser& from);
   void MergeFrom(const GatewayUnregGameUser& from);
   void Clear();
@@ -310,6 +320,7 @@ class GatewayUnregGameUser : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -317,7 +328,7 @@ class GatewayUnregGameUser : public ::google::protobuf::MessageLite {
   void SetCachedSize(int size) const;
   public:
 
-  ::std::string GetTypeName() const;
+  ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
 
@@ -344,17 +355,15 @@ class GatewayUnregGameUser : public ::google::protobuf::MessageLite {
   inline void set_has_charid();
   inline void clear_has_charid();
 
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
   ::google::protobuf::int32 client_taskid_;
   ::google::protobuf::int32 charid_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_ProtoSvrGame_2eproto_impl();
-  #else
   friend void  protobuf_AddDesc_ProtoSvrGame_2eproto();
-  #endif
   friend void protobuf_AssignDesc_ProtoSvrGame_2eproto();
   friend void protobuf_ShutdownFile_ProtoSvrGame_2eproto();
 
@@ -363,7 +372,7 @@ class GatewayUnregGameUser : public ::google::protobuf::MessageLite {
 };
 // -------------------------------------------------------------------
 
-class GatewayKickGameUser : public ::google::protobuf::MessageLite {
+class GatewayKickGameUser : public ::google::protobuf::Message {
  public:
   GatewayKickGameUser();
   virtual ~GatewayKickGameUser();
@@ -375,24 +384,24 @@ class GatewayKickGameUser : public ::google::protobuf::MessageLite {
     return *this;
   }
 
-  static const GatewayKickGameUser& default_instance();
-
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  // Returns the internal default instance pointer. This function can
-  // return NULL thus should not be used by the user. This is intended
-  // for Protobuf internal code. Please use default_instance() declared
-  // above instead.
-  static inline const GatewayKickGameUser* internal_default_instance() {
-    return default_instance_;
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
   }
-  #endif
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GatewayKickGameUser& default_instance();
 
   void Swap(GatewayKickGameUser* other);
 
   // implements Message ----------------------------------------------
 
   GatewayKickGameUser* New() const;
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const GatewayKickGameUser& from);
   void MergeFrom(const GatewayKickGameUser& from);
   void Clear();
@@ -403,6 +412,7 @@ class GatewayKickGameUser : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -410,7 +420,7 @@ class GatewayKickGameUser : public ::google::protobuf::MessageLite {
   void SetCachedSize(int size) const;
   public:
 
-  ::std::string GetTypeName() const;
+  ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
 
@@ -437,17 +447,15 @@ class GatewayKickGameUser : public ::google::protobuf::MessageLite {
   inline void set_has_charid();
   inline void clear_has_charid();
 
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
   ::google::protobuf::int32 client_taskid_;
   ::google::protobuf::int32 charid_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_ProtoSvrGame_2eproto_impl();
-  #else
   friend void  protobuf_AddDesc_ProtoSvrGame_2eproto();
-  #endif
   friend void protobuf_AssignDesc_ProtoSvrGame_2eproto();
   friend void protobuf_ShutdownFile_ProtoSvrGame_2eproto();
 
@@ -456,7 +464,7 @@ class GatewayKickGameUser : public ::google::protobuf::MessageLite {
 };
 // -------------------------------------------------------------------
 
-class GatewayShutdownGame : public ::google::protobuf::MessageLite {
+class GatewayShutdownGame : public ::google::protobuf::Message {
  public:
   GatewayShutdownGame();
   virtual ~GatewayShutdownGame();
@@ -468,24 +476,24 @@ class GatewayShutdownGame : public ::google::protobuf::MessageLite {
     return *this;
   }
 
-  static const GatewayShutdownGame& default_instance();
-
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  // Returns the internal default instance pointer. This function can
-  // return NULL thus should not be used by the user. This is intended
-  // for Protobuf internal code. Please use default_instance() declared
-  // above instead.
-  static inline const GatewayShutdownGame* internal_default_instance() {
-    return default_instance_;
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
   }
-  #endif
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GatewayShutdownGame& default_instance();
 
   void Swap(GatewayShutdownGame* other);
 
   // implements Message ----------------------------------------------
 
   GatewayShutdownGame* New() const;
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const GatewayShutdownGame& from);
   void MergeFrom(const GatewayShutdownGame& from);
   void Clear();
@@ -496,6 +504,7 @@ class GatewayShutdownGame : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -503,7 +512,7 @@ class GatewayShutdownGame : public ::google::protobuf::MessageLite {
   void SetCachedSize(int size) const;
   public:
 
-  ::std::string GetTypeName() const;
+  ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
 
@@ -530,17 +539,15 @@ class GatewayShutdownGame : public ::google::protobuf::MessageLite {
   inline void set_has_charid();
   inline void clear_has_charid();
 
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
   ::google::protobuf::int32 client_taskid_;
   ::google::protobuf::int32 charid_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_ProtoSvrGame_2eproto_impl();
-  #else
   friend void  protobuf_AddDesc_ProtoSvrGame_2eproto();
-  #endif
   friend void protobuf_AssignDesc_ProtoSvrGame_2eproto();
   friend void protobuf_ShutdownFile_ProtoSvrGame_2eproto();
 
@@ -549,7 +556,7 @@ class GatewayShutdownGame : public ::google::protobuf::MessageLite {
 };
 // -------------------------------------------------------------------
 
-class GatewayServerPing : public ::google::protobuf::MessageLite {
+class GatewayServerPing : public ::google::protobuf::Message {
  public:
   GatewayServerPing();
   virtual ~GatewayServerPing();
@@ -561,24 +568,24 @@ class GatewayServerPing : public ::google::protobuf::MessageLite {
     return *this;
   }
 
-  static const GatewayServerPing& default_instance();
-
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  // Returns the internal default instance pointer. This function can
-  // return NULL thus should not be used by the user. This is intended
-  // for Protobuf internal code. Please use default_instance() declared
-  // above instead.
-  static inline const GatewayServerPing* internal_default_instance() {
-    return default_instance_;
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
   }
-  #endif
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GatewayServerPing& default_instance();
 
   void Swap(GatewayServerPing* other);
 
   // implements Message ----------------------------------------------
 
   GatewayServerPing* New() const;
-  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const GatewayServerPing& from);
   void MergeFrom(const GatewayServerPing& from);
   void Clear();
@@ -589,6 +596,7 @@ class GatewayServerPing : public ::google::protobuf::MessageLite {
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -596,7 +604,7 @@ class GatewayServerPing : public ::google::protobuf::MessageLite {
   void SetCachedSize(int size) const;
   public:
 
-  ::std::string GetTypeName() const;
+  ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
 
@@ -614,16 +622,14 @@ class GatewayServerPing : public ::google::protobuf::MessageLite {
   inline void set_has_timestamp();
   inline void clear_has_timestamp();
 
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
   ::google::protobuf::int32 timestamp_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
 
-  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
-  friend void  protobuf_AddDesc_ProtoSvrGame_2eproto_impl();
-  #else
   friend void  protobuf_AddDesc_ProtoSvrGame_2eproto();
-  #endif
   friend void protobuf_AssignDesc_ProtoSvrGame_2eproto();
   friend void protobuf_ShutdownFile_ProtoSvrGame_2eproto();
 
@@ -1043,6 +1049,19 @@ inline void GatewayServerPing::set_timestamp(::google::protobuf::int32 value) {
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace GameCmd
+
+#ifndef SWIG
+namespace google {
+namespace protobuf {
+
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::GameCmd::SvrGateway2GameOpCode>() {
+  return ::GameCmd::SvrGateway2GameOpCode_descriptor();
+}
+
+}  // namespace google
+}  // namespace protobuf
+#endif  // SWIG
 
 // @@protoc_insertion_point(global_scope)
 
