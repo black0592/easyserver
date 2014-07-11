@@ -1,6 +1,8 @@
 #include "ServerHeader.h"
 #include "ServerService.h"
 #include "TimerForMain.h"
+#include "ProtoSvrLogin.pb.h"
+#include "protohandler\ProtobufDefine.h"
 
 const EventType EVT_TestEvent = "TestEvent";
 
@@ -207,9 +209,39 @@ bool ServerServiceSync::loadConfig()
 	return true;
 }
 
+
+void IterateProtoFile(const std::string& name)
+{
+	// 在 DescriptorPool 中通过 .proto 文件名获取到 FileDescriptor
+	// FileDescriptor 对象描述了整个 .proto 文件
+	const google::protobuf::FileDescriptor* fileDescriptor
+		= google::protobuf::DescriptorPool::generated_pool()->FindFileByName(name);
+	if (!fileDescriptor)
+		return;
+
+	// 遍历整个 .proto 文件中定义的顶层 message
+	for (int i=0; i<fileDescriptor->message_type_count(); ++i)
+	{
+		// message_type 函数参数取值范围在 0 <= index < message_type_count()
+		// 索引值 i 对应 message 在 .proto 文件中的定义的顺序
+		const google::protobuf::Descriptor* descriptor = fileDescriptor->message_type(i);
+		descriptor = descriptor;
+
+
+		// ...
+	}
+}
+
+
 void ServerServiceSync::updateWindowTitle()
 {
 	string strTitle = strformat("ServerService %d",getLocalPort());
 	strTitle = Platform::utf8ToGbk(strTitle);
 	Platform::setWindowTitle(strTitle.c_str());
+
+	LoginCmd::RequestRegisterGameServer cmd;
+
+	LoginCmd::RequestRegisterGameServer* pMsg = (LoginCmd::RequestRegisterGameServer*)createMessage("LoginCmd.RequestRegisterGameServer");
+
+	IterateProtoFile("ProtoSvrLogin.proto");
 }

@@ -6,7 +6,6 @@
 // 支持自动反射
 #include <google/protobuf/message.h>
 #include <google/protobuf/descriptor.h>
-#include <google/protobuf/dynamic_message.h>
 using namespace google::protobuf;
 typedef Message			ProtoMessage;
 #else
