@@ -227,7 +227,6 @@ void IterateProtoFile(const std::string& name)
 		const google::protobuf::Descriptor* descriptor = fileDescriptor->message_type(i);
 		descriptor = descriptor;
 
-
 		// ...
 	}
 }
