@@ -1,0 +1,80 @@
+//option optimize_for = LITE_RUNTIME;
+
+import "ProtoSvrServerData.proto";
+
+package SuperCmd;
+
+
+//////////////////////////////////////////////////////////////////////////
+//             所有和Super服务器通讯的消息		开始
+//////////////////////////////////////////////////////////////////////////
+
+//----------------------------------------------------------------------------
+// 操作号
+enum SvrSuperOpCode {
+	SUPER_OP_REGISTER_SERVER = 1;		// 向Zone服务器注册自己
+	SUPER_OP_GET_SERVER_INFO = 2;		// 请求指定类型的服务器信息
+	SUPER_OP_REFRESH_ZONE_INFO = 3;		// 更新大区数据到登陆服务器
+	SUPER_OP_LOGIN_SELECT_ZONE = 4;		// 请求登陆大区(顺便把密钥通过Super和Zone同步到Gateway)
+	SUPER_OP_SUPER_SELECT_ZONE = 5;		// 发往ZoneServer，寻找人数最少的网关
+	SUPER_OP_RECORD_CHAR_TO_LOGINDB = 6;	// 记录玩家信息到账号数据库(用于大区列表角色预览)
+}
+//----------------------------------------------------------------------------
+
+// 向Super服务器注册自己		server <-> super
+message MsgRegisterServer {
+	optional ServerInfo info = 1;
+	// 返回值
+	optional int32 result = 2;
+}
+
+// 请求指定类型的服务器信息			server <-> super
+message MsgGetServerInfo {
+	optional uint32 type = 1;				// ServerType
+	optional uint32 flag = 2 [default = 1];				// 0 - 请求全部此类型的， 1 - 请求一个空闲的
+	// 返回值
+	optional int32 result = 3;
+	repeated ServerInfo server_list = 4;	// 服务器信息列表
+}
+
+// 更新大区数据到登陆服务器			super -> login
+message NotifyRefreshZoneInfo {
+	repeated ServerInfo server_list = 1;	// 服务器信息列表
+}
+
+// 请求登陆大区(顺便把密钥通过Super和Zone同步到Gateway)			login <-> super
+message MsgLoginSelectZone {
+	optional string account = 1;			// 账号
+	optional uint32 login_key = 2;			// 密钥
+	optional uint32 client_taskid = 3;		// 客户端的链接ID
+	optional uint64 uniqueid = 4;			// 大区的唯一ID
+	// 返回值
+	optional uint32 result = 8;				// 0成功，其他表示错误号
+	optional uint32 gateway_ip = 9;			// 网关IP
+	optional uint32 gateway_port = 10;		// 网关端口
+}
+
+// 发往ZoneServer，寻找人数最少的网关		// super <-> zone
+message MsgSuperSelectZone {
+	optional string account = 1;			// 账号
+	optional uint32 login_key = 2;			// 密钥
+	optional uint32 client_taskid = 3;		// 客户端的链接ID
+	optional uint64 login_server_uid = 4;	// 登陆服务器唯一ID
+	// 返回值
+	optional uint32 result = 8;				// 0成功，其他表示错误号
+	optional uint32 gateway_ip = 9;			// 网关IP
+	optional uint32 gateway_port = 10;		// 网关端口
+}
+
+//记录玩家信息到账号数据库(用于大区列表角色预览)	// zone -> super -> login
+message MsgRecordCharToLoginDB {
+	optional SvrZoneCharInfo char_info = 1;
+}
+
+//////////////////////////////////////////////////////////////////////////
+//			所有和Super服务器通讯的消息		结束
+//////////////////////////////////////////////////////////////////////////
+
+
+//------------------------------------------------------ 华丽丽的分割线 ---------------------------------------------------------------------
+

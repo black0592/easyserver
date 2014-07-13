@@ -40,9 +40,6 @@ const string TestComponent::type = "TestComponent";
 
 void execServiceOnInputCmd(ScriptObject* pScript, const string& cmd)
 {
-	if (cmd.empty())
-		return;
-
 	// ÊÂ¼þ²âÊÔ
 	{
 		//GameObject gameObj;

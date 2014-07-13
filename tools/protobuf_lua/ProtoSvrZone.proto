@@ -1,0 +1,85 @@
+//option optimize_for = LITE_RUNTIME;
+
+import "ProtoSvrServerData.proto";
+
+package ZoneCmd;
+
+
+//////////////////////////////////////////////////////////////////////////
+//             所有和Zone服务器通讯的消息		开始
+//////////////////////////////////////////////////////////////////////////
+
+//----------------------------------------------------------------------------
+// 操作号
+enum SvrZoneOpCode {
+	ZONE_OP_REGISTER_SERVER = 1;		// 向Zone服务器注册自己
+	ZONE_OP_GET_SERVER_INFO = 2;		// 请求指定类型的服务器信息
+	ZONE_OP_USER_SELECT_ZONE = 3;		// 玩家选中zone
+	ZONE_OP_RECORD_CHAR_TO_LOGINDB = 4;	// 记录玩家信息到账号数据库(用于大区列表角色预览)
+	ZONE_OP_UPDATE_SERVER_INFO = 5;		// 更新服务器的信息(在线人数,状态)
+	ZONE_OP_KICK_USER = 6;				// 踢指定账号玩家下线
+	ZONE_OP_UNREG_ZONEUSER = 7;			// 注销zoneuser
+}
+//----------------------------------------------------------------------------
+
+
+// 向Zone服务器注册自己		server <-> zone
+message MsgRegisterServer {
+	optional ServerInfo info = 1;
+	// 返回值
+	optional int32 result = 2;
+}
+
+// 请求指定类型的服务器信息			server <-> zone
+message MsgGetServerInfo {
+	optional uint32 type = 1;				// ServerType
+	optional uint32 flag = 2 [default = 1];	// 0 - 请求全部此类型的， 1 - 请求一个空闲的
+	// 返回值
+	optional int32 result = 3;
+	repeated ServerInfo server_list = 4;	// 服务器信息列表
+}
+
+// 用户选中大区			zone -> gateway
+message MsgUserSelectZone {
+	optional string account = 1;			// 账号
+	optional uint32 login_key = 2;			// 密钥
+	optional uint32 client_taskid = 3;		// 客户端的链接ID
+	optional uint64 login_server_uid = 4;	// 登陆服务器唯一ID
+	// 返回值
+	optional int32 result = 5;
+	optional uint32 gateway_ip = 6;			// 网关IP
+	optional uint32 gateway_port = 7;		// 网关端口
+}
+
+//记录玩家信息到账号数据库(用于大区列表角色预览)	// game -> zone
+message MsgRecordCharToLoginDB {
+	optional SvrZoneCharInfo char_info = 1;
+}
+
+// 同步服务器信息
+message NotifyUpdateServerInfo {
+	optional uint64 server_uid = 1;	// 服务器唯一ID
+	optional int32 onlinenum = 2;	// 当前在线人数
+	optional int32 state = 3;		// 状态	0-畅通,1-拥挤,2-爆满,3-维护
+}
+
+// 踢用户下线			zone -> gateway
+message MsgKickGatewayUser {
+	optional string account = 1;			// 账号
+	optional int32 result = 2;				// 返回值
+}
+
+
+// 注销zoneuser			gateway	->	zone
+message MsgUnregZoneUser {
+	optional string account = 1;			// 账号
+	optional int32 result = 2;				// 返回值
+}
+
+//////////////////////////////////////////////////////////////////////////
+//			所有和Zone服务器通讯的消息		结束
+//////////////////////////////////////////////////////////////////////////
+
+
+//------------------------------------------------------ 华丽丽的分割线 ---------------------------------------------------------------------
+
