@@ -21,6 +21,11 @@ uint ProtoDataFill::fillProto2Buff(void* buff, uint buffLen, const ProtoMessage&
 	// 写入protobuf二进制流
 	msg.SerializeToArray(pBufferPtr, protoSize);
 
+	// 尝试使用字符串格式
+	//string strOutBuf;
+	//msg.SerializeToString(&strOutBuf);
+	//memcpy(pBufferPtr, strOutBuf.c_str(), protoSize);
+
 	return cmdLen;
 }
 

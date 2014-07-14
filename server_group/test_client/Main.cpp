@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
 			printf("重连服务器\n");
 		} else {
 			LoginCmd::RequestRegisterGameServer protoMsg;
-			protoMsg.set_id(1);
+			protoMsg.set_id(55);
 			protoMsg.set_port(80);
 			protoMsg.set_name("login");
 			client.sendProtoMsg(protoMsg);

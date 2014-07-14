@@ -54,10 +54,12 @@ void execServerTaskHandleProtoMsg(TCPTask* pTask, ScriptObject* pScript, const E
 	pScript->dofile("datas/scripts/package_path.lua");
 
 	pScript->dofile("datas/scripts/server_task.lua");
-	//Event2Proto();
 
 	ProtoMessage* pMsg = netArgs.protoMsg;
-	lua_tinker::call<void,TCPTask*,ProtoMessage*>(pScript->getState(), "ServerTask_handleProtoMsg", pTask, pMsg);
+	string strData;
+	strData.reserve(netArgs.protoLen+1);
+	strData.append((const char*)netArgs.protoData, netArgs.protoLen);
+	lua_tinker::call<void,TCPTask*,const char*>(pScript->getState(), "ServerTask_handleProtoMsg", pTask, strData.c_str());
 
 	//pScript->dostring("ServerTask_handleProtoMsg()");
 	ScriptManager::getInstance().printInfo();
