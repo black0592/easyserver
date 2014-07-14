@@ -2,6 +2,8 @@
 #include "BaseLib.h"
 #include "ScriptLoader.h"
 
+extern "C" { int luaopen_pb (lua_State *L);}
+
 namespace easygame {
 
 ScriptObject::ScriptObject(lua_State* mainState)
@@ -12,6 +14,7 @@ ScriptObject::ScriptObject(lua_State* mainState)
 		
 		mLuaState = luaL_newstate();
 		luaL_openlibs(mLuaState);
+		luaopen_pb(mLuaState);
 		lua_tinker::init(mLuaState);	// 支持64位
 
 		// 注册自定义加载函数
@@ -80,6 +83,7 @@ ScriptManager::ScriptManager()
 {
 	mLuaState = luaL_newstate();
 	luaL_openlibs(mLuaState);
+	luaopen_pb(mLuaState);
 	lua_tinker::init(mLuaState);	// 支持64位
 
 	// 注册自定义加载函数

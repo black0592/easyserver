@@ -1,0 +1,15 @@
+//option optimize_for = LITE_RUNTIME;
+
+package ServerProtocol;
+
+// 服务器之间的消息定义(以端口服务命名,不要和通用消息里的重复)
+enum SvrMessageType {
+	SVR_MSG_SUPER_SERVICE = 1;	// 超级服务器的消息
+	SVR_MSG_ZONE_SERVICE = 2;	// 区主服务器的消息
+	SVR_MSG_LOGIN_SERVICE = 3;	// 账号服务器的消息
+	SVR_MSG_GATEWAY_SERVICE = 4;	// 网关服务器的消息
+	SVR_MSG_GAME_SERVICE = 5;	// PVE逻辑服务器的消息
+	SVR_MSG_SESSION_SERVICE = 6;	// PVP逻辑服务器的消息
+	SVR_MSG_LOGINDB_SERVICE = 7;	// 账号数据库代理的消息
+	SVR_MSG_GAMEDB_SERVICE = 8;	// PVE数据库代理的消息
+}
