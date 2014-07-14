@@ -238,9 +238,16 @@ void ServerServiceSync::updateWindowTitle()
 	strTitle = Platform::utf8ToGbk(strTitle);
 	Platform::setWindowTitle(strTitle.c_str());
 
-	LoginCmd::RequestRegisterGameServer cmd;
+	//////////////////////////////////////////////////////////////////////////
+
+	google::protobuf::Message* newQuery = createMessage("LoginCmd.RequestRegisterGameServer");
+	assert(newQuery != NULL);
+	LoginCmd::RequestRegisterGameServer::default_instance();
+
+	//LoginCmd::RequestRegisterGameServer cmd;
 
 	LoginCmd::RequestRegisterGameServer* pMsg = (LoginCmd::RequestRegisterGameServer*)createMessage("LoginCmd.RequestRegisterGameServer");
+	pMsg->set_id(1);
 
 	IterateProtoFile("ProtoSvrLogin.proto");
 }
