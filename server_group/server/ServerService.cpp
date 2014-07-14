@@ -56,9 +56,18 @@ void execServiceOnInputCmd(ScriptObject* pScript, const string& cmd)
 
 	pScript = ScriptManager::getInstance().createScript();
 	printf("\n=============== 开始执行脚本 ================\n");
-	pScript->dofile("./datas/scripts/server_service.lua");
-	pScript->dostring( strformat("ServerService_OnInputCmd(\"%s\")", cmd.c_str()) );
-	ScriptManager::getInstance().printInfo();
+
+	// 先初始化脚本路径搜索
+	pScript->dofile("datas/scripts/package_path.lua");
+
+	pScript->dofile("datas/scripts/main.lua");
+
+	//luaL_dofile(pScript->getState(), "./datas/scripts/main.lua");   
+	//lua_pcall(pScript->getState(), 0, LUA_MULTRET, 0);  
+
+	//pScript->dofile("./datas/scripts/server_service.lua");
+	//pScript->dostring( strformat("ServerService_OnInputCmd(\"%s\")", cmd.c_str()) );
+	//ScriptManager::getInstance().printInfo();
 	printf("\n=============== 结束脚本执行 ================\n");
 	ScriptManager::getInstance().destroyScript(pScript);
 }
