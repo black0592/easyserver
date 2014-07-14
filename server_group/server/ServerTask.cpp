@@ -6,23 +6,34 @@
 //////////////////////////////////////////////////////////////////////////
 
 
-void execServerTaskOnConnect(ScriptObject* pScript)
+void execServerTaskOnConnect(TCPTask* pTask, ScriptObject* pScript)
 {
 	pScript = ScriptManager::getInstance().createScript();
 	printf("\n=============== 开始执行脚本 ================\n");
-	pScript->dofile("./datas/scripts/server_task.lua");
-	pScript->dostring("ServerTask_OnConnect()");
+	
+	// 先初始化脚本路径搜索
+	pScript->dofile("datas/scripts/package_path.lua");
+
+	pScript->dofile("datas/scripts/server_task.lua");
+	lua_tinker::call<void,TCPTask*>(pScript->getState(), "ServerTask_OnConnect", pTask);
+
 	ScriptManager::getInstance().printInfo();
 	printf("\n=============== 结束脚本执行 ================\n");
 	ScriptManager::getInstance().destroyScript(pScript);
 }
 
-void execServerTaskOnDisconnect(ScriptObject* pScript)
+void execServerTaskOnDisconnect(TCPTask* pTask, ScriptObject* pScript)
 {
 	pScript = ScriptManager::getInstance().createScript();
 	printf("\n=============== 开始执行脚本 ================\n");
-	pScript->dofile("./datas/scripts/server_task.lua");
-	pScript->dostring("ServerTask_OnDisconnect()");
+
+	// 先初始化脚本路径搜索
+	pScript->dofile("datas/scripts/package_path.lua");
+
+	pScript->dofile("datas/scripts/server_task.lua");
+	lua_tinker::call<void,TCPTask*>(pScript->getState(), "ServerTask_OnDisconnect", pTask);
+
+	//pScript->dostring("ServerTask_OnDisconnect()");
 	ScriptManager::getInstance().printInfo();
 	printf("\n=============== 结束脚本执行 ================\n");
 	ScriptManager::getInstance().destroyScript(pScript);
@@ -38,10 +49,16 @@ void execServerTaskHandleProtoMsg(TCPTask* pTask, ScriptObject* pScript, const E
 
 	pScript = ScriptManager::getInstance().createScript();
 	printf("\n=============== 开始执行脚本 ================\n");
-	pScript->dofile("./datas/scripts/server_task.lua");
+
+	// 先初始化脚本路径搜索
+	pScript->dofile("datas/scripts/package_path.lua");
+
+	pScript->dofile("datas/scripts/server_task.lua");
 	//Event2Proto();
+
 	ProtoMessage* pMsg = netArgs.protoMsg;
 	lua_tinker::call<void,TCPTask*,ProtoMessage*>(pScript->getState(), "ServerTask_handleProtoMsg", pTask, pMsg);
+
 	//pScript->dostring("ServerTask_handleProtoMsg()");
 	ScriptManager::getInstance().printInfo();
 	printf("\n=============== 结束脚本执行 ================\n");
@@ -62,7 +79,7 @@ ServerTaskAsync::~ServerTaskAsync()
 
 bool ServerTaskAsync::OnConnect()
 {
-	execServerTaskOnConnect(NULL);
+	execServerTaskOnConnect(this, NULL);
 
 	return true;
 }
@@ -70,7 +87,7 @@ bool ServerTaskAsync::OnConnect()
 // 连接断开时被调用
 void ServerTaskAsync::OnDisconnect()
 {
-	execServerTaskOnDisconnect(NULL);
+	execServerTaskOnDisconnect(this, NULL);
 }
 
 bool ServerTaskAsync::handleProtoMsg(const EventArgs& args)
@@ -110,7 +127,7 @@ ServerTaskSync::~ServerTaskSync()
 
 bool ServerTaskSync::OnConnect()
 {
-	execServerTaskOnConnect(NULL);
+	execServerTaskOnConnect(this, NULL);
 
 	return true;
 }
@@ -118,7 +135,7 @@ bool ServerTaskSync::OnConnect()
 // 连接断开时被调用
 void ServerTaskSync::OnDisconnect()
 {
-	execServerTaskOnDisconnect(NULL);
+	execServerTaskOnDisconnect(this, NULL);
 }
 
 bool ServerTaskSync::handleProtoMsg(const EventArgs& args)

@@ -137,8 +137,8 @@ int main(int argc, char *argv[])
 			protoMsg.set_name("login");
 			client.sendProtoMsg(protoMsg);
 
-			const string strTypeName = protoMsg.GetTypeName();
-			ProtoMessage* pMsg = createMessage(strTypeName);
+			//const string strTypeName = protoMsg.GetTypeName();
+			//ProtoMessage* pMsg = createMessage(strTypeName);
 
 			printf("∑¢ÀÕ≤‚ ‘œ˚œ¢\n");
 			//GMCmdProcesser::pushCmd(cmd.c_str());

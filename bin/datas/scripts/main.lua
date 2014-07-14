@@ -1,4 +1,5 @@
 require "person_pb"
+require "ProtoSvrLogin_pb"
 
 local msg = person_pb.Person()  
 msg.id = 100   
