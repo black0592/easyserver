@@ -5,17 +5,6 @@
 #endif
 
 
-//class ObjPoolTest : public ObjectPool<ObjPoolTest>
-//{
-//public:
-//	ObjPoolTest();
-//	virtual ~ObjPoolTest();
-//
-//protected:
-//private:
-//};
-
-
 void runAsyncServer()
 {
 	// 建立异步服务器
@@ -33,6 +22,9 @@ void runSyncServer()
 int main(int argc, char *argv[])
 {
 	bool isAsyncServer = false;
+
+	// 设置脚本根目录
+	ScriptManager::getInstance().setSciptRootPath("datas/scripts/");
 
 	if (isAsyncServer) {
 		// 异步服务

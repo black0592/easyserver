@@ -1,4 +1,5 @@
 require "ProtoSvrLogin_pb"
+require "login_handler"
 
 -- Á´½Ó
 function ServerTask_OnConnect(task)
@@ -18,13 +19,12 @@ function ServerTask_handleProtoMsg(task, pb_data)
 
 	local msg = ProtoSvrLogin_pb.RequestRegisterGameServer()
 	msg:ParseFromString(pb_data)
-	print(msg.name)
+	--print(msg.name)
 	print( string.format("parser: %d %s %d", msg.id, msg.name, msg.port) )
 	print("Call ServerTask_handleProtoMsg");
 	handleRequestRegisterGameServer(msg)
+	
+	--package.loaded["login_handler"] = nil
+	--require "login_handler"
 end
 
--- Âß¼­´¦Àí
-function handleRequestRegisterGameServer(msg)
-	print( string.format("parser: %d %s %d", msg.id, msg.name, msg.port) )
-end

@@ -35,9 +35,12 @@ ScriptObject::~ScriptObject()
 
 bool ScriptObject::dofile(const char* filename)
 {
+	string fullFileName = ScriptManager::getInstance().getSciptRootPath();
+	fullFileName += filename;
+
 	File file;
-	if (!file.open(filename)) {
-		BLOGE("加载脚本文件 %s 失败！！", filename);
+	if (!file.open(fullFileName.c_str())) {
+		BLOGE("加载脚本文件 %s 失败！！", fullFileName.c_str());
 		return false;
 	}
 
@@ -102,6 +105,16 @@ ScriptManager::~ScriptManager()
 	mScriptList.clear();
 }
 
+void ScriptManager::setSciptRootPath(const char* path)
+{
+	mScriptRootPath = path;
+}
+
+const char* ScriptManager::getSciptRootPath()
+{
+	return mScriptRootPath.c_str();
+}
+
 ScriptObject* ScriptManager::createScript(ScriptType type)
 {
 	ScriptObject* pScript = NULL;
@@ -119,6 +132,9 @@ ScriptObject* ScriptManager::createScript(ScriptType type)
 
 void ScriptManager::destroyScript(ScriptObject*& pScript)
 {
+	if (pScript == NULL)
+		return;
+
 	auto it = mScriptList.find(pScript);
 	if (it == mScriptList.end()) {
 		BLOGE("not find pScript");

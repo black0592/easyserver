@@ -2,38 +2,38 @@
 #include "ServerService.h"
 #include "TimerForMain.h"
 #include "ProtoSvrLogin.pb.h"
-#include "protohandler\ProtobufDefine.h"
+#include "protohandler/ProtobufDefine.h"
 
-const EventType EVT_TestEvent = "TestEvent";
-
-class TestComponent : public Component
-{
-public:
-	static const string type;
-
-	TestComponent()
-	{
-		BindGameEvent(EVT_TestEvent, TestComponent::onEventTest);
-	}
-
-	virtual ~TestComponent(){}
-
-	void onEventTest(const GameEvent& evt)
-	{
-		string event = evt.event;
-		event = event;
-		LOGE("onEventTest evt=%s", evt.event.c_str());
-
-		int hp = atoi(getOwner()->getProperties().getValue("hp"));
-		int mp = atoi(getOwner()->getProperties().getValue("mp"));
-		LOGE("Prop: hp=%d, mp=%d", hp, mp);
-	}
-
-protected:
-private:
-};
-
-const string TestComponent::type = "TestComponent";
+//const EventType EVT_TestEvent = "TestEvent";
+//
+//class TestComponent : public Component
+//{
+//public:
+//	static const string type;
+//
+//	TestComponent()
+//	{
+//		BindGameEvent(EVT_TestEvent, TestComponent::onEventTest);
+//	}
+//
+//	virtual ~TestComponent(){}
+//
+//	void onEventTest(const GameEvent& evt)
+//	{
+//		string event = evt.event;
+//		event = event;
+//		LOGE("onEventTest evt=%s", evt.event.c_str());
+//
+//		int hp = atoi(getOwner()->getProperties().getValue("hp"));
+//		int mp = atoi(getOwner()->getProperties().getValue("mp"));
+//		LOGE("Prop: hp=%d, mp=%d", hp, mp);
+//	}
+//
+//protected:
+//private:
+//};
+//
+//const string TestComponent::type = "TestComponent";
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -58,16 +58,11 @@ void execServiceOnInputCmd(ScriptObject* pScript, const string& cmd)
 	printf("\n=============== 开始执行脚本 ================\n");
 
 	// 先初始化脚本路径搜索
-	pScript->dofile("datas/scripts/package_path.lua");
+	pScript->dofile("package_path.lua");
 
-	pScript->dofile("datas/scripts/main.lua");
+	pScript->dofile("loginserver/main.lua");
 
-	//luaL_dofile(pScript->getState(), "./datas/scripts/main.lua");   
-	//lua_pcall(pScript->getState(), 0, LUA_MULTRET, 0);  
-
-	//pScript->dofile("./datas/scripts/server_service.lua");
-	//pScript->dostring( strformat("ServerService_OnInputCmd(\"%s\")", cmd.c_str()) );
-	//ScriptManager::getInstance().printInfo();
+	ScriptManager::getInstance().printInfo();
 	printf("\n=============== 结束脚本执行 ================\n");
 	ScriptManager::getInstance().destroyScript(pScript);
 }

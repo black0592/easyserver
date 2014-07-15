@@ -64,6 +64,7 @@ public:
 	void close();
 
 protected:
+
 private:
 	string mFileName;		// 文件名
 	lua_State* mLuaState;	// lua虚拟机
@@ -79,6 +80,10 @@ public:
 	ScriptManager();
 	virtual ~ScriptManager();
 
+	// 设置脚本的根目录
+	void setSciptRootPath(const char* path);
+	const char* getSciptRootPath();
+
 	ScriptObject* createScript(ScriptType type = ScriptType::NewState);
 	void destroyScript(ScriptObject*& pScript);
 
@@ -92,7 +97,9 @@ public:
 	void printInfo();
 
 protected:
+
 private:
+	string mScriptRootPath;
 	lua_State* mLuaState;	// 主虚拟机
 	map<ScriptObject*,ScriptObject*> mScriptList;
 };

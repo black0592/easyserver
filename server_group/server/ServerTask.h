@@ -1,7 +1,29 @@
 #pragma once
 
+class ServerTaskBase
+{
+public:
+	ServerTaskBase();
+	~ServerTaskBase();
+
+	void createScript();
+	void destroyScript();
+
+protected:
+	bool execServerTaskOnConnect();
+	void execServerTaskOnDisconnect();
+	void execServerTaskHandleProtoMsg(const EventArgs& args);
+
+protected:
+	ScriptObject* mScript;
+};
+
+
+
+//////////////////////////////////////////////////////////////////////////
+
 // 异步网络任务
-class ServerTaskAsync : public ProtoTaskAsync
+class ServerTaskAsync : public ProtoTaskAsync, ServerTaskBase
 {
 public:
 	ServerTaskAsync();
@@ -24,7 +46,7 @@ private:
 
 
 // 同步网络任务
-class ServerTaskSync : public ProtoTaskSync
+class ServerTaskSync : public ProtoTaskSync, ServerTaskBase
 {
 public:
 	ServerTaskSync();

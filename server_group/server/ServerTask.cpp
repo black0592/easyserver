@@ -3,43 +3,56 @@
 #include "ProtoSvrLogin.pb.h"
 
 
-//////////////////////////////////////////////////////////////////////////
-
-
-void execServerTaskOnConnect(TCPTask* pTask, ScriptObject* pScript)
+ServerTaskBase::ServerTaskBase()
 {
-	pScript = ScriptManager::getInstance().createScript();
-	printf("\n=============== 开始执行脚本 ================\n");
-	
-	// 先初始化脚本路径搜索
-	pScript->dofile("datas/scripts/package_path.lua");
+	mScript = NULL;
+}
 
-	pScript->dofile("datas/scripts/server_task.lua");
-	lua_tinker::call<void,TCPTask*>(pScript->getState(), "ServerTask_OnConnect", pTask);
+ServerTaskBase::~ServerTaskBase()
+{
+}
+
+void ServerTaskBase::createScript()
+{
+	assert(mScript == NULL);
+
+	mScript = ScriptManager::getInstance().createScript();
+
+	// 先初始化脚本路径搜索
+	mScript->dofile("package_path.lua");
+
+	// 执行task脚本文件
+	mScript->dofile("loginserver/server_task.lua");
+}
+
+void ServerTaskBase::destroyScript()
+{
+	ScriptManager::getInstance().destroyScript(mScript);
+}
+
+bool ServerTaskBase::execServerTaskOnConnect()
+{
+	printf("\n=============== 开始执行脚本 ================\n");
+
+	lua_tinker::call<void,void*>(mScript->getState(), "ServerTask_OnConnect", this);
 
 	ScriptManager::getInstance().printInfo();
 	printf("\n=============== 结束脚本执行 ================\n");
-	ScriptManager::getInstance().destroyScript(pScript);
+
+	return true;
 }
 
-void execServerTaskOnDisconnect(TCPTask* pTask, ScriptObject* pScript)
+void ServerTaskBase::execServerTaskOnDisconnect()
 {
-	pScript = ScriptManager::getInstance().createScript();
 	printf("\n=============== 开始执行脚本 ================\n");
 
-	// 先初始化脚本路径搜索
-	pScript->dofile("datas/scripts/package_path.lua");
+	lua_tinker::call<void,void*>(mScript->getState(), "ServerTask_OnDisconnect", this);
 
-	pScript->dofile("datas/scripts/server_task.lua");
-	lua_tinker::call<void,TCPTask*>(pScript->getState(), "ServerTask_OnDisconnect", pTask);
-
-	//pScript->dostring("ServerTask_OnDisconnect()");
 	ScriptManager::getInstance().printInfo();
 	printf("\n=============== 结束脚本执行 ================\n");
-	ScriptManager::getInstance().destroyScript(pScript);
 }
 
-void execServerTaskHandleProtoMsg(TCPTask* pTask, ScriptObject* pScript, const EventArgs& args)
+void ServerTaskBase::execServerTaskHandleProtoMsg(const EventArgs& args)
 {
 	const NetEventArgs& netArgs = (const NetEventArgs&)args;
 	if (netArgs.protoMsg == NULL)
@@ -47,24 +60,16 @@ void execServerTaskHandleProtoMsg(TCPTask* pTask, ScriptObject* pScript, const E
 
 	LoginCmd::RequestRegisterGameServer* loinMsg = (LoginCmd::RequestRegisterGameServer*)netArgs.protoMsg;
 
-	pScript = ScriptManager::getInstance().createScript();
 	printf("\n=============== 开始执行脚本 ================\n");
-
-	// 先初始化脚本路径搜索
-	pScript->dofile("datas/scripts/package_path.lua");
-
-	pScript->dofile("datas/scripts/server_task.lua");
 
 	ProtoMessage* pMsg = netArgs.protoMsg;
 	string strData;
 	strData.reserve(netArgs.protoLen+1);
 	strData.append((const char*)netArgs.protoData, netArgs.protoLen);
-	lua_tinker::call<void,TCPTask*,const char*>(pScript->getState(), "ServerTask_handleProtoMsg", pTask, strData.c_str());
+	lua_tinker::call<void,void*,const char*>(mScript->getState(), "ServerTask_handleProtoMsg", this, strData.c_str());
 
-	//pScript->dostring("ServerTask_handleProtoMsg()");
 	ScriptManager::getInstance().printInfo();
 	printf("\n=============== 结束脚本执行 ================\n");
-	ScriptManager::getInstance().destroyScript(pScript);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -72,16 +77,17 @@ void execServerTaskHandleProtoMsg(TCPTask* pTask, ScriptObject* pScript, const E
 ServerTaskAsync::ServerTaskAsync()
 {
 	mUniqueId = 0;
+	createScript();
 }
 
 ServerTaskAsync::~ServerTaskAsync()
 {
-
+	destroyScript();
 }
 
 bool ServerTaskAsync::OnConnect()
 {
-	execServerTaskOnConnect(this, NULL);
+	this->execServerTaskOnConnect();
 
 	return true;
 }
@@ -89,7 +95,7 @@ bool ServerTaskAsync::OnConnect()
 // 连接断开时被调用
 void ServerTaskAsync::OnDisconnect()
 {
-	execServerTaskOnDisconnect(this, NULL);
+	this->execServerTaskOnDisconnect();
 }
 
 bool ServerTaskAsync::handleProtoMsg(const EventArgs& args)
@@ -108,7 +114,7 @@ bool ServerTaskAsync::handleProtoMsg(const EventArgs& args)
 	// 消息性能记录
 	FUNC_PF_EXT(strformat("消息执行时间过长para=%d",pCmd->para), 50);
 
-	execServerTaskHandleProtoMsg(this, NULL, args);
+	this->execServerTaskHandleProtoMsg(args);
 
 	return true;
 }
@@ -120,16 +126,17 @@ bool ServerTaskAsync::handleProtoMsg(const EventArgs& args)
 ServerTaskSync::ServerTaskSync()
 {
 	mUniqueId = 0;
+	createScript();
 }
 
 ServerTaskSync::~ServerTaskSync()
 {
-
+	destroyScript();
 }
 
 bool ServerTaskSync::OnConnect()
 {
-	execServerTaskOnConnect(this, NULL);
+	this->execServerTaskOnConnect();
 
 	return true;
 }
@@ -137,7 +144,7 @@ bool ServerTaskSync::OnConnect()
 // 连接断开时被调用
 void ServerTaskSync::OnDisconnect()
 {
-	execServerTaskOnDisconnect(this, NULL);
+	this->execServerTaskOnDisconnect();
 }
 
 bool ServerTaskSync::handleProtoMsg(const EventArgs& args)
@@ -156,7 +163,7 @@ bool ServerTaskSync::handleProtoMsg(const EventArgs& args)
 	// 消息性能记录
 	FUNC_PF_EXT(strformat("消息执行时间过长para=%d",pCmd->para), 50);
 
-	execServerTaskHandleProtoMsg(this, NULL, args);
+	this->execServerTaskHandleProtoMsg(args);
 
 	return true;
 }
