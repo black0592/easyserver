@@ -21,12 +21,16 @@ bool ProtoClient::sendProtoMsg(const ProtoMessage& msg, uint cmdID)
 	stBaseCmd baseCmd(cmdID);
 	if (baseCmd.getCmdID() == 0) {
 		// 如果没有，就从缓存中取
-		const string& typeName = msg.GetTypeName();
+		//const string& typeName = msg.GetTypeName();
+		
+		const Descriptor* descriptor = DescriptorPool::generated_pool()->FindMessageTypeByName(msg.GetTypeName());
+		const string& typeName = descriptor->name();
+
 		baseCmd = ::findCmdByMsgName(typeName);
 		if (baseCmd.getCmdID() == 0) {
 #if ENABLE_PROTO_REFLECT
 			// 如果未注册，那就启用自动反射机制
-			baseCmd.setTypeName( msg.GetTypeName().c_str() );
+			baseCmd.setTypeName( typeName.c_str() );
 #else
 			BLOGE("unknow msg, plz call <regProtoMsg> first?\n");
 			return false;

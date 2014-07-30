@@ -55,10 +55,10 @@ void ServerTaskBase::execServerTaskOnDisconnect()
 void ServerTaskBase::execServerTaskHandleProtoMsg(const EventArgs& args)
 {
 	const NetEventArgs& netArgs = (const NetEventArgs&)args;
-	if (netArgs.protoMsg == NULL)
-		return;
+	//if (netArgs.protoMsg == NULL)
+	//	return;
 
-	LoginCmd::RequestRegisterGameServer* loinMsg = (LoginCmd::RequestRegisterGameServer*)netArgs.protoMsg;
+	//LoginCmd::RequestRegisterGameServer* loinMsg = (LoginCmd::RequestRegisterGameServer*)netArgs.protoMsg;
 
 	printf("\n=============== 开始执行脚本 ================\n");
 
@@ -66,7 +66,10 @@ void ServerTaskBase::execServerTaskHandleProtoMsg(const EventArgs& args)
 	string strData;
 	strData.reserve(netArgs.protoLen+1);
 	strData.append((const char*)netArgs.protoData, netArgs.protoLen);
-	lua_tinker::call<void,void*,const char*>(mScript->getState(), "ServerTask_handleProtoMsg", this, strData.c_str());
+	//lua_tinker::call<void,void*,const char*>(mScript->getState(), "ServerTask_handleProtoMsg", this, strData.c_str());
+	string strCallBack = "handle";
+	strCallBack += netArgs.pCmd->name;
+	lua_tinker::call<void,void*,const char*>(mScript->getState(), strCallBack.c_str(), this, strData.c_str());
 
 	ScriptManager::getInstance().printInfo();
 	printf("\n=============== 结束脚本执行 ================\n");

@@ -241,14 +241,14 @@ void ServerServiceSync::updateWindowTitle()
 
 	//////////////////////////////////////////////////////////////////////////
 
-	google::protobuf::Message* newQuery = createMessage("LoginCmd.RequestRegisterGameServer");
-	assert(newQuery != NULL);
-	LoginCmd::RequestRegisterGameServer::default_instance();
+	//google::protobuf::Message* newQuery = createMessage("LoginCmd.RequestRegisterGameServer");
+	//assert(newQuery != NULL);
+	//LoginCmd::RequestRegisterGameServer::default_instance();
 
 	//LoginCmd::RequestRegisterGameServer cmd;
 
-	LoginCmd::RequestRegisterGameServer* pMsg = (LoginCmd::RequestRegisterGameServer*)createMessage("LoginCmd.RequestRegisterGameServer");
-	pMsg->set_id(1);
+	//LoginCmd::RequestRegisterGameServer* pMsg = (LoginCmd::RequestRegisterGameServer*)createMessage("LoginCmd.RequestRegisterGameServer");
+	//pMsg->set_id(1);
 
-	IterateProtoFile("ProtoSvrLogin.proto");
+	//IterateProtoFile("ProtoSvrLogin.proto");
 }

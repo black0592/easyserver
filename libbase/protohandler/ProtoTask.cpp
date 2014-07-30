@@ -19,12 +19,16 @@ bool ProtoTaskBase::fillProtoMsg(const ProtoMessage& msg, uint cmdID, byte* pBuf
 	stBaseCmd baseCmd(cmdID);
 	if (baseCmd.getCmdID() == 0) {
 		// 如果没有，就从缓存中取
-		const string& typeName = msg.GetTypeName();
+		//const string& typeName = msg.GetTypeName();
+
+		const Descriptor* descriptor = DescriptorPool::generated_pool()->FindMessageTypeByName(msg.GetTypeName());
+		const string& typeName = descriptor->name();
+
 		baseCmd = ::findCmdByMsgName(typeName);
 		if (baseCmd.getCmdID() == 0) {
 #if ENABLE_PROTO_REFLECT
 			// 如果未注册，那就启用自动反射机制
-			baseCmd.setTypeName( msg.GetTypeName().c_str() );
+			baseCmd.setTypeName( typeName.c_str() );
 #else
 			BLOGE("unknow msg, plz call <regProtoMsg> first?\n");
 			return false;
@@ -71,17 +75,18 @@ bool ProtoTaskBase::handleMessageImpl(const void *cmd, int cmdLen)
 	byte* protoData = ((byte*)cmd + (sizeof(stBaseCmd)));
 	int protoDataLen = (int)cmdLen - (sizeof(stBaseCmd));
 	ProtoMessage* protoMsg = NULL;
+
 #if ENABLE_PROTO_REFLECT
 	if (pCmd->getCmdID() == 0) {
 		protoMsg = createMessage(pCmd->name);
-		assert(protoMsg);
-		if (protoMsg == NULL) {
-			return true;
+		//assert(protoMsg);
+		if (protoMsg != NULL) {
+			// 反序列化成proto结构体
+			protoMsg->ParseFromArray(protoData, protoDataLen);
 		}
-		// 反序列化成proto结构体
-		protoMsg->ParseFromArray(protoData, protoDataLen);
 	}
 #endif
+
 	NetEventArgs evt(pCmd, cmdLen, protoData, protoDataLen, protoMsg);
 	handleProtoMsg( evt );
 	return true;
