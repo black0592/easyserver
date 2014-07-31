@@ -12,17 +12,87 @@ ServerTaskBase::~ServerTaskBase()
 {
 }
 
+
+
+class test
+{
+public:
+	test(int val) : _test(val) {}
+	~test() {}
+
+	const char* is_test(){ return "this is test"; }
+
+	void ret_void() {}
+	int ret_int()				{ return _test;			}
+	int ret_mul(int m) const	{ return _test * m;		}
+
+	void sendProtoMsg(int a, int b)
+	{
+		a = a;
+		b = b; 
+	}
+
+	int _test;
+};
+
+test g_test(11);
+//ServerTaskSync g_task;
+
 void ServerTaskBase::createScript()
 {
 	assert(mScript == NULL);
 
 	mScript = ScriptManager::getInstance().createScript();
+	lua_State* L = mScript->getState();
+
+	//////////////////////////////////////////////////////////////////////////
+	// ×¢²áTask½Ó¿Ú
+
+	lua_tinker::class_add<ProtoTask>(L, "ProtoTask");
+	lua_tinker::class_def<ProtoTask>(L, "sendProtoMsg", &ProtoTask::sendProtoMsg);
+	lua_tinker::class_def<ProtoTask>(L, "sendProtoMsg2", &ProtoTask::sendProtoMsg2);
+	lua_tinker::class_def<ProtoTask>(L, "sendProtoMsg3", &ProtoTask::sendProtoMsg3);
+	//lua_tinker::class_def<ProtoTask>(L, "sendProtoMsg2", &ProtoTask::sendProtoMsg2);
+
+	lua_tinker::class_add<ServerTaskSync>(L, "ServerTaskSync");
+	lua_tinker::class_inh<ServerTaskSync, ProtoTask>(L);
+	lua_tinker::class_con<ServerTaskSync>(L, lua_tinker::constructor<ServerTaskSync>);
+	//lua_tinker::class_def<ServerTaskSync>(L, "sendProtoMsg", &ServerTaskSync::sendProtoMsg);
+
+	ServerTaskSync* g_task = (ServerTaskSync*)this;
+	lua_tinker::set(L, "g_task", g_task);
+
+	//////////////////////////////////////////////////////////////////////////
+
+	// test Å¬·¡½º¸¦ Lua ¿¡ Ãß°¡ÇÑ´Ù.
+	lua_tinker::class_add<test>(L, "test");
+	// test Å¬·¡½º »ý¼ºÀÚ¸¦ µî·ÏÇÑ´Ù.
+	lua_tinker::class_con<test>(L, lua_tinker::constructor<test,int>);
+	// test ÀÇ ÇÔ¼öµéÀ» µî·ÏÇÑ´Ù.
+	lua_tinker::class_def<test>(L, "is_test", &test::is_test);
+	lua_tinker::class_def<test>(L, "ret_void", &test::ret_void);
+	lua_tinker::class_def<test>(L, "ret_int", &test::ret_int);
+	lua_tinker::class_def<test>(L, "ret_mul", &test::ret_mul);
+	//lua_tinker::class_def<test>(L, "sendProtoMsg", &test::sendProtoMsg);
+	lua_tinker::class_mem<test>(L, "_test", &test::_test);
+
+	// Lua Àü¿ª º¯¼öÈ£ g_test ÀÇ Æ÷ÀÎÅÍ¸¦ µî·ÏÇÑ´Ù.
+	lua_tinker::set(L, "g_test", &g_test);
+
+	//////////////////////////////////////////////////////////////////////////
 
 	// ÏÈ³õÊ¼»¯½Å±¾Â·¾¶ËÑË÷
 	mScript->dofile("package_path.lua");
 
 	// Ö´ÐÐtask½Å±¾ÎÄ¼þ
 	mScript->dofile("loginserver/server_task.lua");
+	//mScript->dofile("D:/²âÊÔÄ¿Â¼/test3/luatest/bin/datas/scripts/loginserver/server_task.lua");
+
+	//lua_tinker::call<void,test*>(L, "test_func", &g_test);
+
+	lua_tinker::call<void>(L, "test_func");
+
+	mScript = mScript;
 }
 
 void ServerTaskBase::destroyScript()
@@ -62,6 +132,11 @@ void ServerTaskBase::execServerTaskHandleProtoMsg(const EventArgs& args)
 
 	printf("\n=============== ¿ªÊ¼Ö´ÐÐ½Å±¾ ================\n");
 
+//#ifdef _DEBUG
+//	destroyScript();
+//	createScript();
+//#endif
+
 	ProtoMessage* pMsg = netArgs.protoMsg;
 	string strData;
 	strData.reserve(netArgs.protoLen+1);
@@ -69,7 +144,7 @@ void ServerTaskBase::execServerTaskHandleProtoMsg(const EventArgs& args)
 	//lua_tinker::call<void,void*,const char*>(mScript->getState(), "ServerTask_handleProtoMsg", this, strData.c_str());
 	string strCallBack = "handle";
 	strCallBack += netArgs.pCmd->name;
-	lua_tinker::call<void,void*,const char*>(mScript->getState(), strCallBack.c_str(), this, strData.c_str());
+	lua_tinker::call<void,ServerTaskSync*,const char*>(mScript->getState(), strCallBack.c_str(), (ServerTaskSync*)this, strData.c_str());
 
 	ScriptManager::getInstance().printInfo();
 	printf("\n=============== ½áÊø½Å±¾Ö´ÐÐ ================\n");
@@ -78,6 +153,7 @@ void ServerTaskBase::execServerTaskHandleProtoMsg(const EventArgs& args)
 //////////////////////////////////////////////////////////////////////////
 
 ServerTaskAsync::ServerTaskAsync()
+	: ProtoTask(AsyncType)
 {
 	mUniqueId = 0;
 	createScript();
@@ -127,6 +203,7 @@ bool ServerTaskAsync::handleProtoMsg(const EventArgs& args)
 
 
 ServerTaskSync::ServerTaskSync()
+		: ProtoTask(SyncType)
 {
 	mUniqueId = 0;
 	createScript();

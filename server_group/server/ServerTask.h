@@ -23,7 +23,7 @@ protected:
 //////////////////////////////////////////////////////////////////////////
 
 // 异步网络任务
-class ServerTaskAsync : public ProtoTaskAsync, ServerTaskBase
+class ServerTaskAsync : public ProtoTask, ServerTaskBase
 {
 public:
 	ServerTaskAsync();
@@ -46,7 +46,7 @@ private:
 
 
 // 同步网络任务
-class ServerTaskSync : public ProtoTaskSync, ServerTaskBase
+class ServerTaskSync : public ProtoTask, ServerTaskBase
 {
 public:
 	ServerTaskSync();

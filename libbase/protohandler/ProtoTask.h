@@ -5,21 +5,25 @@
 using namespace easygame;
 
 
-class ProtoTaskBase
+class ProtoTask : public TCPTaskImpl
 {
 public:
-	ProtoTaskBase();
-	virtual ~ProtoTaskBase();
+	ProtoTask(TCPTaskType type);
+	virtual ~ProtoTask();
 
-	// 处理protobuf的消息
-	virtual bool handleProtoMsg(const EventArgs& args) = 0;
+	bool sendProtoMsg(const ProtoMessage& msg, uint cmdID = 0);
+	bool sendProtoMsg2(const char* msg, int msgLen, const char* typeName, uint cmdID = 0);
+	bool sendProtoMsg3(int a, int b);
 
 protected:
 	// 填充protobuf消息
 	bool fillProtoMsg(const ProtoMessage& msg, uint cmdID, byte* pBuff, int buffLen, int& nRetLen);
 
 	// 处理消息
-	bool handleMessageImpl(const void *cmd, int cmdLen);
+	virtual bool handleMessage(const void *cmd, int cmdLen);
+
+	// 处理protobuf的消息
+	virtual bool handleProtoMsg(const EventArgs& args) { return true; }
 
 protected:
 private:
@@ -27,6 +31,7 @@ private:
 
 //////////////////////////////////////////////////////////////////////////
 
+/*
 
 // --- 异步处理消息的ProtoTaskAsync -----
 class ProtoTaskAsync : public TCPTaskAsync, ProtoTaskBase
@@ -62,7 +67,7 @@ protected:
 };
 
 
-
+*/
 
 
 

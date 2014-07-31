@@ -149,34 +149,57 @@ namespace easygame {
 
 	//////////////////////////////////////////////////////////////////////////
 
-	// --- 异步处理消息的TCPTask -----
-	class TCPTaskAsync : public TCPTask
+	// --- 同步/异步处理消息的TCPTask -----
+	class TCPTaskImpl : public TCPTask, public MessageHandlerQueue
 	{
 	public:
-		TCPTaskAsync() { mType = AsyncType; }
+		TCPTaskImpl(TCPTaskType type) { mType = type; }
 		// 底层拆包后调用的接口(多线程)
-		virtual bool OnRecvCommand(const void *cmd, int cmdLen) { return handleMessage(cmd, cmdLen); };
-		// 消息具体的处理函数,上层逻辑使用(多线程)
-		virtual bool handleMessage(const void *cmd, int cmdLen) { return true; }
+		virtual bool OnRecvCommand(const void *cmd, int cmdLen)
+		{
+			if (mType == SyncType) {
+				// 同步方式
+				return putMsg(cmd, cmdLen);
+			}
+
+			// 异步方式
+			return handleMessage(cmd, cmdLen); 
+		};
+
 	protected:
 	private:
 	};
 
-	//////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
 
-	// --- 采用消息队列方式来处理消息 -----
-	class TCPTaskSync : public TCPTask, public MessageHandlerQueue
-	{
-	public:
-		TCPTaskSync() { mType = SyncType; }
-		// 底层拆包后调用的接口(多线程)
-		virtual bool OnRecvCommand(const void *cmd, int cmdLen) { return putMsg(cmd, cmdLen); };
+	//// --- 异步处理消息的TCPTask -----
+	//class TCPTaskAsync : public TCPTask
+	//{
+	//public:
+	//	TCPTaskAsync() { mType = AsyncType; }
+	//	// 底层拆包后调用的接口(多线程)
+	//	virtual bool OnRecvCommand(const void *cmd, int cmdLen) { return handleMessage(cmd, cmdLen); };
+	//	// 消息具体的处理函数,上层逻辑使用(多线程)
+	//	//virtual bool handleMessage(const void *cmd, int cmdLen) { return true; }
+	//protected:
+	//private:
+	//};
 
-		// 这个接口在MessageHandlerQueue中定义
-		//virtual bool handleMessage(const void *cmd, int cmdLen) { return true; }
-	protected:
-	private:
-	};
+	////////////////////////////////////////////////////////////////////////////
+
+	//// --- 采用消息队列方式来处理消息 -----
+	//class TCPTaskSync : public TCPTask, public MessageHandlerQueue
+	//{
+	//public:
+	//	TCPTaskSync() { mType = SyncType; }
+	//	// 底层拆包后调用的接口(多线程)
+	//	virtual bool OnRecvCommand(const void *cmd, int cmdLen) { return putMsg(cmd, cmdLen); };
+
+	//	// 这个接口在MessageHandlerQueue中定义
+	//	//virtual bool handleMessage(const void *cmd, int cmdLen) { return true; }
+	//protected:
+	//private:
+	//};
 
 
 }	// namespace

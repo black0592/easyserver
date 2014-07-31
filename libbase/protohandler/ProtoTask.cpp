@@ -1,20 +1,54 @@
 #include "BaseLib.h"
 #include "ProtoTask.h"
 #include "MsgHanderBase.h"
+#include "ProtoSvrLogin.pb.h"
 
-
-ProtoTaskBase::ProtoTaskBase()
+ProtoTask::ProtoTask(TCPTaskType type)
+	: TCPTaskImpl(type)
 {
 
 }
 
-ProtoTaskBase::~ProtoTaskBase()
+ProtoTask::~ProtoTask()
 {
 
+}
+
+bool ProtoTask::sendProtoMsg(const ProtoMessage& msg, uint cmdID)
+{
+	byte buffer[MAX_USER_CMD_SIZE];
+	int retLen = 0;
+	fillProtoMsg(msg, cmdID, buffer, sizeof(buffer), retLen);
+	// 写入发送队列
+	return sendCmd((const char *)buffer, retLen);
+}
+
+bool ProtoTask::sendProtoMsg2(const char* msg, int msgLen, const char* typeName, uint cmdID)
+{
+	byte buffer[MAX_USER_CMD_SIZE];
+	byte* pBufferPtr = buffer;
+	int retLen = sizeof(stBaseCmd) + msgLen;
+	stBaseCmd cmd(0);
+	cmd.setTypeName( typeName );
+
+	// 写入消息内容
+	memcpy(pBufferPtr, &cmd, sizeof(stBaseCmd));
+	pBufferPtr += sizeof(stBaseCmd);
+
+	// 写入protobuf二进制流
+	memcpy(pBufferPtr, msg, msgLen);
+
+	// 写入发送队列
+	return sendCmd((const char *)buffer, retLen);
+}
+
+bool ProtoTask::sendProtoMsg3(int a, int b)
+{
+	return true;
 }
 
 // 发送protobuf消息
-bool ProtoTaskBase::fillProtoMsg(const ProtoMessage& msg, uint cmdID, byte* pBuff, int buffLen, int& nRetLen)
+bool ProtoTask::fillProtoMsg(const ProtoMessage& msg, uint cmdID, byte* pBuff, int buffLen, int& nRetLen)
 {
 	stBaseCmd baseCmd(cmdID);
 	if (baseCmd.getCmdID() == 0) {
@@ -47,7 +81,7 @@ bool ProtoTaskBase::fillProtoMsg(const ProtoMessage& msg, uint cmdID, byte* pBuf
 }
 
 // 处理消息
-bool ProtoTaskBase::handleMessageImpl(const void *cmd, int cmdLen)
+bool ProtoTask::handleMessage(const void *cmd, int cmdLen)
 {
 #if 0
 	// 根据ID取出消息处理器
@@ -95,6 +129,9 @@ bool ProtoTaskBase::handleMessageImpl(const void *cmd, int cmdLen)
 	return true;
 }
 
+
+/*
+
 //////////////////////////////////////////////////////////////////////////
 
 
@@ -129,7 +166,6 @@ bool ProtoTaskAsync::handleMessage(const void *cmd, int cmdLen)
 //////////////////////////////////////////////////////////////////////////
 
 
-
 ProtoTaskSync::ProtoTaskSync()
 {
 
@@ -156,7 +192,7 @@ bool ProtoTaskSync::handleMessage(const void *cmd, int cmdLen)
 }
 
 
-
+*/
 
 
 

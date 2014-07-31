@@ -29,13 +29,16 @@ bool Server::sendProtoMsg(const ProtoMessage& msg, uint cmdID)
 	if (mTCPTask == NULL)
 		return false;
 
-	ProtoTaskSync* taskSync = dynamic_cast<ProtoTaskSync*>(mTCPTask);
-	if (taskSync)
-		taskSync->sendProtoMsg(msg, cmdID);
+	ProtoTask* protoTask = dynamic_cast<ProtoTask*>(mTCPTask);
+	protoTask->sendProtoMsg(msg, cmdID);
 
-	ProtoTaskAsync* taskAsync = dynamic_cast<ProtoTaskAsync*>(mTCPTask);
-	if (taskAsync)
-		taskAsync->sendProtoMsg(msg, cmdID);
+	//ProtoTaskSync* taskSync = dynamic_cast<ProtoTaskSync*>(mTCPTask);
+	//if (taskSync)
+	//	taskSync->sendProtoMsg(msg, cmdID);
+
+	//ProtoTaskAsync* taskAsync = dynamic_cast<ProtoTaskAsync*>(mTCPTask);
+	//if (taskAsync)
+	//	taskAsync->sendProtoMsg(msg, cmdID);
 
 	return false;
 }

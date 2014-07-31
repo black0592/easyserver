@@ -54,6 +54,8 @@
 #ifndef GOOGLE_PROTOBUF_DESCRIPTOR_H__
 #define GOOGLE_PROTOBUF_DESCRIPTOR_H__
 
+#pragma warning(disable:4244)
+
 #include <string>
 #include <vector>
 #include <google/protobuf/stubs/common.h>
